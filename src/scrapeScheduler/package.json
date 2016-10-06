@@ -1,0 +1,20 @@
+{
+  "name": "scrapescheduler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "rimraf": "^2.5.4",
+    "sentiment": "^2.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "typescript": "^2.0.3"
+  }
+}
