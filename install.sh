@@ -1,5 +1,5 @@
-for dir in */; do
-	cd $dir
+for d in src/*/ ; do
+	cd $d
 	npm install
 	cd ../
 done
