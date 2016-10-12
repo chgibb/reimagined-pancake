@@ -117,9 +117,11 @@ for(let i : number = 0; i != queries.length; ++i)
 }
 //Twit likes to fail silently occasionally. There's a PR addressing the issue but the repo appears abandoned.
 //This will reduce the number of running events every 20 seconds. Allowing us to abort async operations and continue on.
-setInterval(()=>{
+var eventKiller : NodeJS.Timer =  setInterval(()=>{
     assert.runningEvents -= 1;
 },20000);
 
-assert.runAsserts();
+
+
+assert.runAsserts(<Array<NodeJS.Timer>>[eventKiller]);
 

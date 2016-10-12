@@ -4,7 +4,7 @@ mkdir dist
 rm dep/*.js
 rm dep/*.jar
 
-printf "Building twitter scrapper\n"
+
 
 cd src
 cd twitterScraper
@@ -16,7 +16,7 @@ cd ../
 cp src/twitterScraper/dist/dist.js dist/twitterScraper.js
 cp src/twitterScraper/dist/dist.js dep/twitterScraper.js
 
-printf "Building twitter scrapper scheduler\n"
+
 
 cd src
 cd scrapeScheduler
@@ -28,7 +28,7 @@ cd ../
 cp src/scrapeScheduler/dist/dist.js dist/scrapeScheduler.js
 cp src/scrapeScheduler/dist/dist.js dep/scrapeScheduler.js
 
-printf "Building bin tagger\n";
+
 
 cd src
 cd binTagger
@@ -40,7 +40,7 @@ cd ../
 cp src/binTagger/dist/dist.js dist/binTagger.js
 cp src/binTagger/dist/dist.js dep/binTagger.js
 
-printf "Building bin tag scheduler\n";
+
 
 cd src
 cd binTagScheduler
@@ -52,7 +52,7 @@ cd ../
 cp src/binTagScheduler/dist/dist.js dist/binTagScheduler.js
 cp src/binTagScheduler/dist/dist.js dep/binTagScheduler.js
 
-printf "Building bin querier\n";
+
 
 cd src
 cd queryBins
@@ -66,7 +66,7 @@ cp src/queryBins/dist/dist.js dep/queryBins.js
 
 
 
-printf "Building site server\n";
+
 
 cd src
 cd siteServer
@@ -78,18 +78,20 @@ cp src/siteServer/dist/dist.js dist/siteServer.js
 cp src/siteServer/dist/dist.js dep/siteServer.js
 
 
-printf "Building site client\n";
+
 
 cd src
 cd siteClient
 sh build.sh
 cd ../
 cd ../
-
+rm -rf dep/public
+mkdir dep/public
 cp src/siteClient/dist/dist.js dist/siteClient.js
-cp src/siteClient/dist/dist.js dep/siteClient.js
+cp src/siteClient/dist/dist.js dep/public/siteClient.js
+cp src/siteClient/index.html dep/index.html
 
-printf "Building NER server\n";
+
 
 cd src
 cd nerServer

@@ -119,12 +119,13 @@ for(let j : number = 0; j != dirs.length; ++j)
         },'',0
     );
 }
-assert.runAsserts();
-setInterval
+var jobRunner : NodeJS.Timer = setInterval
 (
     ()=>
     {
         JobMgr.runJobs();
     },200
 );
+assert.runAsserts(<Array<NodeJS.Timer>>[jobRunner]);
+
 

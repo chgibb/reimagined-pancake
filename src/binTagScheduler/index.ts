@@ -75,14 +75,17 @@ assert.assert
                 },'',0
             );
         }
+        assert.assert(()=>{return true;},'',0);
         return true;
     },'',0
 );
-assert.runAsserts();
-setInterval
+
+var jobRunner : NodeJS.Timer = setInterval
 (
     ()=>
     {
         JobMgr.runJobs();
     },200
 );
+
+assert.runAsserts(<Array<NodeJS.Timer>>[jobRunner]);

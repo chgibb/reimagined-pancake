@@ -36,6 +36,7 @@ import checkDateFilterOnBinPath from "./req/checkDateFilterOnBinPath";
 
 var JobMgr = require('./../jsreq/JobMgr');
 var assert = require('./../jsreq/assert');
+var sleep = require('./../jsreq/sleep');
 
 var dataDir : string = argv.dataDir;
 if(!dataDir)
@@ -94,7 +95,15 @@ assert.assert
         {
             if(checkDateFilterOnBinPath(bins.sourceBins[i],year,month,day,hour,minute))
             {
-                var store : dataStore<tweet,decomposedTweetDate> = new dataStore<tweet,decomposedTweetDate>(bins.sourceBins[i]);
+                var store : dataStore<tweet,decomposedTweetDate>
+                try
+                {
+                    store = new dataStore<tweet,decomposedTweetDate>(bins.sourceBins[i]);
+                }
+                catch(err)
+                {
+                    continue;
+                }
                 var avg  = 0;
                 for(let j : number = 0; j != store.items.length; ++j)
                 {
@@ -129,14 +138,15 @@ assert.assert
     ()=>
     {
         console.log(JSON.stringify(res,undefined,4));
+        sleep(3);
         return true;
     },'',0
 );
-assert.runAsserts();
-setInterval
+var jobRunner : NodeJS.Timer = setInterval
 (
     ()=>
     {
         JobMgr.runJobs();
     },200
 );
+assert.runAsserts(<Array<NodeJS.Timer>>[jobRunner]);

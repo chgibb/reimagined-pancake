@@ -10,6 +10,7 @@ var sha256 = require('./../jsreq/sha256.min.js');
 JobMgr.maxJobs = 1;
 var port = 8080;
 
+app.use("/public",express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -19,7 +20,6 @@ app.get('/', function(req : any, res : any)
 {
     console.log(process.cwd());
 	res.sendFile(process.cwd()+'/index.html');
-    res.sendFile(process.cwd()+"/siteClient.js");
 });
 
 router.route('/search').post
@@ -75,7 +75,7 @@ var queryCallBack : any =
             console.log(buff.getBuffer(args.extraData.uuid).content);
             args.extraData.res.send(buff.getBuffer(args.extraData.uuid).content);
             buff.removeBuffer(args.extraData.uuid);},1000);
-            return;
+            //return;
         }
         //args.extraData.res.send(args.unBufferedData);
         //console.log(args.unBufferdData);
@@ -88,7 +88,7 @@ var queryCallBack : any =
 }
 app.use('/api',router);
 app.listen(port);
-setInterval
+var jobRunner : NodeJS.Timer = setInterval
 (
     ()=>
     {

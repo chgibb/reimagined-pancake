@@ -21,11 +21,13 @@ var binCallBack : any =
                 if(tmp[i] == "tweets.json")
                 {
                     var path : string = tmp[i-1];
-                    path = path.replace(":","");
-                    path += "/"+tmp[i];
-                    //console.log(path);
-                    if(args.extraData.binType == "source")
-                        sourceBins.push(path);
+                    if(path)
+                    {
+                        path = path.replace(":","");
+                        path += "/"+tmp[i];
+                        if(args.extraData.binType == "source")
+                            sourceBins.push(path);
+                    }
                 }
             }
         }

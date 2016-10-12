@@ -128,11 +128,17 @@ assert.assert
         slashTags.saveLearnedTags();
         bin.saveToFile();
         console.log("completed tagging "+binPath);
-        process.exit(0);
         return true;
     },'',0
 );
+var jobRunner : NodeJS.Timer = setInterval
+(
+    ()=>
+    {
+        JobMgr.runJobs();
+    },200
+);
 
-assert.runAsserts();
+assert.runAsserts(<Array<NodeJS.Timer>>[jobRunner]);
 
-setInterval(()=>{JobMgr.runJobs();},200);
+

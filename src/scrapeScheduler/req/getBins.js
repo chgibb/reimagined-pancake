@@ -11,10 +11,12 @@ var binCallBack = {
             for (var i = 0; i != tmp.length; ++i) {
                 if (tmp[i] == "tweets.json") {
                     var path = tmp[i - 1];
-                    path = path.replace(":", "");
-                    path += "/" + tmp[i];
-                    if (args.extraData.binType == "source")
-                        exports.sourceBins.push(path);
+                    if (path) {
+                        path = path.replace(":", "");
+                        path += "/" + tmp[i];
+                        if (args.extraData.binType == "source")
+                            exports.sourceBins.push(path);
+                    }
                 }
             }
         }

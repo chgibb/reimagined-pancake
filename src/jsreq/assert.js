@@ -53,7 +53,17 @@ module.exports.run = function()
         module.exports.runningEvents = 0;
     var end = module.exports.assertions.length;
     if(end == 0)
-        process.exit(0);
+    {
+        clearTimeout(assertRunner);
+        if(intervalsToKill)
+        {
+            for(let i = 0; i != intervalsToKill.length; ++i)
+            {
+                clearTimeout(intervalsToKill[i]);
+            }
+        }
+        process.exitCode = 0;
+    }
     for(var i = 0; i < end; ++i)
     {
         if(module.exports.assertions[i] === undefined)
@@ -80,16 +90,17 @@ module.exports.run = function()
         }
     }
 }
-
-module.exports.runAsserts = function(interval)
+var assertRunner;
+var intervalsToKill;
+module.exports.runAsserts = function(intervals)
 {
-    if(interval == 0 || interval === undefined)
-        interval = 20;
-    setInterval
+    if(intervals)
+        intervalsToKill = intervals;
+    assertRunner = setInterval
     (
         function()
         {
             module.exports.run();
-        },interval
+        },20
     );
 }
