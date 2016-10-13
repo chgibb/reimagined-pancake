@@ -6,3 +6,5 @@ install:
     - sh install.sh
 script:
     - sh build.sh
+notifications:
+    email: never
