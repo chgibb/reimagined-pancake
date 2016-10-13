@@ -12,9 +12,7 @@
     "escape-string-regexp": "^1.0.5",
     "minimist": "^1.2.0",
     "ner-node": "0.0.7",
-    "sentiment": "^2.0.0",
-    "xml2js": "^0.4.17",
-    "xml2json": "^0.10.0"
+    "sentiment": "^2.0.0"
   },
   "devDependencies": {
     "browserify": "^13.1.0",
