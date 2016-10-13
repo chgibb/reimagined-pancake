@@ -1,4 +1,5 @@
-for d in src/*/ ; do
+cd src
+for d in */ ; do
 	printf $d
 	cd $d
 	npm install
