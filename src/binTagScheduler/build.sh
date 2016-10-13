@@ -1,4 +1,5 @@
-rm dist/*.js
+rm -rf dist
+mkdir dist
 printf "Building bin tag scheduler\n"
 ./node_modules/.bin/tsc
 printf "Bundling bin tag scheduler\n"

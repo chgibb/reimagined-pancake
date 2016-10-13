@@ -1,4 +1,5 @@
-rm dist/*.js
+rm -rf dist
+mkdir dist
 printf "Building server\n"
 ./node_modules/.bin/tsc
 printf "Bundling server\n"

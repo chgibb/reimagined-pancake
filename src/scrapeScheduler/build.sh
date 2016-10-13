@@ -1,4 +1,5 @@
-rm dist/*.js
+rm -rf dist
+mkdir dist
 printf "Building scrape scheduler\n"
 ./node_modules/.bin/tsc
 printf "Bundling scrape scheduler\n"
