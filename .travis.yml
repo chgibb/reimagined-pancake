@@ -1,8 +1,10 @@
 language: node_js
-
+sudo: required
 node_js:
     - "6"
 install:
+    - sudo apt-get update
+    - sudo apt-get install g++
     - sh install.sh
 script:
     - sh build.sh

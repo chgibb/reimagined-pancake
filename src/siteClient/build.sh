@@ -1,4 +1,5 @@
-rm dist/*.js
+rm -rf dist
+mkdir dist
 printf "Building site client\n"
 ./node_modules/.bin/tsc
 printf "Bundling site client\n"

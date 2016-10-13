@@ -1,4 +1,5 @@
-rm dist/*.js
+rm -rf dist
+mkdir dist
 printf "Building twitter scraper\n"
 ./node_modules/.bin/tsc
 printf "Bundling twitter scraper\n"
