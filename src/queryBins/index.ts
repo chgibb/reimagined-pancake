@@ -114,7 +114,7 @@ assert.assert
                     if(dataPoint == "nerTags")
                     {
                         if(!tagFilter)
-                            res.push({date:store.items[j].createdAt,nerTags:store.items[j].nerTags});
+                            res.push({date:store.items[j].createdAt,nerTags:store.items[j].nerTags,sentiment:store.items[j].sentiment.score});
                         if(tagFilter)
                         {
                             for(let k : number = 0; k != store.items[j].nerTags.length; ++k)
