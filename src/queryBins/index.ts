@@ -96,12 +96,14 @@ assert.assert
             if(checkDateFilterOnBinPath(bins.sourceBins[i],year,month,day,hour,minute))
             {
                 var store : dataStore<tweet,decomposedTweetDate>
+                fs.appendFileSync("log","Considering "+bins.sourceBins[i]+" in query\n");
                 try
                 {
                     store = new dataStore<tweet,decomposedTweetDate>(bins.sourceBins[i]);
                 }
                 catch(err)
                 {
+                    fs.appendFileSync("log",bins.sourceBins[i]+" has an error preventing it from being queried\n");
                     continue;
                 }
                 var avg  = 0;
