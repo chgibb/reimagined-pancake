@@ -95,7 +95,9 @@ cp src/siteClient/index.html dep/index.html
 
 cd src
 cd nerServer
+printf "Building NER Server\n"
 sh build.sh > /dev/null
+printf "Bundling NER Server\n"
 
 cd ../
 cd ../
