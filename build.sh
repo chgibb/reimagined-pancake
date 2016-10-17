@@ -92,6 +92,15 @@ cp src/siteClient/dist/dist.js dep/public/siteClient.js
 cp src/siteClient/index.html dep/index.html
 
 
+cd src
+cd averageData
+sh build.sh
+cd ../
+cd ../
+cp src/averageData/dist/dist.js dist/averageData.js
+cp src/averageData/dist/dist.js dep/averageData.js
+
+
 
 cd src
 cd nerServer
