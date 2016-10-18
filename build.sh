@@ -4,6 +4,8 @@ mkdir dist
 rm dep/*.js
 rm dep/*.jar
 
+sh clean.sh
+
 
 
 cd src

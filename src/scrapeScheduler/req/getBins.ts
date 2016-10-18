@@ -16,30 +16,38 @@ var binCallBack : any =
         if(args.unBufferedData)
         {
             tmp = args.unBufferedData.split("\n");
+            tmp.sort();
             for(let i : number = 0; i != tmp.length; ++i)
             {
-                if(tmp[i] == "tweets.json")
-                {
-                    var path : string = tmp[i-1];
-                    if(path)
-                    {
-                        path = path.replace(":","");
-                        path += "/"+tmp[i];
-                        if(args.extraData.binType == "source")
-                            sourceBins.push(path);
-                    }
-                }
+                if(args.extraData.binType == "source")
+                    sourceBins.push(tmp[i]);
             }
         }
     }
 }
-export function populateSourceBins(dir : string)
+export function populateSourceBins(dir : string,year? : string,month? : string,day? : string, hour? : string, minute? : string,second? : string) : void
 {
     sourceBins = new Array<string>();
+    var argsToPass : Array<string> = new Array<string>();
+    argsToPass.push("scripts/getBinNames.bash");
+    if(dir)
+        argsToPass.push(dir);
+    if(year)
+        argsToPass.push(year);
+    if(month)
+        argsToPass.push(month);
+    if(day)
+        argsToPass.push(day);
+    if(hour)
+        argsToPass.push(hour);
+    if(minute)
+        argsToPass.push(minute);
+    if(second)
+        argsToPass.push(second);
     JobMgr.addJob
     (
-        "ls",
-        ["-R",dir],
+        "bash",
+        argsToPass,
         "",true,
         binCallBack,
         {binType:"source"}
