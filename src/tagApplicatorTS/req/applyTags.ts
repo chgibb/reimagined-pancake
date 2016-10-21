@@ -15,7 +15,6 @@ export default function applyTags(bin : dataStore<tweet,decomposedTweetDate>) : 
             {
                 if(tokens[j] !== " " && tokens[j] !== undefined && slashTagParser.learnedTags[k].regex.test(tokens[j]))
                 {
-                    console.log("Matched "+slashTagParser.learnedTags[k].token+" to "+tokens[j]);
                     bin.items[i].nerTags.push
                     (
                         {
