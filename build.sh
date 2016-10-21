@@ -102,6 +102,14 @@ cd ../
 cp src/averageData/dist/dist.js dist/averageData.js
 cp src/averageData/dist/dist.js dep/averageData.js
 
+cd src
+cd tagApplicatorTS
+sh build.sh
+cd ../
+cd ../
+cp src/tagApplicatorTS/dist/dist.js dist/tagApplicator.js
+cp src/tagApplicatorTS/dist/dist.js dep/tagApplicator.js
+
 
 
 cd src

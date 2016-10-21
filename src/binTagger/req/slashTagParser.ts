@@ -28,8 +28,8 @@ var organization : RegExp = new RegExp("\\/ORGANIZATION","i");
 var person : RegExp = new RegExp("\\/PERSON","i");
 var location : RegExp = new RegExp("\\/LOCATION","i");
 var nothing : RegExp =  new RegExp("(\\/O)","i");
-var splitTokens : RegExp = new RegExp("(\\s)|(\\n)|( )","i");
-var learnedTags : Array<learnedNERTag> = new Array<learnedNERTag>();
+export var splitTokens : RegExp = new RegExp("(\\s)|(\\n)|( )","i");
+export var learnedTags : Array<learnedNERTag> = new Array<learnedNERTag>();
 var blackListedTags : Array<learnedNERTag> = new Array<learnedNERTag>();
 function init()
 {

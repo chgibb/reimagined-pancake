@@ -1,0 +1,190 @@
+# depslib dependency file v1.0
+1476984257 source:/home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	"inc/loadTags.hpp"
+	"inc/Bin.hpp"
+	"inc/Tag.hpp"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/document.h
+	"reader.h"
+	"internal/meta.h"
+	"internal/strfunc.h"
+	"memorystream.h"
+	"encodedstream.h"
+	<new>
+	<limits>
+	<iterator>
+	<utility>
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/reader.h
+	"allocators.h"
+	"stream.h"
+	"encodedstream.h"
+	"internal/meta.h"
+	"internal/stack.h"
+	"internal/strtod.h"
+	<limits>
+	<intrin.h>
+	<nmmintrin.h>
+	<emmintrin.h>
+	<stdexcept>
+	"rapidjson/error/error.h"
+	"rapidjson/reader.h"
+	"error/error.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/allocators.h
+	"rapidjson.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/rapidjson.h
+	<cstdlib>
+	<cstring>
+	"rapidjson/..."
+	<string>
+	"msinttypes/stdint.h"
+	"msinttypes/inttypes.h"
+	<stdint.h>
+	<inttypes.h>
+	<endian.h>
+	"rapidjson/..."
+	<cassert>
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/msinttypes/stdint.h
+	<stdint.h>
+	<limits.h>
+	<wchar.h>
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/msinttypes/inttypes.h
+	"stdint.h"
+	<inttypes.h>
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/stream.h
+	"rapidjson.h"
+	"encodings.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/encodings.h
+	"rapidjson.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/encodedstream.h
+	"stream.h"
+	"memorystream.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/memorystream.h
+	"stream.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/meta.h
+	"../rapidjson.h"
+	<type_traits>
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/stack.h
+	"../allocators.h"
+	"swap.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/swap.h
+	"../rapidjson.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/strtod.h
+	"ieee754.h"
+	"biginteger.h"
+	"diyfp.h"
+	"pow10.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/ieee754.h
+	"../rapidjson.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/biginteger.h
+	"../rapidjson.h"
+	<intrin.h>
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/diyfp.h
+	"../rapidjson.h"
+	<intrin.h>
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/pow10.h
+	"../rapidjson.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/error/error.h
+	"../rapidjson.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/strfunc.h
+	"../stream.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/istreamwrapper.h
+	"stream.h"
+	<iosfwd>
+
+1476917545 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/inc/getTags.hpp
+	<vector>
+	<utility>
+	<string>
+	<fstream>
+	"../rapidjson/include/rapidjson/document.h"
+	"../rapidjson/include/rapidjson/istreamwrapper.h"
+
+1476984153 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/inc/loadTags.hpp
+	<vector>
+	<string>
+	<fstream>
+	"../rapidjson/include/rapidjson/document.h"
+	"../rapidjson/include/rapidjson/istreamwrapper.h"
+	"Tag.hpp"
+
+1476996242 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/inc/Bin.hpp
+	<vector>
+	<utility>
+	<string>
+	<fstream>
+	<regex>
+	<regex.h>
+	<cstring>
+	"../rapidjson/include/rapidjson/document.h"
+	"../rapidjson/include/rapidjson/istreamwrapper.h"
+	"../rapidjson/include/rapidjson/ostreamwrapper.h"
+	"../rapidjson/include/rapidjson/prettywriter.h"
+	"findTag.hpp"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/ostreamwrapper.h
+	"stream.h"
+	<iosfwd>
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/prettywriter.h
+	"writer.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/writer.h
+	"stream.h"
+	"internal/stack.h"
+	"internal/strfunc.h"
+	"internal/dtoa.h"
+	"internal/itoa.h"
+	"stringbuffer.h"
+	<new>
+	<intrin.h>
+	<nmmintrin.h>
+	<emmintrin.h>
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/dtoa.h
+	"itoa.h"
+	"diyfp.h"
+	"ieee754.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/internal/itoa.h
+	"../rapidjson.h"
+
+1476914483 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/rapidjson/include/rapidjson/stringbuffer.h
+	"stream.h"
+	"internal/stack.h"
+	<utility>
+	"internal/stack.h"
+
+1476984449 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/inc/Tag.hpp
+	<regex.h>
+
+1476986372 /home/gibbsticks/Desktop/bigData/reimagined-pancake/src/tagApplicator/inc/findTag.hpp
+	<vector>
+	<utility>
+	<string>
+	<regex.h>
+	"../rapidjson/include/rapidjson/document.h"
+	"Tag.hpp"
+

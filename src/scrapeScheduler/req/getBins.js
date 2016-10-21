@@ -38,9 +38,3 @@ function populateSourceBins(dir, year, month, day, hour, minute, second) {
     assert.runningEvents += 1;
 }
 exports.populateSourceBins = populateSourceBins;
-function populateDestinationBins(dir) {
-    exports.destinationBins = new Array();
-    JobMgr.addJob("ls", ["-R", dir], "", true, binCallBack, { binType: "destination" });
-    assert.runningEvents += 1;
-}
-exports.populateDestinationBins = populateDestinationBins;

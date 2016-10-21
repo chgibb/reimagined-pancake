@@ -54,7 +54,7 @@ export function populateSourceBins(dir : string,year? : string,month? : string,d
     );
     assert.runningEvents += 1;
 }
-export function populateDestinationBins(dir  :string)
+/*export function populateDestinationBins(dir  :string)
 {
     destinationBins = new Array<dataStore<tweet,decomposedTweetDate>>();
     JobMgr.addJob
@@ -66,4 +66,4 @@ export function populateDestinationBins(dir  :string)
         {binType:"destination"}
     );
     assert.runningEvents += 1;
-}
+}*/
