@@ -4,11 +4,12 @@ var assert = require('./../../jsreq/assert');
 var binCallBack = {
     send: function (channel, args) {
         var tmp;
-        if (args.retCode !== undefined)
+        if (args.retCode !== undefined) {
+            exports.sourceBins.sort();
             assert.runningEvents -= 1;
+        }
         if (args.unBufferedData) {
             tmp = args.unBufferedData.split("\n");
-            tmp.sort();
             for (var i = 0; i != tmp.length; ++i) {
                 if (args.extraData.binType == "source")
                     exports.sourceBins.push(tmp[i]);

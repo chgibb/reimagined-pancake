@@ -12,11 +12,13 @@ var binCallBack : any =
     {
         var tmp : Array<string>;
         if(args.retCode !== undefined)
+        {
+            sourceBins.sort();
             assert.runningEvents -= 1;
+        }
         if(args.unBufferedData)
         {
             tmp = args.unBufferedData.split("\n");
-            tmp.sort();
             for(let i : number = 0; i != tmp.length; ++i)
             {
                 if(args.extraData.binType == "source")

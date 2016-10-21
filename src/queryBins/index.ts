@@ -81,7 +81,7 @@ assert.assert
 (
     ()=>
     {
-        bins.populateSourceBins(dataDir);
+        bins.populateSourceBins(dataDir,year,month,day,hour,minute);
         return true;
     },'',0
 );
@@ -93,39 +93,36 @@ assert.assert
     {
         for(let i : number = 0; i != bins.sourceBins.length; ++i)
         {
-            if(checkDateFilterOnBinPath(bins.sourceBins[i],year,month,day,hour,minute))
+            var store : dataStore<tweet,decomposedTweetDate>
+            fs.appendFileSync("log",new Date()+" "+"Considering "+bins.sourceBins[i]+" in query\n");
+            try
             {
-                var store : dataStore<tweet,decomposedTweetDate>
-                fs.appendFileSync("log",new Date()+" "+"Considering "+bins.sourceBins[i]+" in query\n");
-                try
+                store = new dataStore<tweet,decomposedTweetDate>(bins.sourceBins[i]);
+            }
+            catch(err)
+            {
+                fs.appendFileSync("log",new Date()+" "+bins.sourceBins[i]+" has an error preventing it from being queried\n");
+                continue;
+            }
+            var avg  = 0;
+            for(let j : number = 0; j != store.items.length; ++j)
+            {
+                if(dataPoint == "sentiment")
                 {
-                    store = new dataStore<tweet,decomposedTweetDate>(bins.sourceBins[i]);
+                    res.push({date:store.items[j].createdAt,sentiment:store.items[j].sentiment.score});
                 }
-                catch(err)
+                if(dataPoint == "nerTags")
                 {
-                    fs.appendFileSync("log",new Date()+" "+bins.sourceBins[i]+" has an error preventing it from being queried\n");
-                    continue;
-                }
-                var avg  = 0;
-                for(let j : number = 0; j != store.items.length; ++j)
-                {
-                    if(dataPoint == "sentiment")
+                    if(!tagFilter)
+                        res.push({date:store.items[j].createdAt,nerTags:store.items[j].nerTags,sentiment:store.items[j].sentiment.score});
+                    if(tagFilter)
                     {
-                        res.push({date:store.items[j].createdAt,sentiment:store.items[j].sentiment.score});
-                    }
-                    if(dataPoint == "nerTags")
-                    {
-                        if(!tagFilter)
-                            res.push({date:store.items[j].createdAt,nerTags:store.items[j].nerTags,sentiment:store.items[j].sentiment.score});
-                        if(tagFilter)
+                        for(let k : number = 0; k != store.items[j].nerTags.length; ++k)
                         {
-                            for(let k : number = 0; k != store.items[j].nerTags.length; ++k)
+                            if(tagFilterRegExp.test(store.items[j].nerTags[k].token))
                             {
-                                if(tagFilterRegExp.test(store.items[j].nerTags[k].token))
-                                {
-                                    res.push({date:store.items[j].createdAt,nerTags:store.items[j].nerTags,sentiment:store.items[j].sentiment.score});
-                                    break;
-                                }
+                                res.push({date:store.items[j].createdAt,nerTags:store.items[j].nerTags,sentiment:store.items[j].sentiment.score});
+                                break;
                             }
                         }
                     }
