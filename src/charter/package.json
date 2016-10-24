@@ -1,0 +1,27 @@
+{
+  "name": "charter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js",
+    "test": ""
+  },
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "electron-prebuilt": "^1.1.2",
+    "typescript": "^2.0.3"
+  },
+  "dependencies": {
+    "electron-ipc-stream": "^0.2.0",
+    "electron-packager": "^8.0.0",
+    "jquery": "^3.1.1",
+    "plotly": "^1.0.6"
+  }
+}

@@ -6,7 +6,6 @@ var binCallBack = {
         var tmp;
         if (args.retCode !== undefined) {
             exports.sourceBins.sort();
-            console.log(exports.sourceBins);
             assert.runningEvents -= 1;
         }
         if (args.unBufferedData) {

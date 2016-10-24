@@ -8,7 +8,7 @@ var canRead = require('./../jsreq/canRead');
 import * as tag from "./req/tagExists";
 
 var filePath = argv.file;
-var date = argv.Date;
+var date = argv.date;
 if(!filePath)
 {
     console.log("Must specify file to open");
