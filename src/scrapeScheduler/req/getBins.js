@@ -6,13 +6,15 @@ var binCallBack = {
         var tmp;
         if (args.retCode !== undefined) {
             exports.sourceBins.sort();
+            console.log(exports.sourceBins);
             assert.runningEvents -= 1;
         }
         if (args.unBufferedData) {
             tmp = args.unBufferedData.split("\n");
             for (var i = 0; i != tmp.length; ++i) {
-                if (args.extraData.binType == "source")
+                if (tmp[i] && args.extraData.binType == "source") {
                     exports.sourceBins.push(tmp[i]);
+                }
             }
         }
     }

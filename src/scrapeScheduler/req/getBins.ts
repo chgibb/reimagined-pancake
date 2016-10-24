@@ -21,8 +21,10 @@ var binCallBack : any =
             tmp = args.unBufferedData.split("\n");
             for(let i : number = 0; i != tmp.length; ++i)
             {
-                if(args.extraData.binType == "source")
+                if(tmp[i] && args.extraData.binType == "source")
+                {
                     sourceBins.push(tmp[i]);
+                }
             }
         }
     }
