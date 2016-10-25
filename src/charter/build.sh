@@ -3,7 +3,7 @@ mkdir dist
 printf "Building charter\n"
 ./node_modules/.bin/tsc
 printf "Bundling charter\n"
-./node_modules/.bin/browserify index.js --node -o dist/index.js
+./node_modules/.bin/browserify index.js --node -o dist/index.js --ignore-missing
 ./node_modules/.bin/browserify main.js --node --debug -o dist/main.js --ignore-missing
 
 cp index.html dist
