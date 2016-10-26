@@ -3,6 +3,7 @@ rm -r dep/*.jar
 rm -r dep/*.json
 rm -r dep/*.html
 rm -r dep/*.sh
+rm dep/binDiscoverer
 
 rm -r dep/public/*
 rmdir dep/public

@@ -81,7 +81,7 @@ assert.assert
 (
     ()=>
     {
-        bins.populateSourceBins(dataDir,year,month,day,hour,minute);
+        bins.populateSourceBins(true,dataDir,year,month,day,hour,minute);
         return true;
     },'',0
 );

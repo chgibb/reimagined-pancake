@@ -29,11 +29,12 @@ var binCallBack : any =
         }
     }
 }
-export function populateSourceBins(dir : string,year? : string,month? : string,day? : string, hour? : string, minute? : string,second? : string) : void
+export function populateSourceBins(targetted : boolean,dir : string,year? : string,month? : string,day? : string, hour? : string, minute? : string,second? : string) : void
 {
     sourceBins = new Array<string>();
     var argsToPass : Array<string> = new Array<string>();
-    argsToPass.push("scripts/getBinNames.bash");
+    if(!targetted)
+        argsToPass.push("scripts/getBinNames.bash");
     if(dir)
         argsToPass.push(dir);
     if(year)
@@ -48,14 +49,28 @@ export function populateSourceBins(dir : string,year? : string,month? : string,d
         argsToPass.push(minute);
     if(second)
         argsToPass.push(second);
-    JobMgr.addJob
-    (
-        "bash",
-        argsToPass,
-        "",true,
-        binCallBack,
-        {binType:"source"}
-    );
+    if(!targetted)
+    {
+        JobMgr.addJob
+        (
+            "bash",
+            argsToPass,
+            "",true,
+            binCallBack,
+            {binType:"source"}
+        );
+    }
+    if(targetted)
+    {
+        JobMgr.addJob
+        (
+            "./binDiscoverer",
+            argsToPass,
+            "",true,
+            binCallBack,
+            {binType:"source"}
+        );
+    }
     assert.runningEvents += 1;
 }
 /*export function populateDestinationBins(dir  :string)

@@ -90,7 +90,7 @@ for(let j : number = 0; j != dirs.length; ++j)
         ()=>
         {
             //find all the bins generated
-            bins.populateSourceBins(dirs[j]);
+            bins.populateSourceBins(false,dirs[j]);
             return true;
         },'',0
     );

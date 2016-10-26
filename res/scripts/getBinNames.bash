@@ -12,3 +12,4 @@ fi
 if [ $# == 1 ]; then
     ./scripts/getBins.sh $1 | ./scripts/extractBinName.awk
 fi
+

@@ -110,6 +110,16 @@ cd ../
 cp src/tagApplicatorTS/dist/dist.js dist/tagApplicator.js
 cp src/tagApplicatorTS/dist/dist.js dep/tagApplicator.js
 
+cd src
+cd binDiscoverer
+cd binDiscoverer
+sh build.sh
+cd ../
+cd ../
+cd ../
+cp src/binDiscoverer/binDiscoverer/binDiscoverer dist/binDiscoverer
+cp src/binDiscoverer/binDiscoverer/binDiscoverer dep/binDiscoverer
+
 
 
 cd src

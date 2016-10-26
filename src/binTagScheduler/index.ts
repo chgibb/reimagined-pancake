@@ -8,6 +8,8 @@ var JobMgr = require('./../jsreq/JobMgr');
 var assert = require('./../jsreq/assert');
 
 var dataDir : string = argv.dataDir;
+var year : string = argv.year;
+var month : string = argv.month;
 if(!dataDir)
 {
     console.log("must specify result directory");
@@ -46,7 +48,7 @@ assert.assert
     ()=>
     {
         //find all the bins to tag
-        bins.populateSourceBins(dataDir);
+        bins.populateSourceBins(true,dataDir,year,month);
         return true;
     },'',0
 );
