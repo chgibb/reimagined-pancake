@@ -29,11 +29,11 @@ var binCallBack : any =
         }
     }
 }
-export function populateSourceBins(targetted : boolean,dir : string,year? : string,month? : string,day? : string, hour? : string, minute? : string,second? : string) : void
+export function populateSourceBins(targeted : boolean,dir : string,year? : string,month? : string,day? : string, hour? : string, minute? : string,second? : string) : void
 {
     sourceBins = new Array<string>();
     var argsToPass : Array<string> = new Array<string>();
-    if(!targetted)
+    if(!targeted)
         argsToPass.push("scripts/getBinNames.bash");
     if(dir)
         argsToPass.push(dir);
@@ -49,7 +49,7 @@ export function populateSourceBins(targetted : boolean,dir : string,year? : stri
         argsToPass.push(minute);
     if(second)
         argsToPass.push(second);
-    if(!targetted)
+    if(!targeted)
     {
         JobMgr.addJob
         (
@@ -60,7 +60,7 @@ export function populateSourceBins(targetted : boolean,dir : string,year? : stri
             {binType:"source"}
         );
     }
-    if(targetted)
+    if(targeted)
     {
         JobMgr.addJob
         (

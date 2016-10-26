@@ -18,10 +18,10 @@ var binCallBack = {
         }
     }
 };
-function populateSourceBins(targetted, dir, year, month, day, hour, minute, second) {
+function populateSourceBins(targeted, dir, year, month, day, hour, minute, second) {
     exports.sourceBins = new Array();
     var argsToPass = new Array();
-    if (!targetted)
+    if (!targeted)
         argsToPass.push("scripts/getBinNames.bash");
     if (dir)
         argsToPass.push(dir);
@@ -37,10 +37,10 @@ function populateSourceBins(targetted, dir, year, month, day, hour, minute, seco
         argsToPass.push(minute);
     if (second)
         argsToPass.push(second);
-    if (!targetted) {
+    if (!targeted) {
         JobMgr.addJob("bash", argsToPass, "", true, binCallBack, { binType: "source" });
     }
-    if (targetted) {
+    if (targeted) {
         JobMgr.addJob("./binDiscoverer", argsToPass, "", true, binCallBack, { binType: "source" });
     }
     assert.runningEvents += 1;

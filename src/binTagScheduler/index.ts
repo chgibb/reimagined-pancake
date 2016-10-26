@@ -15,12 +15,7 @@ if(!dataDir)
     console.log("must specify result directory");
     process.exit(1);
 }
-var threads : number = argv.threads;
-if(!threads)
-{
-    console.log("must specify number of threads to run");
-    process.exit(1);
-}
+var threads : number = 1;
 
 
 //on call back from a spawned tagger
