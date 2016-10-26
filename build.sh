@@ -124,13 +124,9 @@ cp src/binDiscoverer/binDiscoverer/binDiscoverer dep/binDiscoverer
 
 cd src
 cd nerServer
-printf "Building NER Server\n"
-sh build.sh > /dev/null
-printf "Bundling NER Server\n"
-
+sh build.sh
 cd ../
 cd ../
-
 cp src/nerServer/nerServer.jar dist/nerServer.jar
 cp src/nerServer/nerServer.jar dep/nerServer.jar
 cp -R res/* dep

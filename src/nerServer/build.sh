@@ -1,6 +1,10 @@
-rm nerServer.class
-rm nerServer.jar
+sh clean.sh
+
 printf "Building NER server\n"
-javac src/inputQueue.java
-javac nerServer.java
-jar cvfe nerServer.jar nerServer *
+
+find . -name "*.java" -type f | awk '{print substr($1,3);}' > srcs
+javac @srcs
+
+printf "Bundling NER server\n"
+
+jar cvfe nerServer.jar nerServer * >/dev/null
