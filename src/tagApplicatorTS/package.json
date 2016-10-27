@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
-    "heapdump": "^0.3.7",
     "minimist": "^1.2.0",
     "ner-node": "0.0.7",
     "sentiment": "^2.0.0"

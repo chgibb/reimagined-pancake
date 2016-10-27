@@ -6,7 +6,6 @@ var jsonFile = require('./../jsreq/jsonfile');
 var assert = require("./../jsreq/assert");
 var JobMgr = require('./../jsreq/JobMgr');
 
-var heapDump = require('heapdump');
 JobMgr.maxJobs = 1;
 
 import * as bins from './../scrapeScheduler/req/getBins';
@@ -32,7 +31,6 @@ assert.assert
 (
     ()=>
     {
-        heapDump.writeSnapshot();
         for(let i = 0; i != bins.sourceBins.length; ++i)
         {
             fs.appendFileSync("log",new Date()+" Applying learned tags to: "+bins.sourceBins[i]+"\n");
@@ -42,9 +40,7 @@ assert.assert
             if(!res)
                 console.log("Could not save "+bin.file);
             fs.appendFileSync("log",new Date()+" Done applying learned tags\n");
-            heapDump.writeSnapshot();
         }
-        heapDump.writeSnapshot();
         return true;
         },'',0
 );
