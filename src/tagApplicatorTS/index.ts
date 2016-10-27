@@ -5,6 +5,8 @@ var argv : any = require('minimist')(process.argv.slice(2));
 var jsonFile = require('./../jsreq/jsonfile');
 var assert = require("./../jsreq/assert");
 var JobMgr = require('./../jsreq/JobMgr');
+
+var heapDump = require('heapdump');
 JobMgr.maxJobs = 1;
 
 import * as bins from './../scrapeScheduler/req/getBins';
@@ -12,7 +14,6 @@ import dataStore from './../req/dataStore';
 import tweet from './../twitterScraper/req/tweet';
 import decomposedTweetDate from './../twitterScraper/req/decomposedTweetDate';
 import applyTags from "./req/applyTags";
-
 var dataDir : string=  argv.dataDir;
 var year : string = argv.year;
 var month : string = argv.month;
@@ -31,6 +32,7 @@ assert.assert
 (
     ()=>
     {
+        heapDump.writeSnapshot();
         for(let i = 0; i != bins.sourceBins.length; ++i)
         {
             fs.appendFileSync("log",new Date()+" Applying learned tags to: "+bins.sourceBins[i]+"\n");
@@ -40,7 +42,9 @@ assert.assert
             if(!res)
                 console.log("Could not save "+bin.file);
             fs.appendFileSync("log",new Date()+" Done applying learned tags\n");
+            heapDump.writeSnapshot();
         }
+        heapDump.writeSnapshot();
         return true;
         },'',0
 );

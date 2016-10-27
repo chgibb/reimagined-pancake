@@ -19,8 +19,7 @@
         //etc
     ]
 */
-template<class LogFile>
-bool loadTags(std::string tagsPath,std::vector<Tag>&store,LogFile&logFile)
+bool loadTags(std::string tagsPath,std::vector<Tag>&store)
 {
     std::ifstream tagsFilePath(tagsPath);
     rapidjson::IStreamWrapper tagsFileStream(tagsFilePath);
@@ -28,8 +27,7 @@ bool loadTags(std::string tagsPath,std::vector<Tag>&store,LogFile&logFile)
     tags.ParseStream(tagsFileStream);
     if(tags.HasParseError())
     {
-        logFile<<tags.GetParseError()<<"\n";
-        logFile.flush();
+        std::cout<<tags.GetParseError()<<"\n";
         return false;
     }
     for(auto it = tags.Begin(); it != tags.End(); ++it)

@@ -4,7 +4,6 @@
 #include <string>
 #include <fstream>
 #include <locale>
-#include <codecvt>
 #include <regex>
 #include <regex.h>
 
@@ -16,31 +15,24 @@
 #include "../rapidjson/include/rapidjson/prettywriter.h"
 
 #include "findTag.hpp"
-template<class LogFile>
 class Bin
 {
     public:
         std::string binPath;
         rapidjson::GenericDocument<rapidjson::UTF8<>> json;
-        LogFile* logFile;
-        Bin(std::string binPath,LogFile* log)
+        Bin(std::string binPath)
         {
             this->binPath = binPath;
-            this->logFile = log;
             this->load();
         }
         Bin(){}
         bool load()
         {
-            *this->logFile<<"Loading "+this->binPath<<"\n";
-            this->logFile->flush();
             std::ifstream binPathFile(this->binPath);
             rapidjson::IStreamWrapper jsonFileStream(binPathFile);
             this->json.ParseStream(jsonFileStream);
             if(this->json.HasParseError())
             {
-                *this->logFile<<this->json.GetParseError()<<"\n";
-                this->logFile->flush();
                 return false;
             }
             return true;
@@ -52,17 +44,36 @@ class Bin
         }
         void tokenizeText(std::string in,std::vector<std::string>&tokens)
         {
-            char* res;
-            char delims[] = " \n.,!?";
-            res = ::strtok(&in[0],delims);
-            tokens.push_back(std::string(res));
-            while(res)
+            bool add = true;
+            std::string str;
+            size_t end = in.length();
+            for(size_t it = 0; it != end; ++it)
             {
-                res = ::strtok(NULL,delims);
-                if(res)
+                add = true;
+                if(in[it] == ' ')
                 {
-                    tokens.push_back(std::string(res));
+                    str.erase(std::remove(str.begin(),str.end(),'\n'),str.end());
+                    str.erase(std::remove(str.begin(),str.end(),'.'),str.end());
+                    str.erase(std::remove(str.begin(),str.end(),','),str.end());
+                    str.erase(std::remove(str.begin(),str.end(),'\t'),str.end());
+                    if(str != "")
+                        tokens.push_back(str);
+                    str = "";
+                    add = false;
                 }
+                if(in[it] == '\n')
+                {
+                    str.erase(std::remove(str.begin(),str.end(),'\n'),str.end());
+                    str.erase(std::remove(str.begin(),str.end(),'.'),str.end());
+                    str.erase(std::remove(str.begin(),str.end(),','),str.end());
+                    str.erase(std::remove(str.begin(),str.end(),'\t'),str.end());
+                    if(str != "")
+                        tokens.push_back(str);
+                    str = "";
+                    add = false;
+                }
+                if(add)
+                    str += in[it];
             }
         }
         bool tagBin(std::vector<Tag>&tags)
@@ -88,7 +99,7 @@ class Bin
                             rapidjson::Value obj;
                             obj.SetObject();
                             rapidjson::Value str;
-                            str.SetString(rapidjson::StringRef(tokensIt->c_str()));
+                            str.SetString(rapidjson::StringRef(tagsIt->token.c_str()));
                             obj.AddMember("token",str,allocator);
                             str.SetString(rapidjson::StringRef(tagsIt->entity.c_str()));
                             obj.AddMember("entity",str,allocator);
@@ -105,13 +116,12 @@ class Bin
             rapidjson::OStreamWrapper osw(ofs);
             rapidjson::PrettyWriter<rapidjson::OStreamWrapper> writer(osw);
             this->json.Accept(writer);*/
-            std::locale loc (std::locale(), new std::codecvt_utf8<char>);
-            std::wofstream wofs;
-            wofs.open(this->binPath,std::ios::out);
+            std::ofstream wofs(this->binPath);
+            //wofs.open(this->binPath,std::ios::out);
 //            std::locale utf8_locale(std::locale(),new utf8cvt<false>);
 //            wofs.imbue(utf8_locale);
-            rapidjson::WOStreamWrapper wosw(wofs);
-            rapidjson::PrettyWriter<rapidjson::WOStreamWrapper> writer(wosw);
+            rapidjson::OStreamWrapper wosw(wofs);
+            rapidjson::PrettyWriter<rapidjson::OStreamWrapper> writer(wosw);
             this->json.Accept(writer);
             return true;
         }

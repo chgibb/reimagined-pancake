@@ -14,19 +14,24 @@
 */
 int main(int argc,char*argv[])
 {
-    if(!argv[2])
-        return 1;
-
-    std::ofstream log("tagApplicatorLog",std::ios::out | std::ios::app);
 
     std::vector<Tag> tags;
-    bool res = loadTags<decltype(log)>(argv[2],tags,log);
+    bool res = loadTags(argv[1],tags);
     if(!res)
-        return 1;
-    for(int i = 3; i != argc; ++i)
     {
-        Bin<decltype(log)> bin(argv[i],&log);
-        bin.tagBin(tags);
-        bin.saveBin();
+        std::cout<<"Could not load tags\n";
+        return 1;
+    }
+    for(int i = 2; i != argc; ++i)
+    {
+        std::cout<<"Loading "<<argv[i]<<"\n";
+        Bin bin;
+        bool res = bin.load(argv[i]);
+        if(res)
+        {
+            std::cout<<"Applying learned tags to "<<argv[i]<<"\n";
+            bin.tagBin(tags);
+            bin.saveBin();
+        }
     }
 }

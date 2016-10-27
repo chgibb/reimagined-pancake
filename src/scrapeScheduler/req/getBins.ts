@@ -2,6 +2,7 @@ import tweet from './../../twitterScraper/req/tweet';
 import dataStore from './../../req/dataStore';
 import tweetStoreMgr from './../../twitterScraper/req/tweetStoreMgr';
 import decomposedTweetDate from './../../twitterScraper/req/decomposedTweetDate';
+import insertLeadingPaddingToSize from "./../../req/insertLeadingPaddingToSize";
 var JobMgr = require('./../../jsreq/JobMgr');
 var assert = require('./../../jsreq/assert');
 export var sourceBins : Array<string>;
@@ -33,6 +34,20 @@ export function populateSourceBins(targeted : boolean,dir : string,year? : strin
 {
     sourceBins = new Array<string>();
     var argsToPass : Array<string> = new Array<string>();
+    if(day)
+    {
+        if(typeof day == "number")
+            day = day.toString();
+        if(day.length == 1)
+        day = "0"+day;
+    }
+    if(hour)
+    {
+        if(typeof hour == "number")
+            hour = hour.toString();
+        if(hour.length == 1)
+        hour = "0"+hour;
+    }
     if(!targeted)
         argsToPass.push("scripts/getBinNames.bash");
     if(dir)
@@ -49,6 +64,7 @@ export function populateSourceBins(targeted : boolean,dir : string,year? : strin
         argsToPass.push(minute);
     if(second)
         argsToPass.push(second);
+    console.log(argsToPass);
     if(!targeted)
     {
         JobMgr.addJob

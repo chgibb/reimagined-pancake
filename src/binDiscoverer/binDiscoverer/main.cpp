@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "inc/DataDir.hpp"
 #include "inc/Year.hpp"
 #include "inc/Month.hpp"
@@ -13,23 +14,26 @@ using namespace std;
 int main(int argc,char*argv[])
 {
     std::vector<PathComponent*> path;
-    if(argv[1])
+    if(argv[1] && argc >= 1 )
         path.push_back(new DataDir(argv[1]));
     else
         path.push_back(new DataDir("data"));
-    if(argv[2])
+    if(argv[2] && argc >= 2 )
         path.push_back(new Year(std::stoi(argv[2])));
     else
         return 1;
-    if(argv[3])
+    if(argv[3] && argc >= 3 )
         path.push_back(new Month(argv[3]));
     else
         return 1;
-    if(argv[4])
+    if(argv[4] && argc >= 4 )
         path.push_back(new Day(std::stoi(argv[4])));
     else
         path.push_back(new Day(1));
-    path.push_back(new Hour());
+    if(argv[5] && argc >= 5 )
+        path.push_back(new Hour(std::stoi(argv[5])));
+    else
+        path.push_back(new Hour());
     path.push_back(new Minute());
     path.push_back(new Minute());
     for(;;)
@@ -56,14 +60,19 @@ int main(int argc,char*argv[])
         {
             path[1]->increment();
         }
-        if(argv[3])
+        if(argv[3] && argc >= 3)
         {
             if(path[2]->get() != argv[3])
                 return 0;
         }
-        if(argv[4])
+        if(argv[4] && argc >= 4)
         {
             if(path[3]->get() != argv[4])
+                return 0;
+        }
+        if(argv[5] && argc >= 5)
+        {
+            if(path[4]->get() != argv[5])
                 return 0;
         }
         if(canRead(composePathString(path)))

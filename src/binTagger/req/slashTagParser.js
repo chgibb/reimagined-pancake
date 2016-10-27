@@ -2,6 +2,7 @@
 function makeLearnedTagRegex(token) {
     return new RegExp("\\b" + escapeStringRegexp(token) + "\\b", "i");
 }
+exports.makeLearnedTagRegex = makeLearnedTagRegex;
 function makeLearnedTagRegexs(tags) {
     for (var i = 0; i != tags.length; ++i) {
         tags[i].regex = makeLearnedTagRegex(tags[i].token);

@@ -54,6 +54,17 @@ cd ../
 cp src/binTagScheduler/dist/dist.js dist/binTagScheduler.js
 cp src/binTagScheduler/dist/dist.js dep/binTagScheduler.js
 
+cd src
+cd tagApplicatorScheduler
+sh build.sh
+
+cd ../
+cd ../
+
+cp src/tagApplicatorScheduler/dist/dist.js dist/tagApplicatorScheduler.js
+cp src/tagApplicatorScheduler/dist/dist.js dep/tagApplicatorScheduler.js
+
+
 
 
 cd src
@@ -119,6 +130,14 @@ cd ../
 cd ../
 cp src/binDiscoverer/binDiscoverer/binDiscoverer dist/binDiscoverer
 cp src/binDiscoverer/binDiscoverer/binDiscoverer dep/binDiscoverer
+
+cd src
+cd tagApplicator
+sh build.sh
+cd ../
+cd ../
+cp src/tagApplicator/tagApplicator dist/tagApplicator
+cp src/tagApplicator/tagApplicator dep/tagApplicator
 
 
 

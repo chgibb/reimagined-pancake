@@ -21,6 +21,18 @@ var binCallBack = {
 function populateSourceBins(targeted, dir, year, month, day, hour, minute, second) {
     exports.sourceBins = new Array();
     var argsToPass = new Array();
+    if (day) {
+        if (typeof day == "number")
+            day = day.toString();
+        if (day.length == 1)
+            day = "0" + day;
+    }
+    if (hour) {
+        if (typeof hour == "number")
+            hour = hour.toString();
+        if (hour.length == 1)
+            hour = "0" + hour;
+    }
     if (!targeted)
         argsToPass.push("scripts/getBinNames.bash");
     if (dir)
@@ -37,6 +49,7 @@ function populateSourceBins(targeted, dir, year, month, day, hour, minute, secon
         argsToPass.push(minute);
     if (second)
         argsToPass.push(second);
+    console.log(argsToPass);
     if (!targeted) {
         JobMgr.addJob("bash", argsToPass, "", true, binCallBack, { binType: "source" });
     }

@@ -5,6 +5,7 @@ class Hour : public PathComponent
 {
     public:
         Hour() = default;
+        Hour(int newHour) : numHour(newHour){}
         void increment() override
         {
             this->numHour++;

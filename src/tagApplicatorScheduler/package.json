@@ -1,5 +1,5 @@
 {
-  "name": "tweetsentiment",
+  "name": "bintagscheduler",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "escape-string-regexp": "^1.0.5",
-    "heapdump": "^0.3.7",
-    "minimist": "^1.2.0",
-    "ner-node": "0.0.7",
-    "sentiment": "^2.0.0"
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "browserify": "^13.1.0",
-    "typescript": "^1.8.10"
+    "typescript": "^2.0.3"
   }
 }

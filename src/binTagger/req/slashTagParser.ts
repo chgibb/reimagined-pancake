@@ -8,7 +8,7 @@ interface learnedNERTag extends nerTaggedItem
 {
     regex : RegExp;
 }
-function makeLearnedTagRegex(token : string) : RegExp
+export function makeLearnedTagRegex(token : string) : RegExp
 {
     return new RegExp("\\b"+escapeStringRegexp(token)+"\\b","i");
 }
