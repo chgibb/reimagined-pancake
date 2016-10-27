@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="classifiers/learnedTags.json data/2016/Oct/26/18/43/37/tweets.json" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -29,9 +30,14 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="inc/Bin.hpp" />
+		<Unit filename="inc/Tag.hpp" />
+		<Unit filename="inc/findTag.hpp" />
+		<Unit filename="inc/loadTags.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
