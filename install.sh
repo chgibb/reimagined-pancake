@@ -1,9 +1,0 @@
-set -e
-cd src
-for d in */ ; do
-	printf $d
-	cd $d
-	npm install
-	sh install.sh
-	cd ../
-done
