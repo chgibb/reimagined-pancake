@@ -5,7 +5,6 @@ var binCallBack = {
     send: function (channel, args) {
         var tmp;
         if (args.retCode !== undefined) {
-            exports.sourceBins.sort();
             assert.runningEvents -= 1;
         }
         if (args.unBufferedData) {
