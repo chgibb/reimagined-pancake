@@ -25,12 +25,16 @@ int main(int argc,char*argv[])
     for(int i = 2; i != argc; ++i)
     {
         std::cout<<"Loading "<<argv[i]<<"\n";
+        std::cout.flush();
         Bin bin;
         bool res = bin.load(argv[i]);
         if(res)
         {
             std::cout<<"Applying learned tags to "<<argv[i]<<"\n";
+            std::cout.flush();
             bin.tagBin(tags);
+            std::cout<<"Done"<<"\n";
+            std::cout.flush();
             bin.saveBin();
         }
     }

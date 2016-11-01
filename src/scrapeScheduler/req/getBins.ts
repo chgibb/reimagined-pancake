@@ -63,7 +63,6 @@ export function populateSourceBins(targeted : boolean,dir : string,year? : strin
         argsToPass.push(minute);
     if(second)
         argsToPass.push(second);
-    console.log(argsToPass);
     if(!targeted)
     {
         JobMgr.addJob

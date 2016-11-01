@@ -11,7 +11,7 @@ interface plotlyDataSet
 }
 export default function refreshChart(div : string,inputs : Array<inputFile>,nerFilter? : string) : void
 {
-    var nerFilterRegExp : RegExp = new RegExp("\\b"+nerFilter+"\\b","i");
+    var nerFilterRegExp : RegExp = new RegExp(nerFilter,"i");
     var averageSentimentData : plotlyDataSet = 
     {
         x : <Array<string>>[],
@@ -45,11 +45,14 @@ export default function refreshChart(div : string,inputs : Array<inputFile>,nerF
     }
     else
         data = <Array<plotlyDataSet>>[averageSentimentData];
+    
     for(let i = 0; i != inputs.length; ++i)
     {
         data[0].x.push(inputs[i].json.date);
         data[0].y.push(inputs[i].json.sentimentAverage);
-
+        let averageSentiment = 0;
+        let consideredItemsForAverageSentiment = 0;
+        let count = 0;
         if(nerFilter)
         {
             data[1].x.push(inputs[i].json.date);
@@ -58,16 +61,22 @@ export default function refreshChart(div : string,inputs : Array<inputFile>,nerF
             {
                 if(nerFilterRegExp.test(inputs[i].json.nerTags[k].token))
                 {
-                    data[1].y.push(inputs[i].json.nerTags[k].count);
-                    data[2].y.push(inputs[i].json.nerTags[k].sentimentAverage);
+                    console.log(inputs[i].json.nerTags[k].token);
+                    count += inputs[i].json.nerTags[k].count;
+                    averageSentiment += inputs[i].json.nerTags[k].sentimentAverage;
+                    consideredItemsForAverageSentiment++;
+                    //data[2].y.push(data[2].y + inputs[i].json.nerTags[k].sentimentAverage);
                 }
             }
+            data[1].y.push(count);
+            data[2].y.push(averageSentiment/consideredItemsForAverageSentiment);
+            
         }
     }
     var layout = 
     {
         title: '',
-        yaxis: {title: ''},
+        yaxis: {title: 'Mentions'},
         yaxis2: 
         {
             title: 'Average Sentiment',

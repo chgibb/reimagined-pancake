@@ -45,7 +45,7 @@ export default function showInputDialog(inputs : Array<inputFile>) : void
                 {
                     inputs.push(new inputFile(files[i]));
                 }
-                inputs.sort
+               /* inputs.sort
                 (
                     (a : inputFile,b : inputFile) : number =>
                     {
@@ -54,7 +54,7 @@ export default function showInputDialog(inputs : Array<inputFile>) : void
                        console.log("Compare "+a.json.date+" "+b.json.date+" = "+res);
                        return res;
                     }
-                );
+                );*/
             }
         }
     );

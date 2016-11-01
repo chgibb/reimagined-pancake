@@ -56,6 +56,20 @@ var callBack : any =
         }
     }
 }
+var tagApplicatorCallBack : any = 
+{
+    send : function(channel : string, args : any)
+    {
+        if(args.retCode !== undefined)
+        {
+            assert.runningEvents -= 1;
+        }
+        if(args.unBufferedData)
+        {
+            fs.appendFileSync("log",new Date()+" "+args.unBufferedData);
+        }
+    }
+}
 
 //max concurrent threads to run
 JobMgr.maxJobs = threads + 1;
@@ -98,6 +112,7 @@ for(let j : number = 0; j != dirs.length; ++j)
     (
         ()=>
         {
+            JobMgr.maxJobs = 1;
             //commit each bin into the corresponding bin in the data directory
             for(let i : number = 0; i != bins.sourceBins.length; ++i)
             {
@@ -105,6 +120,15 @@ for(let j : number = 0; j != dirs.length; ++j)
                 fs.appendFileSync("log",new Date()+" "+"committing "+store.items.length+" tweets\n");
                 saveTweetsFromStore(tweetSaveMgr,store,dataDir);
                 fs.appendFileSync("log",new Date()+" "+"done\n");
+                JobMgr.addJob
+                (
+                    "./tagApplicator",
+                    ["classifiers/learnedTags.json",bins.sourceBins[i].replace(dirs[j],dataDir)],
+                    "",true,
+                    tagApplicatorCallBack,
+                    {}
+                );
+                assert.runningEvents += 1;
             }
             return true;
         },'',0
