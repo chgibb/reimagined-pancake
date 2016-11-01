@@ -1,4 +1,3 @@
-set -e
 cd src
 for d in */ ; do
     printf $d
