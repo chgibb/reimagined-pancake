@@ -1,7 +1,7 @@
 import dataStore from './../../req/dataStore';
-import tweet from './../../twitterScraper/req/tweet';
-import decomposedTweetDate from './../../twitterScraper/req/decomposedTweetDate';
-import * as slashTagParser from './../../binTagger/req/slashTagParser';
+import tweet from './../../req/tweet';
+import decomposedTweetDate from './../../req/decomposedTweetDate';
+import * as slashTagParser from './../../req/slashTagParser';
 export default function applyTags(bin : dataStore<tweet,decomposedTweetDate>) : void
 {
     var removePunctuation : RegExp = new RegExp("(\n)|(\\n)|(,)|(\\.)|(\\?)|(!)","g");

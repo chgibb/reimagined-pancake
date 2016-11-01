@@ -3,6 +3,7 @@
 //Will use the facilities in slashTagParser to parse tags from Stanford NER as well as learn
 //from Stanford NER and tag past entities that it has learned about.
 var argv : any = require('minimist')(process.argv.slice(2));
+var escapeStringRegexp : (input : string) => string =  require("escape-string-regexp");
 
 var jsonFile = require('./../jsreq/jsonfile');
 var canRead = require('./../jsreq/canRead');
@@ -11,9 +12,9 @@ var assert = require('./../jsreq/assert');
 var sleep = require('./../jsreq/sleep');
 
 import dataStore from './../req/dataStore';
-import tweet from './../twitterScraper/req/tweet';
-import decomposedTweetDate from './../twitterScraper/req/decomposedTweetDate';
-import * as slashTags from './req/slashTagParser';
+import tweet from './../req/tweet';
+import decomposedTweetDate from './../req/decomposedTweetDate';
+import * as slashTags from './../req/slashTagParser';
 
 //directory to save bin to
 var dataDir : string = argv.dataDir;

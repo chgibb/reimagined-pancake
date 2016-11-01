@@ -1,9 +1,9 @@
 import tweet from './tweet';
 import tweetStoreMgr from './tweetStoreMgr';
-import dataStore from './../../req/dataStore';
+import dataStore from './dataStore';
 import decomposedTweetDate from './decomposedTweetDate';
-import verifyDir from './../../req/verifyDir';
-import verifyJSONFile from './../../req/verifyJSONFile';
+import verifyDir from './verifyDir';
+import verifyJSONFile from './verifyJSONFile';
 export default function saveTweetsFromStore(mgr : tweetStoreMgr,store : dataStore<tweet,decomposedTweetDate>,rootDir : string) : void
 {
     verifyDir(rootDir);

@@ -37,11 +37,11 @@ var assert = require('./../jsreq/assert.js');
 
 //wrapper over twit's Twit.get
 import * as retrieve from './req/retrieveTweets';
-import tweet from './req/tweet';
+import tweet from './../req/tweet';
 import dataStore from './../req/dataStore';
-import tweetStoreMgr from './req/tweetStoreMgr';
+import tweetStoreMgr from './../req/tweetStoreMgr';
 //parsed tweet date
-import decomposedTweetDate from './req/decomposedTweetDate';
+import decomposedTweetDate from './../req/decomposedTweetDate';
 
 //create dir if it doesnt exist
 import verifyDir from './../req/verifyDir';
@@ -49,7 +49,7 @@ import verifyDir from './../req/verifyDir';
 import verifyJSONFile from './../req/verifyJSONFile';
 //save tweet store to file
 //bins tweets based on published date and excludes duplicates by bin
-import saveTweetsFromStore from './req/saveTweetsFromStore';
+import saveTweetsFromStore from './../req/saveTweetsFromStore';
 //wrapper over retrieve
 import submitQuery from './req/submitQuery';
 

@@ -3,15 +3,15 @@ var rimraf : any = require('rimraf');
 
 import * as fs from "fs";
 
-import tweet from './../twitterScraper/req/tweet';
+import tweet from './../req/tweet';
 import dataStore from './../req/dataStore';
-import tweetStoreMgr from './../twitterScraper/req/tweetStoreMgr';
-import decomposedTweetDate from './../twitterScraper/req/decomposedTweetDate';
+import tweetStoreMgr from './../req/tweetStoreMgr';
+import decomposedTweetDate from './../req/decomposedTweetDate';
 import verifyDir from './../req/verifyDir';
 import verifyJSONFile from './../req/verifyJSONFile';
-import saveTweetsFromStore from './../twitterScraper/req/saveTweetsFromStore';
+import saveTweetsFromStore from './../req/saveTweetsFromStore';
 import tweetAnalyzer from './req/tweetAnalyzer';
-import * as bins from './req/getBins';
+import * as bins from './../req/getBins';
 
 var JobMgr = require('./../jsreq/JobMgr');
 var assert = require('./../jsreq/assert');

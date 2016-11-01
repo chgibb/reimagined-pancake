@@ -26,11 +26,11 @@ var escapeStringRegexp : (input : string) => string =  require("escape-string-re
 
 import * as fs from "fs";
 
-import * as bins from './../scrapeScheduler/req/getBins';
+import * as bins from './../req/getBins';
 
 import dataStore from './../req/dataStore';
-import tweet from './../twitterScraper/req/tweet';
-import decomposedTweetDate from './../twitterScraper/req/decomposedTweetDate';
+import tweet from './../req/tweet';
+import decomposedTweetDate from './../req/decomposedTweetDate';
 
 import checkDateFilterOnBinPath from "./req/checkDateFilterOnBinPath";
 

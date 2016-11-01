@@ -21,8 +21,8 @@ function makeLearnedTagRegexs(tags : Array<learnedNERTag>) : void
 }
 var learnedTagsPath : string = "classifiers/learnedTags.json";
 var blackListTagsPath : string = "classifiers/learnedBlackList.json";
-var jsonFile = require('./../../jsreq/jsonfile');
-var escapeStringRegexp : (input : string) => string =  require("escape-string-regexp");
+var jsonFile = require('./../jsreq/jsonfile');
+var escapeStringRegexp : (input : string) => string;// =  require("escape-string-regexp");
 
 var organization : RegExp = new RegExp("\\/ORGANIZATION","i");
 var person : RegExp = new RegExp("\\/PERSON","i");

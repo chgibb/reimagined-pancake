@@ -1,5 +1,5 @@
-import dataStore from './../../req/dataStore';
-import dataStoreMgr from './../../req/dataStoreMgr';
+import dataStore from './dataStore';
+import dataStoreMgr from './dataStoreMgr';
 import tweet from './tweet';
 import decomposedTweetDate from './decomposedTweetDate';
 

@@ -1,10 +1,10 @@
-import tweet from './../../twitterScraper/req/tweet';
-import dataStore from './../../req/dataStore';
-import tweetStoreMgr from './../../twitterScraper/req/tweetStoreMgr';
-import decomposedTweetDate from './../../twitterScraper/req/decomposedTweetDate';
-import insertLeadingPaddingToSize from "./../../req/insertLeadingPaddingToSize";
-var JobMgr = require('./../../jsreq/JobMgr');
-var assert = require('./../../jsreq/assert');
+import tweet from './tweet';
+import dataStore from './dataStore';
+import tweetStoreMgr from './tweetStoreMgr';
+import decomposedTweetDate from './decomposedTweetDate';
+import insertLeadingPaddingToSize from "./insertLeadingPaddingToSize";
+var JobMgr = require('./../jsreq/JobMgr');
+var assert = require('./../jsreq/assert');
 export var sourceBins : Array<string>;
 export var destinationBins : Array<dataStore<tweet,decomposedTweetDate>>;
 var binCallBack : any = 

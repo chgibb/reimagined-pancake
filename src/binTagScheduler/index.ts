@@ -2,7 +2,7 @@ var argv : any = require('minimist')(process.argv.slice(2));
 
 import * as fs from "fs";
 
-import * as bins from './../scrapeScheduler/req/getBins';
+import * as bins from './../req/getBins';
 
 var JobMgr = require('./../jsreq/JobMgr');
 var assert = require('./../jsreq/assert');

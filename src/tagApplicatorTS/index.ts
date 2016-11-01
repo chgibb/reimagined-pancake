@@ -8,10 +8,10 @@ var JobMgr = require('./../jsreq/JobMgr');
 
 JobMgr.maxJobs = 1;
 
-import * as bins from './../scrapeScheduler/req/getBins';
+import * as bins from './../req/getBins';
 import dataStore from './../req/dataStore';
-import tweet from './../twitterScraper/req/tweet';
-import decomposedTweetDate from './../twitterScraper/req/decomposedTweetDate';
+import tweet from './../req/tweet';
+import decomposedTweetDate from './../req/decomposedTweetDate';
 import applyTags from "./req/applyTags";
 var dataDir : string=  argv.dataDir;
 var year : string = argv.year;

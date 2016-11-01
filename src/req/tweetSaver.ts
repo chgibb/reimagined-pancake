@@ -1,8 +1,8 @@
-import dataStore from './../../req/dataStore';
-import dataStoreMgr from './../../req/dataStoreMgr';
-import tweetStoreMgr from './../../twitterScraper/req/tweetStoreMgr';
-import tweet from './../../twitterScraper/req/tweet';
-import decomposedTweetDate from './../../twitterScraper/req/decomposedTweetDate';
+import dataStore from './dataStore';
+import dataStoreMgr from './dataStoreMgr';
+import tweetStoreMgr from './tweetStoreMgr';
+import tweet from './tweet';
+import decomposedTweetDate from './decomposedTweetDate';
 var sentiment = require('sentiment');
 class tweetSaver extends tweetStoreMgr
 {

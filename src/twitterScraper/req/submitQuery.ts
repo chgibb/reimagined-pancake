@@ -1,6 +1,6 @@
 import dataStore from './../../req/dataStore';
-import tweet from './tweet';
-import decomposedTweetDate from './decomposedTweetDate';
+import tweet from './../../req/tweet';
+import decomposedTweetDate from './../../req/decomposedTweetDate';
 import * as retrieve from './retrieveTweets';
 var assert = require('./../../jsreq/assert');
 
