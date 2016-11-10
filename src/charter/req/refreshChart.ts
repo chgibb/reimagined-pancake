@@ -11,6 +11,10 @@ interface plotlyDataSet
 }
 export default function refreshChart(div : string,inputs : Array<inputFile>,nerFilter? : string) : void
 {
+    var AVERAGESENTIMENT = 0;
+    var TOTALTWEETS = 1;
+    var NERCOUNTDATA = 2;
+    var NERSENTIMENTDATA = 3;
     var nerFilterRegExp : RegExp = new RegExp(nerFilter,"i");
     var averageSentimentData : plotlyDataSet = 
     {
@@ -18,6 +22,13 @@ export default function refreshChart(div : string,inputs : Array<inputFile>,nerF
         y : <Array<number>>[],
         type : "scatter",
         name : "Average Sentiment For All Tweets"
+    };
+    var totalTweets : plotlyDataSet = 
+    {
+        x : <Array<string>>[],
+        y : <Array<number>>[],
+        type : "scatter",
+        name : "Total Tweets"
     };
     var nerCountData : plotlyDataSet;
     var nerSentimentData : plotlyDataSet;
@@ -41,22 +52,24 @@ export default function refreshChart(div : string,inputs : Array<inputFile>,nerF
     var data : Array<plotlyDataSet>;
     if(nerFilter)
     {
-        data = <Array<plotlyDataSet>>[averageSentimentData,nerCountData,nerSentimentData];
+        data = <Array<plotlyDataSet>>[averageSentimentData,totalTweets,nerCountData,nerSentimentData];
     }
     else
-        data = <Array<plotlyDataSet>>[averageSentimentData];
+        data = <Array<plotlyDataSet>>[averageSentimentData,totalTweets];
     
     for(let i = 0; i != inputs.length; ++i)
     {
-        data[0].x.push(inputs[i].json.date);
-        data[0].y.push(inputs[i].json.sentimentAverage);
+        data[AVERAGESENTIMENT].x.push(inputs[i].json.date);
+        data[AVERAGESENTIMENT].y.push(inputs[i].json.sentimentAverage);
+        data[TOTALTWEETS].x.push(inputs[i].json.date);
+        data[TOTALTWEETS].y.push(inputs[i].json.totalTweets);
         let averageSentiment = 0;
         let consideredItemsForAverageSentiment = 0;
         let count = 0;
         if(nerFilter)
         {
-            data[1].x.push(inputs[i].json.date);
-            data[2].x.push(inputs[i].json.date);
+            data[NERCOUNTDATA].x.push(inputs[i].json.date);
+            data[NERSENTIMENTDATA].x.push(inputs[i].json.date);
             for(let k : number = 0; k != inputs[i].json.nerTags.length; ++k)
             {
                 if(nerFilterRegExp.test(inputs[i].json.nerTags[k].token))
@@ -68,8 +81,8 @@ export default function refreshChart(div : string,inputs : Array<inputFile>,nerF
                     //data[2].y.push(data[2].y + inputs[i].json.nerTags[k].sentimentAverage);
                 }
             }
-            data[1].y.push(count);
-            data[2].y.push(averageSentiment/consideredItemsForAverageSentiment);
+            data[NERCOUNTDATA].y.push(count);
+            data[NERSENTIMENTDATA].y.push(averageSentiment/consideredItemsForAverageSentiment);
             
         }
     }

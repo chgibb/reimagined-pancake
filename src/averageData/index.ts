@@ -24,6 +24,7 @@ if(!file)
 
 var nerTags : Array<tag.nerTagAverage> = new Array<tag.nerTagAverage>();
 var sentimentAverage : number = 0;
+var totalTweets = 0;
 
 for(let i = 0; i != file.length; ++i)
 {
@@ -34,7 +35,7 @@ for(let i = 0; i != file.length; ++i)
             tag.considerNerTag(nerTags,file[i].nerTags[k],file[i].sentiment);
         }
     }
-    if(file[i].sentiment)
+    if(file[i].sentiment != undefined)
     {
         sentimentAverage += file[i].sentiment;
     }
@@ -49,7 +50,8 @@ var res : any =
 {
     nerTags : nerTags,
     sentimentAverage : sentimentAverage/file.length,
-    date : date
+    date : date,
+    totalTweets : file.length
 }
 
 
