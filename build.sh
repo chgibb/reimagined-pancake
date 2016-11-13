@@ -78,21 +78,6 @@ cp src/queryBins/dist/dist.js dep/queryBins.js
 
 
 
-
-
-
-cd src
-cd siteServer
-sh build.sh
-cd ../
-cd ../
-
-cp src/siteServer/dist/dist.js dist/siteServer.js
-cp src/siteServer/dist/dist.js dep/siteServer.js
-
-
-
-
 cd src
 cd siteClient
 sh build.sh
