@@ -78,17 +78,6 @@ cp src/queryBins/dist/dist.js dep/queryBins.js
 
 
 
-cd src
-cd siteClient
-sh build.sh
-cd ../
-cd ../
-rm -rf dep/public
-mkdir dep/public
-cp src/siteClient/dist/dist.js dist/siteClient.js
-cp src/siteClient/dist/dist.js dep/public/siteClient.js
-cp src/siteClient/index.html dep/index.html
-
 
 cd src
 cd averageData
