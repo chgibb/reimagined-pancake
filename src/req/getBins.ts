@@ -36,16 +36,16 @@ export function populateSourceBins(targeted : boolean,dir : string,year? : strin
     if(day)
     {
         if(typeof day == "number")
-            day = day.toString();
+           day = (<number>day).toString();
         if(day.length == 1)
-        day = "0"+day;
+            day = "0"+day;
     }
     if(hour)
     {
         if(typeof hour == "number")
-            hour = hour.toString();
+            hour = (<number>hour).toString();
         if(hour.length == 1)
-        hour = "0"+hour;
+            hour = "0"+hour;
     }
     if(!targeted)
         argsToPass.push("scripts/getBinNames.bash");
