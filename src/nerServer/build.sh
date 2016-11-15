@@ -1,4 +1,5 @@
-sh clean.sh
+rm -rf dist
+mkdir dist
 
 printf "Building NER server\n"
 
@@ -7,4 +8,6 @@ javac @srcs
 
 printf "Bundling NER server\n"
 
-jar cvfe nerServer.jar nerServer * >/dev/null
+jar cvfe dist/nerServer.jar nerServer * >/dev/null
+
+sh clean.sh

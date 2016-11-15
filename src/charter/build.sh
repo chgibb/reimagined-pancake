@@ -1,20 +1,20 @@
-rm -rf dist
-mkdir dist
+rm -rf forDist
+mkdir forDist
 printf "Building charter\n"
 ./node_modules/.bin/tsc
 printf "Bundling charter\n"
-./node_modules/.bin/browserify index.js --node -o dist/index.js --ignore-missing
-./node_modules/.bin/browserify main.js --node --debug -o dist/main.js --ignore-missing
+./node_modules/.bin/browserify index.js --node -o forDist/index.js --ignore-missing
+./node_modules/.bin/browserify main.js --node --debug -o forDist/main.js --ignore-missing
 
-cp index.html dist
+cp index.html forDist
 
-cp *.json dist
+cp *.json forDist
 
-cp jsreq/*.js dist
+cp jsreq/*.js forDist
 
 rm *.js
 rm req/*.js
 
-cp package.json dist
-electron-packager ./dist/ --platform linux --arch x64 --overwrite --ignore=node_modules --ignore=.jsx --ignore=build.sh --ignore=src --ignore=vcs  --ignore=.sh
+cp package.json forDist
+electron-packager ./forDist/ --platform linux --arch x64 --overwrite --ignore=node_modules --ignore=.jsx --ignore=build.sh --ignore=src --ignore=vcs  --ignore=.sh
 
