@@ -32,6 +32,9 @@ import dataStore from './../req/dataStore';
 import tweet from './../req/tweet';
 import decomposedTweetDate from './../req/decomposedTweetDate';
 
+import outFile from "./req/outFile";
+import {formattedStreamPipe} from "./req/formattedStream";
+
 import checkDateFilterOnBinPath from "./req/checkDateFilterOnBinPath";
 
 var JobMgr = require('./../jsreq/JobMgr');
@@ -85,7 +88,21 @@ assert.assert
         return true;
     },'',0
 );
-var res : Array<any> = new Array<any>();
+//var res : Array<any> = new Array<any>();
+let res : outFile = new outFile
+(
+    {
+       write : (data : string)=>
+       {
+           console.log(data);
+       },
+       flush : ()=> 
+       {
+           return;
+        }
+    }
+);
+res.writeHeader();
 assert.assert(()=>{return true;},'',0);
 assert.assert
 (
@@ -107,28 +124,35 @@ assert.assert
             var avg  = 0;
             for(let j : number = 0; j != store.items.length; ++j)
             {
+                let toWrite : string = "";
                 if(dataPoint == "sentiment")
                 {
-                    res.push({date:store.items[j].createdAt,sentiment:store.items[j].sentiment.score});
+                    toWrite = JSON.stringify({date:store.items[j].createdAt,sentiment:store.items[j].sentiment.score});
                 }
                 if(dataPoint == "nerTags")
                 {
                     if(!tagFilter)
-                        res.push({date:store.items[j].createdAt,nerTags:store.items[j].nerTags,sentiment:store.items[j].sentiment.score});
+                        toWrite = JSON.stringify({date:store.items[j].createdAt,nerTags:store.items[j].nerTags,sentiment:store.items[j].sentiment.score});
                     if(tagFilter)
                     {
                         for(let k : number = 0; k != store.items[j].nerTags.length; ++k)
                         {
                             if(tagFilterRegExp.test(store.items[j].nerTags[k].token))
                             {
-                                res.push({date:store.items[j].createdAt,nerTags:store.items[j].nerTags,sentiment:store.items[j].sentiment.score});
+                                toWrite = JSON.stringify({date:store.items[j].createdAt,nerTags:store.items[j].nerTags,sentiment:store.items[j].sentiment.score});
                                 break;
                             }
                         }
                     }
                 }
+                if(i == bins.sourceBins.length - 1)
+                    res.writeLast(toWrite);
+                else
+                    res.write(toWrite);
+
             }
         }
+        res.writeEnd();
         return true;
     },'',0
 );
@@ -136,7 +160,7 @@ assert.assert
 (
     ()=>
     {
-        console.log(JSON.stringify(res,undefined,0));
+        //console.log(JSON.stringify(res,undefined,0));
         sleep(3);
         return true;
     },'',0
