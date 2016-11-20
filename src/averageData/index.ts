@@ -17,7 +17,6 @@ if(!filePath)
     process.exit(1);
 }
 //expect output from queryBins
-//var file : Array<any> = jsonFile.readFileSync(filePath);
 if(!canRead(filePath))
 {
     console.log("Error accessing "+filePath);
@@ -31,7 +30,15 @@ assert.runningEvents += 1;
 let stream = fs.createReadStream(filePath);
 stream.pipe(ndJson.parse()).on
 (
-    'data',(data : any) => 
+    'data',
+    (
+        data : 
+        {
+            date : string;
+            nerTags : Array<tag.nerTagAverage>;
+            sentiment : number
+        }
+    ) => 
     {
         if(data.nerTags)
         {
