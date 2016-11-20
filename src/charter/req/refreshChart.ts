@@ -89,10 +89,10 @@ export default function refreshChart(div : string,inputs : Array<inputFile>,nerF
     var layout = 
     {
         title: '',
-        yaxis: {title: 'Mentions'},
+        yaxis: {title: 'Totals'},
         yaxis2: 
         {
-            title: 'Average Sentiment',
+            title: 'Sentiment',
             titlefont: {color: 'rgb(148, 103, 189)'},
             tickfont: {color: 'rgb(148, 103, 189)'},
             overlaying: 'y',
