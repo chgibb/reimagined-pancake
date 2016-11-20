@@ -15,18 +15,18 @@ if(!filePath)
     process.exit(1);
 }
 //expect output from queryBins
-var file : Array<any> = jsonFile.readFileSync(filePath);
+/*var file : Array<any> = jsonFile.readFileSync(filePath);
 if(!file)
 {
     console.log("Error accessing "+filePath);
     process.exit(1);
-}
+}*/
 
 var nerTags : Array<tag.nerTagAverage> = new Array<tag.nerTagAverage>();
 var sentimentAverage : number = 0;
 var totalTweets = 0;
 
-for(let i = 0; i != file.length; ++i)
+/*for(let i = 0; i != file.length; ++i)
 {
     if(file[i].nerTags)
     {
@@ -39,7 +39,7 @@ for(let i = 0; i != file.length; ++i)
     {
         sentimentAverage += file[i].sentiment;
     }
-}
+}*/
 
 for(let i = 0; i != nerTags.length; ++i)
 {

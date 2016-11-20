@@ -1,5 +1,5 @@
 {
-  "name": "bintagscheduler",
+  "name": "averagedata",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "ndjson": "^1.4.3"
   },
   "devDependencies": {
     "browserify": "^13.1.0",
