@@ -92,14 +92,18 @@ assert.assert
 let res : outFile = new outFile
 (
     {
-       write : (data : string)=>
+       write : (data : string) =>
        {
            console.log(data);
        },
-       flush : ()=> 
+       flush : () =>
        {
-           return;
-        }
+
+       },
+       close : () =>
+       {
+           
+       }
     }
 );
 res.writeHeader();
@@ -145,10 +149,7 @@ assert.assert
                         }
                     }
                 }
-                if(i == bins.sourceBins.length - 1)
-                    res.writeLast(toWrite);
-                else
-                    res.write(toWrite);
+                res.write(toWrite);
 
             }
         }

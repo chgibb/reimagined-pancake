@@ -2,6 +2,7 @@ export interface formattedStreamPipe
 {
     write : (data : string) => void;
     flush : () => void;
+    close : () => void;
 }
 export abstract class formattedStream
 {
