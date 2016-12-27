@@ -7,6 +7,8 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.CoreAnnotations.AnswerAnnotation;
 import edu.stanford.nlp.util.StringUtils;
 
+import com.sun.jna.Library;
+
 import java.io.IOException;
 import java.util.Scanner;
 
