@@ -27,4 +27,5 @@ Events
 forDist
 src/tagApplicator/tagApplicator.cbp
 edu
+*.class
 
