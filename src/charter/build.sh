@@ -1,10 +1,8 @@
 rm -rf forDist
 mkdir forDist
-printf "Building charter\n"
-./node_modules/.bin/tsc
 printf "Bundling charter\n"
-./node_modules/.bin/browserify index.js --node -o forDist/index.js --ignore-missing
-./node_modules/.bin/browserify main.js --node --debug -o forDist/main.js --ignore-missing
+./../../node_modules/.bin/browserify index.js --node -o forDist/index.js --ignore-missing
+./../../node_modules/.bin/browserify main.js --node --debug -o forDist/main.js --ignore-missing
 
 cp index.html forDist
 

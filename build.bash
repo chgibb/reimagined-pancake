@@ -1,5 +1,6 @@
 #!/bin/bash
 sh clean.sh
+./node_modules/.bin/tsc
 cd src
 for d in */ ; do
     cd $d
