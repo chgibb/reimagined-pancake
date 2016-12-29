@@ -6,10 +6,12 @@
         "target" : "es5",
         "noImplicitAny" : true,
         "removeComments": true,
-        "sourceMap" : false
+        "sourceMap" : false,
+	"listFiles" : true
     },
     "exclude": 
     [
         "node_modules"
     ]
 }
+

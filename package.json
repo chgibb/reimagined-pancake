@@ -1,0 +1,36 @@
+{
+  "name": "reimagined-pancake",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/chgibb/reimagined-pancake.svg?branch=master)](https://travis-ci.org/chgibb/reimagined-pancake)[![Dependency Status](https://gemnasium.com/badges/github.com/chgibb/reimagined-pancake.svg)](https://gemnasium.com/github.com/chgibb/reimagined-pancake)   Author: Chris Gibb   Twitter scraper and natural language processing platform   CS4311 Final Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chgibb/reimagined-pancake.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chgibb/reimagined-pancake/issues"
+  },
+  "homepage": "https://github.com/chgibb/reimagined-pancake#readme",
+  "dependencies": {
+    "escape-string-regexp": "^1.0.5",
+    "minimist": "^1.2.0",
+    "twit": "^2.2.5",
+    "ndjson": "^1.4.3",
+    "sentiment": "^2.0.0",
+    "rimraf": "^2.5.4",
+    "electron-ipc-stream": "^0.2.0",
+    "electron-packager": "^8.0.0",
+    "jquery": "^3.1.1",
+    "plotly": "^1.0.6"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0",
+    "typescript": "^2.0.3",
+    "electron-prebuilt": "^1.1.2"
+  }
+}
