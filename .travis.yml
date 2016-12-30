@@ -9,6 +9,7 @@ install:
     - sudo apt-get install libstdc++6 -y
     - sudo apt-get install gcc -y
     - sudo apt-get install g++-4.9 -y
+    - g++ -v
     - bash install.bash
 script:
     - npm run build
