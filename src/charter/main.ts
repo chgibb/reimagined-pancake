@@ -1,6 +1,6 @@
-/// <reference path="node.d.ts" />
+/// <reference path="../../node.d.ts" />
 
-/// <reference path="electron.d.ts" />
+/// <reference path="../../electron.d.ts" />
 
 
 const electron = require("electron");
