@@ -2,6 +2,7 @@
 sh clean.sh
 ./node_modules/.bin/tsc
 if [ $? != 0 ]; then
+    bash clean.bash
     exit 1
 fi
 cd src
@@ -14,6 +15,7 @@ for d in */ ; do
         bash build.bash
     fi
     if [ $? != 0 ]; then
+        bash clean.bash
         exit 1
     fi
     cd ../

@@ -12,3 +12,14 @@ rmdir dep/public
 rm -r dep/scripts/*
 rmdir dep/scripts
 
+cd src
+for d in */ ; do
+    cd $d
+    if [ -f "clean.sh" ]; then
+        sh clean.sh
+    fi
+    if [ -f "clean.bash" ]; then
+        bash clean.bash
+    fi
+    cd ../
+done
