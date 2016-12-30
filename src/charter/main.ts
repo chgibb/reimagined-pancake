@@ -1,6 +1,9 @@
+////// <reference types="es6-shim" />
+
+
 /// <reference types="node" />
 
-/// <reference types="electron" />
+/// <reference path="../../electron.d.ts" />
 
 
 const electron = require("electron");
