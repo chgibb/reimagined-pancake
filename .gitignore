@@ -2,10 +2,12 @@
 *.*~
 node_modules
 dist.js
+dist/*.so
 dist/*.js
 dist/binDiscoverer
 dist/tagApplicator
 dist/*.jar
+**/dist/*.so
 src/tagApplicator/dist/tagApplicator
 src/binDiscoverer/dist/binDiscoverer
 bin
