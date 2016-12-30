@@ -3,7 +3,7 @@ sudo: required
 node_js:
     - "6"
 install:
-    - sudo apt-get update -gg
+    - sudo apt-get update -qq
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
     - sudo apt-get update -y
     - sudo apt-get upgrade -y
