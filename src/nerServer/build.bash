@@ -4,7 +4,7 @@ mkdir dist
 printf "Building NER server\n"
 
 find . -name "*.java" -type f | awk '{print substr($1,3);}' > srcs
-javac -cp '.:jna.jar' @srcs
+javac @srcs
 if [ $? != 0 ]; then
     exit 1
 fi

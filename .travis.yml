@@ -7,6 +7,6 @@ install:
     - sudo apt-get install g++
     - bash install.bash
 script:
-    - bash build.bash
+    - npm run build
 notifications:
     email: never

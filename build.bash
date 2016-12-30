@@ -1,5 +1,5 @@
 #!/bin/bash
-sh clean.sh
+bash clean.bash
 ./node_modules/.bin/tsc
 if [ $? != 0 ]; then
     bash clean.bash
@@ -15,6 +15,8 @@ for d in */ ; do
         bash build.bash
     fi
     if [ $? != 0 ]; then
+        cd ../
+        cd ../
         bash clean.bash
         exit 1
     fi
