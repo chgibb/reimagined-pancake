@@ -1,2 +1,3 @@
 find . -name "*.class" -type f -delete
-rm srcs
+rm -rf com
+rm -rf edu

@@ -1,5 +1,6 @@
 #!/bin/bash
 sh clean.sh
+./node_modules/.bin/tsc
 cd src
 for d in */ ; do
     cd $d
@@ -22,6 +23,8 @@ for d in */ ; do
     cd ../
 done
 cd ../
-cp -R dist/* dep
-cp -R res/* dep
+rsync -vr --exclude '*.md' dist/* dep/
+rsync -vr res/* dep/
+#cp -R dist/* dep
+#cp -R res/* dep
 rm src/req/*.js
