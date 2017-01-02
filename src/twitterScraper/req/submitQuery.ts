@@ -22,8 +22,6 @@ function submitQuery(T : any,storeObj : dataStore<tweet,decomposedTweetDate>,que
         //filter
         function(item : tweet)
         {
-            item.text = item.text.replace(mention,"");
-            item.text = item.text.replace(hashTag,"");
             return item;
         },
         //onComplete
