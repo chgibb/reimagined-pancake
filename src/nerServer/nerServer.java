@@ -19,8 +19,6 @@ public class nerServer
     
     public static void main(String[] args) throws IOException 
     {
-        tagStorageEngine engine = new tagStorageEngine();
-        engine.SampleFunction1();
         Scanner scanner = new Scanner(System.in);
         inputQueue queue = new inputQueue();
         queue.start();

@@ -2,9 +2,10 @@
 #include <jni.h>
 extern "C"
 {
-    JNIEXPORT void JNICALL Java_src_tagStorageEngine_SampleFunction1(JNIEnv* env,jobject obj)
+    JNIEXPORT void JNICALL Java_src_tagStorageEngine_SampleFunction1(JNIEnv* env,jobject obj,jstring token)
     {
-        std::cout<<"Hello world\n";
+        std::string nToken(env->GetStringUTFChars(token,NULL));
+        std::cout<<nToken<<"\n";
     }
     
     // A function adding two integers and returning the result

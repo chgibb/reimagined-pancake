@@ -9,6 +9,7 @@ import edu.stanford.nlp.ling.CoreAnnotations.AnswerAnnotation;
 import edu.stanford.nlp.util.StringUtils;
 public class inputQueue extends Thread
 {
+    tagStorageEngine tagEngine = new tagStorageEngine();
     public inputQueue()
     {
         super();
@@ -28,6 +29,8 @@ public class inputQueue extends Thread
             in = this.queue.poll();
             if(in != null)
             {
+                this.tagEngine.SampleFunction1(in);
+                /*
                 System.out.println(classifier.classifyToString(in.replaceAll("\\uFFFD",""),"slashTags",false));
                 //Output is sometimes chunked. Output this piece of text to signal that the operation is complete to the client.
                 System.out.println("@DONE@");
@@ -37,6 +40,7 @@ public class inputQueue extends Thread
                 System.out.flush();
                 System.out.flush();
                 System.out.flush();
+                */
             }
         }
     }
