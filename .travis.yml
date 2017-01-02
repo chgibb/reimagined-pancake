@@ -2,16 +2,12 @@ language: node_js
 sudo: required
 node_js:
     - "6"
-install:
+before_install:
+    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
     - sudo apt-get update -qq
-    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-    - sudo apt-get update -y
-    - sudo apt-get upgrade -qq
-    - sudo apt-get install libstdc++6 -y
-    - sudo apt-get install gcc -y
-    - sudo apt-get install -qq g++-4.9
-    - export CXX="g++-4.9" 
-    - g++ -v
+install:
+    - sudo apt-get install -qq g++-4.8
+    - export CXX="g++-4.8"
     - bash install.bash
 script:
     - npm run build
