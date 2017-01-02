@@ -1,11 +1,24 @@
 #!/bin/bash
-sh clean.sh
+bash clean.bash
 ./node_modules/.bin/tsc
+if [ $? != 0 ]; then
+    bash clean.bash
+    exit 1
+fi
 cd src
 for d in */ ; do
     cd $d
     if [ -f "build.sh" ]; then
         sh build.sh
+    fi
+    if [ -f "build.bash" ]; then
+        bash build.bash
+    fi
+    if [ $? != 0 ]; then
+        cd ../
+        cd ../
+        bash clean.bash
+        exit 1
     fi
     cd ../
 done

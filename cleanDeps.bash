@@ -1,10 +1,10 @@
-sh clean.sh
+bash clean.bash
 rm -rf node_modules
 cd src
 for d in */ ; do
     cd $d
-    if [ -f "clean.sh" ]; then
-        sh clean.sh
+    if [ -f "cleanDeps.sh" ]; then
+        sh cleanDeps.sh
     fi
     cd ../
 done

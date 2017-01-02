@@ -1,0 +1,2 @@
+rm tagApplicator
+rm *.o

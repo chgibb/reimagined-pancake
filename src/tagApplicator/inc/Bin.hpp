@@ -95,7 +95,7 @@ class Bin
 
                         if(::regexec(&tagsIt->reg,tokensIt->c_str(),0,NULL,0) == 0)
                         {
-                            *tokensIt = std::regex_replace(*tokensIt,charsToRemove,"");
+                            *tokensIt = std::regex_replace(tokensIt->c_str(),charsToRemove,"");
                             rapidjson::Value obj;
                             obj.SetObject();
                             rapidjson::Value str;

@@ -1,12 +1,11 @@
 language: node_js
-sudo: required
+dist: trusty
+sudo: false
 node_js:
     - "6"
 install:
-    - sudo apt-get update
-    - sudo apt-get install g++
     - bash install.bash
 script:
-    - bash build.bash
+    - npm run build
 notifications:
     email: never
