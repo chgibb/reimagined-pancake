@@ -5,3 +5,4 @@ g++ -Wall -fexceptions -fexpensive-optimizations -O3 -std=c++11  -c main.cpp -o 
 
 g++  -o dist/tagApplicator main.o  -s  
 
+exit 0
