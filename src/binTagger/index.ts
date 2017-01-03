@@ -14,7 +14,7 @@ var sleep = require('./../jsreq/sleep');
 import dataStore from './../req/dataStore';
 import tweet from './../req/tweet';
 import decomposedTweetDate from './../req/decomposedTweetDate';
-import * as slashTags from './../req/slashTagParser';
+//import * as slashTags from './../req/slashTagParser';
 
 //directory to save bin to
 var dataDir : string = argv.dataDir;
@@ -42,6 +42,8 @@ var nerCallBack =
 {
     send : function(channel : string,args : any)
     {
+        console.log(args.unBufferedData);
+        /*
         if(!args.extraData.i)
             args.extraData.i = 0;
         if(args.extraData.i !== undefined)
@@ -62,7 +64,8 @@ var nerCallBack =
             if(args.extraData.i)
                 binIndex += 1;  
             assert.runningEvents -= 1;
-        }
+        }*/
+        assert.runningEvents -= 1;
     }
 }
 assert.assert
@@ -126,7 +129,7 @@ assert.assert
             }
         );
         //if slash tag parser has learned anything new from Stanford's NER then save
-        slashTags.saveLearnedTags();
+        //slashTags.saveLearnedTags();
         bin.saveToFile();
         console.log("completed tagging "+binPath);
         return true;
