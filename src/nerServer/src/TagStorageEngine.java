@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 public class TagStorageEngine
 {
-    public native void SampleFunction1(String token);
+    public native void storeTag(String token,String entity);
     public TagStorageEngine()
     {
         String cwd = "";
