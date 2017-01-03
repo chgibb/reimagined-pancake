@@ -1,10 +1,10 @@
 package src;
 import java.util.*;
 import java.io.*;
-public class tagStorageEngine
+public class TagStorageEngine
 {
     public native void SampleFunction1(String token);
-    public tagStorageEngine()
+    public TagStorageEngine()
     {
         String cwd = "";
         try
