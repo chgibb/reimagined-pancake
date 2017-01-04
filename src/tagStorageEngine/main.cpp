@@ -6,10 +6,10 @@ extern "C"
     {
         std::string nToken(env->GetStringUTFChars(token,NULL));
         std::string nEntity(env->GetStringUTFChars(entity,NULL));
-        std::cout<<nToken<<"\n";
-        std::cout<<nEntity<<"\n";
-        env->ReleaseStringUTFChars(env,token);
-        env->ReleaseStringUTFChars(env,entity);
+        //std::cout<<nToken<<"\n";
+        //std::cout<<nEntity<<"\n";
+        //env->ReleaseStringUTFChars(env,token);
+        //env->ReleaseStringUTFChars(env,entity);
     }
     
     // A function adding two integers and returning the result

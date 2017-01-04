@@ -35,6 +35,8 @@ public class inputQueue extends Thread
                 ArrayList<String> tags = this.slashTagParser.parseSlashTags(slashString);
                 for(int i = 0; i != tags.size(); i += 2)
                     tagEngine.storeTag(tags.get(i),tags.get(i+1));
+                System.out.println("@DONE@");
+                System.out.flush();
                 //this.tagEngine.SampleFunction1(in);
                 /*
                 System.out.println(classifier.classifyToString(in.replaceAll("\\uFFFD",""),"slashTags",false));
