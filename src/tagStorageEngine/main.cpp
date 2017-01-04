@@ -11,6 +11,10 @@ extern "C"
         //env->ReleaseStringUTFChars(env,token);
         //env->ReleaseStringUTFChars(env,entity);
     }
+    JNIEXPORT void JNICALL Java_src_TagStorageEngine_setStorageDirectory(JNIEnv* env,jobject obj,jstring dir)
+    {
+        std::cout<<dir;
+    }
     
     // A function adding two integers and returning the result
     int SampleAddInt(int i1, int i2)

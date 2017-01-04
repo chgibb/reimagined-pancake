@@ -4,6 +4,7 @@ import java.io.*;
 public class TagStorageEngine
 {
     public native void storeTag(String token,String entity);
+    public native void setStorageDirectory(String dir);
     public TagStorageEngine()
     {
         String cwd = "";

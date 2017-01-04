@@ -16,11 +16,10 @@ import src.*;
 
 public class nerServer
 {
-    
     public static void main(String[] args) throws IOException 
     {
         Scanner scanner = new Scanner(System.in);
-        inputQueue queue = new inputQueue();
+        inputQueue queue = new inputQueue(args);
         queue.start();
         for(;;)
         {

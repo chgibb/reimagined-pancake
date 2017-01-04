@@ -10,12 +10,32 @@ import edu.stanford.nlp.ling.CoreAnnotations.AnswerAnnotation;
 import edu.stanford.nlp.util.StringUtils;
 public class inputQueue extends Thread
 {
-    private TagStorageEngine tagEngine = new TagStorageEngine();
-    private SlashTagParser slashTagParser = new SlashTagParser();
-    public inputQueue()
+    private TagStorageEngine tagEngine;
+    private SlashTagParser slashTagParser;
+    public inputQueue(String[] args)
     {
         super();
-        String serializedClassifier = "classifiers/ner-eng-ie.crf-3-all2008.ser.gz";
+        String learnedClassifierDirectory = "";
+        String trainedClassifier = "";
+        for(int i = 0; i != args.length; ++i)
+        {
+            String[] split = args[i].split("=");
+            for(int k = 0; k != split.length; ++k)
+            {
+                if(split[k].equals("--learnedClassifierDirectory"))
+                {
+                   learnedClassifierDirectory = split[k+1];
+                }
+                if(split[k].equals("--trainedClassifier"))
+                {
+                    trainedClassifier = split[k+1];
+                }
+            }
+        }
+        this.tagEngine = new TagStorageEngine();
+        this.tagEngine.setStorageDirectory(learnedClassifierDirectory);
+        this.slashTagParser = new SlashTagParser();
+        String serializedClassifier = trainedClassifier;
         this.classifier = CRFClassifier.getClassifierNoExceptions(serializedClassifier);
         System.out.flush();
         System.out.println("@DONE@");
