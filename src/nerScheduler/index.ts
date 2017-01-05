@@ -25,6 +25,13 @@ let nerCallBack =
 {
     send : function(channel : string,args : any)
     {
+        if(args.done && args.retCode && args.retCode != 130)
+        {
+            console.log("Invalid options in nerScheduler.conf");
+            console.log("Ensure --trainedClassifier points to a valid classifier");
+            console.log("Ensure --learnedClassifierDirectory points to a valid directory");
+            process.exit(1);
+        }
         if(args.unBufferedData)
         {
             //on completion of an operation in the server, execute next local operation
@@ -35,6 +42,7 @@ let nerCallBack =
         }
     }
 }
+let nerServerConf : Array<string> = fs.readFileSync("nerScheduler.conf").toString().split(new RegExp("( )|(\\n)"));
 assert.assert
 (
     ()=>
@@ -48,11 +56,16 @@ assert.assert
 ( 
     ()=>
     {
+        let nerServerArgs : Array<string> = ["-jar","nerServer.jar"];
+        for(let i = 0; i != nerServerConf.length; ++i)
+        {
+            nerServerArgs.push(nerServerConf[i]);
+        }
         //Start up NER server
         JobMgr.addJob
         (
             "java",
-            ["-jar","nerServer.jar"],
+            nerServerArgs,
             "",true,
             nerCallBack,
             {}

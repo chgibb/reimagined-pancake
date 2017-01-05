@@ -57,18 +57,6 @@ public class inputQueue extends Thread
                     tagEngine.storeTag(tags.get(i),tags.get(i+1));
                 System.out.println("@DONE@");
                 System.out.flush();
-                //this.tagEngine.SampleFunction1(in);
-                /*
-                System.out.println(classifier.classifyToString(in.replaceAll("\\uFFFD",""),"slashTags",false));
-                //Output is sometimes chunked. Output this piece of text to signal that the operation is complete to the client.
-                System.out.println("@DONE@");
-                System.out.flush();
-                System.out.flush();
-                System.out.flush();
-                System.out.flush();
-                System.out.flush();
-                System.out.flush();
-                */
             }
         }
     }

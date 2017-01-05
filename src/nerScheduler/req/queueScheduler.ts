@@ -12,8 +12,7 @@ export default function queueScheduler() : void
         ( 
             ()=>
             {
-                console.log(binIndex+" of "+bins.sourceBins.length);  
-                console.log("runningEvents "+assert.runningEvents); 
+                console.log("Learning about bin "+binIndex+" of "+bins.sourceBins.length);  
                 dispatch.queueDispatchTweetsFromBin(bins.sourceBins[binIndex]);
                 binIndex++;
                 queueScheduler();
