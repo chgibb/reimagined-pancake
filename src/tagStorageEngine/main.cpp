@@ -1,5 +1,7 @@
 #include <iostream>
 #include <jni.h>
+#include "inc/TagStorageEngine.hpp"
+::TagStorageEngine tagStorageEngine;
 extern "C"
 {
     JNIEXPORT void JNICALL Java_src_TagStorageEngine_storeTag(JNIEnv* env,jobject obj,jstring token,jstring entity)
@@ -11,6 +13,8 @@ extern "C"
     }
     JNIEXPORT void JNICALL Java_src_TagStorageEngine_setStorageDirectory(JNIEnv* env,jobject obj,jstring dir)
     {
-        std::cout<<dir;
+        env->PushLocalFrame(1);
+        ::tagStorageEngine.setStorageDirectory(env->GetStringUTFChars(dir,NULL));
+        env->PopLocalFrame(NULL);
     }
 }
