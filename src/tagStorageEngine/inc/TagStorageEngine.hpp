@@ -25,6 +25,7 @@ class TagStorageEngine
                         delete bucket;
                         return false;
                     }
+                    return true;
                     delete bucket;
                 }
             }
