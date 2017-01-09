@@ -58,7 +58,7 @@ class TagStorageEngine
         {
             if(bucket->good())
             {
-                (*bucket)<<"{\"token\":\""<<token<<"\",\"entity\":\""<<entity<<"\"}"<<std::endl
+                (*bucket)<<"{\"token\":\""<<token<<"\",\"entity\":\""<<entity<<"\"}"<<std::endl;
                 bucket->close();
                 return true;
             }
