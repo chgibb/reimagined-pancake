@@ -21,20 +21,33 @@ class TagStorageEngine
                 {
                     bool res = this->writeTag(token,entity,bucket);
                     if(!res)
+                    {
+                        delete bucket;
                         return false;
+                    }
+                    delete bucket;
                 }
             }
-            return true;
+            return false;
         }
     private:
         std::string storageDirectory;
         std::string getBucketHash(std::string&token)
         {
+            std::string res = "";
+            res += token[0];
+            res += "/";
+            if(token.size() >= 3)
+                return res + token[0] + token[1] + token[2];
+            if(token.size() >= 2)
+                return res + token[0] + token[1];
+            if(token.size() >= 1)
+                return res + token[0];
             return "";
         }
         std::fstream* getBucketByHash(std::string&bucketHash)
         {
-            std::fstream* bucket = new std::fstream("",std::ios::in|std::ios::out);
+            std::fstream* bucket = new std::fstream(bucketHash.c_str(),std::ios::in|std::ios::out|std::ios::app);
             return bucket;
         }
         bool tagExists(std::string&token,std::fstream*bucket)
@@ -43,7 +56,13 @@ class TagStorageEngine
         }
         bool writeTag(std::string&token,std::string&entity,std::fstream*bucket)
         {
-            return true;
+            if(bucket->good())
+            {
+                (*bucket)<<token<<" "<<entity<<std::endl;
+                bucket->close();
+                return true;
+            }
+            return false;
         }
 
 };
