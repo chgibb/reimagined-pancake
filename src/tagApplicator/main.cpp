@@ -4,7 +4,7 @@
 
 #include "inc/loadTags.hpp"
 #include "inc/Bin.hpp"
-#include "inc/Tag.hpp"
+#include "../inc/Tag.hpp"
 /*
     CLI arguments should be of the form:
     tagApplicator logFile learnedTags.json pathToBinToApplyTo1.json pathToBinToApplyTo2.json etc
