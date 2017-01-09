@@ -54,7 +54,10 @@ public class inputQueue extends Thread
                 String slashString = classifier.classifyToString(in.replaceAll("\\uFFFD",""),"slashTags",false);
                 ArrayList<String> tags = this.slashTagParser.parseSlashTags(slashString);
                 for(int i = 0; i != tags.size(); i += 2)
-                    tagEngine.storeTag(tags.get(i),tags.get(i+1));
+                {
+                    if(!(tags.get(i+1).equals("NOTHING")))
+                        tagEngine.storeTag(tags.get(i),tags.get(i+1));
+                }
                 System.out.println("@DONE@");
                 System.out.flush();
             }
