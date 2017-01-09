@@ -9,6 +9,9 @@ extern "C"
         env->PushLocalFrame(2);
         std::string nToken(env->GetStringUTFChars(token,NULL));
         std::string nEntity(env->GetStringUTFChars(entity,NULL));
+        bool res = tagStorageEngine.storeTag(nToken,nEntity);
+        if(!res)
+            std::cout<<"Error storing\n";
         env->PopLocalFrame(NULL);
     }
     JNIEXPORT void JNICALL Java_src_TagStorageEngine_setStorageDirectory(JNIEnv* env,jobject obj,jstring dir)

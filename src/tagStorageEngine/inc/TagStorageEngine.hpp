@@ -34,8 +34,7 @@ class TagStorageEngine
         std::string storageDirectory;
         std::string getBucketHash(std::string&token)
         {
-            std::string res = "";
-            res += token[0];
+            std::string res = this->storageDirectory;
             res += "/";
             if(token.size() >= 3)
                 return res + token[0] + token[1] + token[2];
