@@ -1,6 +1,11 @@
 #include <functional>
 template<class OpenedFileStreamPtr>
-int getQuotedJSONProperty(OpenedFileStreamPtr file,std::string propName,const std::function<bool(std::string&)>&func)
+int getQuotedJSONProperty
+(
+    OpenedFileStreamPtr file,
+    std::string propName,
+    const std::function<bool(std::string&)>&func = []()->bool{return false;}
+)
 {
     if(file->bad())
     {
