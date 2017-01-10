@@ -3,9 +3,11 @@
 #include <regex>
 class EscapeRegex
 {
-    std::string operators = "[|\\{}()[\]^$+*?.]";
-    std::string escape(const char*str)
-    {
-        return std::regex_replace(str,this->operators,"\\$&");
-    }
+    public:
+        std::string escape(const char*str)
+        {
+            return std::regex_replace(str,this->operators,"\\$&");
+        }
+    private:
+        std::string operators = "[|\\{}()[\]^$+*?.]";
 };
