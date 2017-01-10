@@ -54,6 +54,7 @@ int getQuotedJSONProperty(OpenedFileStreamPtr file,std::string propName,const st
                     {
                         endOfProp = false;
                         foundProp = true;
+                        res++;
                     }
                     str = "";
                 }

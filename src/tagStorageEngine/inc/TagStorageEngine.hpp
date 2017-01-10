@@ -63,6 +63,7 @@ class TagStorageEngine
                 throw new std::runtime_error("Regex compilation error "+res);
             auto matchFunc = [&reg](std::string&prop) -> bool
             {
+                std::cout<<"passed "<<prop<<std::endl;
                 if(::regexec(&reg,prop.c_str(),0,NULL,0) == 0)
                     return true;
                 return false;

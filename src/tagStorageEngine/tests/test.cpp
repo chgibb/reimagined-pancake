@@ -7,4 +7,10 @@ TEST_CASE("Storage directory was set")
 {
     tagStorageEngine.setStorageDirectory("learned");
     REQUIRE(tagStorageEngine.storageDirectory == "learned");
+    std::string token = "foo";
+    std::string entity = "PERSON";
+    std::string bucketHash = tagStorageEngine.getBucketHash(token);
+    std::fstream* bucket = tagStorageEngine.getBucketByHash(bucketHash);
+    REQUIRE(tagStorageEngine.writeTag(token,entity,bucket) == true);
+    REQUIRE(::getQuotedJSONProperty<std::fstream*>(bucket,"token",[](std::string&prop)->bool{std::cout<<prop<<std::endl;return false;}) == 2);
 }
