@@ -12,5 +12,5 @@ TEST_CASE("Storage directory was set")
     std::string bucketHash = tagStorageEngine.getBucketHash(token);
     std::fstream* bucket = tagStorageEngine.getBucketByHash(bucketHash);
     REQUIRE(tagStorageEngine.writeTag(token,entity,bucket) == true);
-    REQUIRE(::getQuotedJSONProperty<std::fstream*>(bucket,"token",[](std::string&prop)->bool{std::cout<<prop<<std::endl;return false;}) == 2);
+    REQUIRE(::getQuotedJSONProperty<std::fstream*>(bucket,"token") == 2);
 }

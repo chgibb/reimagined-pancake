@@ -4,7 +4,7 @@ int getQuotedJSONProperty
 (
     OpenedFileStreamPtr file,
     std::string propName,
-    const std::function<bool(std::string&)>&func = []()->bool{return false;}
+    const std::function<bool(std::string&)>&func = nullptr
 )
 {
     if(file->bad())
@@ -48,7 +48,9 @@ int getQuotedJSONProperty
                     if(foundProp)
                     {
                         endOfProp = false;
-                        bool fRes = func(str);
+                        bool fRes = false;
+                        if(func)
+                            fRes = func(str);
                         foundProp = false;
                         res++;
                         if(fRes)
