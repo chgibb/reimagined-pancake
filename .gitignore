@@ -11,6 +11,7 @@ dist/*.jar
 **/dist/*.so
 src/tagApplicator/dist/tagApplicator
 src/binDiscoverer/dist/binDiscoverer
+src/tagStorageEngine/test
 bin
 nerServer.jar
 keys.json
