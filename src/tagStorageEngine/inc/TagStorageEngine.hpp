@@ -70,6 +70,7 @@ class TagStorageEngine
             res = ::getQuotedJSONProperty<std::fstream*>(bucket,"token",matchFunc);
             ::regfree(&reg);
             std::cout<<res<<std::endl;
+            return false;
             if(res > 0)
                 return true;
             else if(res == 0)

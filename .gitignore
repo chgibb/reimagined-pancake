@@ -1,5 +1,6 @@
 *~
 *.*~
+catch.hpp
 node_modules
 dist.js
 dist/*.so

@@ -34,6 +34,7 @@ let nerCallBack =
         }
         if(args.unBufferedData)
         {
+            console.log(args.unBufferedData);
             //on completion of an operation in the server, execute next local operation
             if(isComplete.test(args.unBufferedData))
             {
