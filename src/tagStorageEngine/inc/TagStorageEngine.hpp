@@ -1,5 +1,9 @@
 #include <string>
 #include <fstream>
+#include <functional>
+#include <regex.h>
+#include "../../inc/getQuotedJSONProperty.hpp"
+//#include "../../inc/escapeRegex.hpp"
 class TagStorageEngine
 {
     public:
@@ -50,9 +54,28 @@ class TagStorageEngine
             std::fstream* bucket = new std::fstream(bucketHash.c_str(),std::ios::in|std::ios::out|std::ios::app);
             return bucket;
         }
+        //EscapeRegex escapeRegex;
         bool tagExists(std::string&token,std::fstream*bucket)
         {
-            return false;
+            ::regex_t reg;
+            int res = ::regcomp(&reg,std::string("\\b"+token+"\\b").c_str(),REG_ICASE);
+            if(res)
+                throw new std::runtime_error("Regex compilation error "+res);
+            auto matchFunc = [&reg](std::string&prop) -> bool
+            {
+                if(::regexec(&reg,prop.c_str(),0,NULL,0) == 0)
+                    return true;
+                return false;
+            };
+            res = ::getQuotedJSONProperty<std::fstream*>(bucket,"token",matchFunc);
+            ::regfree(&reg);
+            std::cout<<res<<std::endl;
+            if(res > 0)
+                return true;
+            else if(res == 0)
+                return false;
+            else 
+                throw new std::runtime_error("Failed to get JSON property from file");
         }
         bool writeTag(std::string&token,std::string&entity,std::fstream*bucket)
         {
