@@ -12,5 +12,6 @@ int main()
     assert(tagStorageEngine.storeTag("foo1","PERSON"));
     assert(tagStorageEngine.storeTag("foo2","ORGANIZATION"));
     assert(!tagStorageEngine.storeTag("foo","PERSON"));
+    assert(tagStorageEngine.storeTag("[","LOCATION"));
     return 0;
 }
