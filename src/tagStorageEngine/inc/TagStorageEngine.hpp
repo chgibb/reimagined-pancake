@@ -4,7 +4,7 @@
 #include <functional>
 #include <regex.h>
 #include "../../inc/getQuotedJSONProperty.hpp"
-//#include "../../inc/escapeRegex.hpp"
+#include "../../inc/escapeRegex.hpp"
 class TagStorageEngine
 {
     public:
@@ -56,11 +56,11 @@ class TagStorageEngine
             std::fstream* bucket = new std::fstream(bucketHash.c_str(),std::ios::in|std::ios::out|std::ios::app);
             return bucket;
         }
-        //EscapeRegex escapeRegex;
+        EscapeRegex escapeRegex;
         bool tagExists(std::string&token,std::fstream*bucket)
         {
             ::regex_t reg;
-            int res = ::regcomp(&reg,std::string("\\b"+token+"\\b").c_str(),REG_ICASE);
+            int res = ::regcomp(&reg,std::string("\\b"+this->escapeRegex.escape(token.c_str())+"\\b").c_str(),REG_ICASE);
             if(res)
                 throw new std::runtime_error("Regex compilation error "+res);
             bool found = false;
