@@ -1,3 +1,4 @@
+#pragma once
 #include <functional>
 template<class OpenedFileStreamPtr>
 int getQuotedJSONProperty
@@ -61,7 +62,6 @@ int getQuotedJSONProperty
                     {
                         endOfProp = false;
                         foundProp = true;
-                        res++;
                     }
                     str = "";
                 }

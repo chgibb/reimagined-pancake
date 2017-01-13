@@ -1,16 +1,16 @@
-#define CATCH_CONFIG_MAIN
-#include "../../inc/catch.hpp"
-#define private public
+#include "../../inc/getQuotedJSONProperty.hpp"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <assert.h>
 #include "../inc/TagStorageEngine.hpp"
 ::TagStorageEngine tagStorageEngine;
-TEST_CASE("Storage directory was set")
+int main()
 {
     tagStorageEngine.setStorageDirectory("learned");
-    REQUIRE(tagStorageEngine.storageDirectory == "learned");
-    std::string token = "foo";
-    std::string entity = "PERSON";
-    std::string bucketHash = tagStorageEngine.getBucketHash(token);
-    std::fstream* bucket = tagStorageEngine.getBucketByHash(bucketHash);
-    REQUIRE(tagStorageEngine.writeTag(token,entity,bucket) == true);
-    REQUIRE(::getQuotedJSONProperty<std::fstream*>(bucket,"token") == 2);
+    assert(tagStorageEngine.storeTag("foo","PERSON"));
+    assert(tagStorageEngine.storeTag("foo1","PERSON"));
+    assert(tagStorageEngine.storeTag("foo2","ORGANIZATION"));
+    assert(!tagStorageEngine.storeTag("foo","PERSON"));
+    return 0;
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <fstream>
 #include <functional>
@@ -14,7 +15,7 @@ class TagStorageEngine
         {
             this->storageDirectory = dir;
         }
-        bool storeTag(std::string&token,std::string&entity)
+        bool storeTag(std::string token,std::string entity)
         {
             std::fstream* bucket = nullptr;
             std::string bucketHash = this->getBucketHash(token);
@@ -23,14 +24,15 @@ class TagStorageEngine
             {
                 if(!this->tagExists(token,bucket))
                 {
+                    bucket->clear();
                     bool res = this->writeTag(token,entity,bucket);
                     if(!res)
                     {
                         delete bucket;
                         return false;
                     }
-                    return true;
                     delete bucket;
+                    return true;
                 }
             }
             return false;
@@ -61,27 +63,28 @@ class TagStorageEngine
             int res = ::regcomp(&reg,std::string("\\b"+token+"\\b").c_str(),REG_ICASE);
             if(res)
                 throw new std::runtime_error("Regex compilation error "+res);
-            auto matchFunc = [&reg](std::string&prop) -> bool
-            {
-                std::cout<<"passed "<<prop<<std::endl;
-                if(::regexec(&reg,prop.c_str(),0,NULL,0) == 0)
-                    return true;
-                return false;
-            };
-            res = ::getQuotedJSONProperty<std::fstream*>(bucket,"token",matchFunc);
+            bool found = false;
+            res = ::getQuotedJSONProperty<std::fstream*>
+            (
+                bucket,"token",
+                [&reg,&found](std::string&prop) -> bool
+                {
+                    if(::regexec(&reg,prop.c_str(),0,NULL,0) == 0)
+                    {
+                        found = true;
+                        return true;
+                    }
+                    return false;
+                }
+            );
             ::regfree(&reg);
-            std::cout<<res<<std::endl;
-            return false;
-            if(res > 0)
-                return true;
-            else if(res == 0)
-                return false;
-            else 
+            if(res == -1)
                 throw new std::runtime_error("Failed to get JSON property from file");
+            return found;
         }
         bool writeTag(std::string&token,std::string&entity,std::fstream*bucket)
         {
-            if(bucket->good())
+            if(!bucket->bad())
             {
                 (*bucket)<<"{\"token\":\""<<token<<"\",\"entity\":\""<<entity<<"\"}"<<std::endl;
                 bucket->close();
