@@ -44,11 +44,11 @@ class TagStorageEngine
             std::string res = this->storageDirectory;
             res += "/";
             if(token.size() >= 3)
-                return res + token[0] + token[1] + token[2];
+                return res + token[0] + token[1] + token[2] + ".nldjson";
             if(token.size() >= 2)
-                return res + token[0] + token[1];
+                return res + token[0] + token[1] + ".nldjson";
             if(token.size() >= 1)
-                return res + token[0];
+                return res + token[0] + ".nldjson";
             return "";
         }
         std::fstream* getBucketByHash(std::string&bucketHash)
