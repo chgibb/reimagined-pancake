@@ -5,7 +5,7 @@ var escapeStringRegexp : (input : string) => string =  require("escape-string-re
 
 import * as bins from './../req/getBins';
 import * as dispatch from './req/dispatch';
-import queueScheduler from './req/queueScheduler';
+import * as queueScheduler from './req/queueScheduler';
 var jsonFile = require('./../jsreq/jsonfile');
 var canRead = require('./../jsreq/canRead');
 var JobMgr = require('./../jsreq/JobMgr');
@@ -38,6 +38,7 @@ let nerCallBack =
             if(isComplete.test(args.unBufferedData))
             {
                 assert.runningEvents -= 1;
+                queueScheduler.incrementBinIndex();
             }
         }
     }
@@ -78,7 +79,7 @@ assert.assert
 (
     ()=>
     {
-        queueScheduler();
+        queueScheduler.scheduleNextDispatch();
         return true;
     },'',0
 );
