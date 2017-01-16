@@ -1,5 +1,6 @@
 *~
 *.*~
+*.nldjson
 catch.hpp
 node_modules
 dist.js
