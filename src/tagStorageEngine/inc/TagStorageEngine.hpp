@@ -5,6 +5,7 @@
 #include <regex.h>
 #include "../../inc/getQuotedJSONProperty.hpp"
 #include "../../inc/escapeRegex.hpp"
+#include "../../inc/utf8To.hpp"
 class TagStorageEngine
 {
     public:
@@ -39,8 +40,10 @@ class TagStorageEngine
         }
     private:
         std::string storageDirectory;
+        UTF8To utf8Conv;
         std::string getBucketHash(std::string&token)
         {
+            token = this->utf8Conv.toLower(token);
             std::string res = this->storageDirectory;
             res += "/";
             if(token.size() >= 3)
