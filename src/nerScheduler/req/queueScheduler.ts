@@ -25,13 +25,12 @@ export function scheduleNextDispatch() : void
                     {
                         var index : number = binIndex;
                         job.extraData = {i:index}
-                        //cull new lines before submitting for classification
-                        job.StdIn(bins.sourceBins[binIndex]);
+                        job.StdIn(bins.sourceBins[binIndex]+"\n");
+                        assert.runningEvents += 1;
+                        binIndex++;
                         return true;
                     }
                 );
-
-                binIndex++;
                 scheduleNextDispatch();
                 return true;
             },'',0
