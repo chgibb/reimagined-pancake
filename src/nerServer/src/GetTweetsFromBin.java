@@ -1,4 +1,6 @@
 package src;
+import java.util.*;
+import java.io.*;
 public class GetTweetsFromBin
 {
     public native void loadBin(String bin);
