@@ -1,9 +1,9 @@
 package src;
-public class GetRawTweets
+public class GetTweetsFromBin
 {
     public native void loadBin(String bin);
     public native String getNextTweet();
-    public GetRawTweets()
+    public GetTweetsFromBin()
     {
         String cwd = "";
         try
@@ -11,6 +11,6 @@ public class GetRawTweets
             cwd = new File(".").getCanonicalPath()+File.separator;
         }
         catch(IOException e){}
-        System.load(cwd+"libgetRawTweets.so");
+        System.load(cwd+"libgetTweetsFromBin.so");
     }
 }
