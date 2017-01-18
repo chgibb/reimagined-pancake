@@ -32,7 +32,8 @@ class GetTweetsFromBin
         }
         void pop()
         {
-            this->tweets.pop_back();
+            if(!this->tweets.empty())
+                this->tweets.pop_back();
         }
     private:
         std::vector<std::string> tweets;
