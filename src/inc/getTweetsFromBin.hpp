@@ -26,9 +26,13 @@ class GetTweetsFromBin
         {
             this->tweets.clear();
         }
-        std::string getNextTweet()
+        std::string getTweet()
         {
-
+            return this->tweets.back();
+        }
+        void pop()
+        {
+            this->tweets.pop_back();
         }
     private:
         std::vector<std::string> tweets;

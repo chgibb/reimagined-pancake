@@ -5,6 +5,7 @@
 #include <assert.h>
 #include "../inc/TagStorageEngine.hpp"
 #include "../../inc/escapeRegex.hpp"
+#include "../../inc/getTweetsFromBin.hpp"
 ::TagStorageEngine tagStorageEngine;
 ::EscapeRegex escapeRegex;
 int main()
