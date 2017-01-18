@@ -28,7 +28,9 @@ class GetTweetsFromBin
         }
         std::string getTweet()
         {
-            return this->tweets.back();
+            if(!this->tweets.empty())
+                return this->tweets.back();
+            return "";
         }
         void pop()
         {
