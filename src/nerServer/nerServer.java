@@ -4,6 +4,10 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.CoreAnnotations.AnswerAnnotation;
 import edu.stanford.nlp.util.StringUtils;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.*;
@@ -21,6 +25,7 @@ public class nerServer
     {
         String learnedClassifierDirectory = "";
         String trainedClassifier = "";
+        String binList = "";
         for(int i = 0; i != args.length; ++i)
         {
             String[] split = args[i].split("=");
@@ -34,6 +39,10 @@ public class nerServer
                 {
                     trainedClassifier = split[k+1];
                 }
+                if(split[k].equals("--binList"))
+                {
+                    binList = split[k+1];
+                }
             }
         }
         tagEngine = new TagStorageEngine();
@@ -41,5 +50,26 @@ public class nerServer
         slashTagParser = new SlashTagParser();
         String serializedClassifier = trainedClassifier;
         classifier = CRFClassifier.getClassifierNoExceptions(serializedClassifier);
+
+        try
+        {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(binList)));
+         
+            String line = reader.readLine();
+            while(line != null)
+            {
+                System.out.println(line);
+                line = reader.readLine();
+            }    
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("Could not find bin list "+binList);
+        }
+        catch(IOException e)
+        {
+            System.out.println("IOException while reading from bin list "+binList);
+        }
+
     }
 }
