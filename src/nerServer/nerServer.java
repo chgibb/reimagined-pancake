@@ -1,8 +1,3 @@
-//Named Entity Recognition Server.
-//using Stanford Named Entity Recognizer to take in input text
-//and output slash tagged output.
-
-
 import edu.stanford.nlp.ie.crf.*;
 import edu.stanford.nlp.ie.*;
 import edu.stanford.nlp.ling.CoreLabel;
