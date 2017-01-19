@@ -9,6 +9,7 @@ class GetTweetsFromBin
         GetTweetsFromBin()=default;
         bool loadBin(const char*file)
         {
+            this->clearBin();
             std::ifstream*bin = new std::ifstream(file,std::ios::in);
             if(bin->fail())
             {
