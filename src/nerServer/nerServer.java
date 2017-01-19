@@ -20,6 +20,7 @@ public class nerServer
 {
     public static TagStorageEngine tagEngine;
     public static SlashTagParser slashTagParser;
+    public static GetTweetsFromBin getTweets;
     public static AbstractSequenceClassifier classifier;
     public static void main(String[] args) throws IOException 
     {
@@ -48,6 +49,7 @@ public class nerServer
         tagEngine = new TagStorageEngine();
         tagEngine.setStorageDirectory(learnedClassifierDirectory);
         slashTagParser = new SlashTagParser();
+        getTweets = new GetTweetsFromBin();
         String serializedClassifier = trainedClassifier;
         classifier = CRFClassifier.getClassifierNoExceptions(serializedClassifier);
 
@@ -58,7 +60,15 @@ public class nerServer
             String line = reader.readLine();
             while(line != null)
             {
-                System.out.println(line);
+                getTweets.loadBin(line);
+                String tweet = "";
+                tweet = getTweets.getTweet();
+                while(!(tweet.equals("")))
+                {
+                    System.out.println(tweet);
+                    getTweets.pop();
+                    tweet = getTweets.getTweet();
+                }
                 line = reader.readLine();
             }    
         }

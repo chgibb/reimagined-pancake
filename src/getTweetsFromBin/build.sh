@@ -12,5 +12,6 @@ fi
 
 
 
-cp libgetRawTweets.so dist
+cp libgetTweetsFromBin.so dist
+rm *.so
 
