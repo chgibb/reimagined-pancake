@@ -65,6 +65,7 @@ public class nerServer
                 tweet = getTweets.getTweet();
                 while(!(tweet.equals("")))
                 {
+                    System.out.println(tweet);
                     String slashString = classifier.classifyToString(tweet.replaceAll("\\uFFFD",""),"slashTags",false);
                     ArrayList<String> tags = slashTagParser.parseSlashTags(slashString);
                     for(int i = 0; i != tags.size(); i += 2)

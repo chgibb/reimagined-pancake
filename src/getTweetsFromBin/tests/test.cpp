@@ -8,11 +8,11 @@
 ::GetTweetsFromBin getTweets;
 int main()
 {
-    assert(getTweets.loadBin("testData/tweets.json") == true);
-    assert(getTweets.tweets.size() == 452);
+    assert(getTweets.loadBin("testData/tweets2.json") == true);
     while(getTweets.tweets.size() != 0)
     {
         assert(getTweets.getTweet() != "");
+        std::cout<<getTweets.getTweet()<<std::endl;
         getTweets.pop();
     }
     
