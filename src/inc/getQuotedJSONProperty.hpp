@@ -1,5 +1,13 @@
 #pragma once
 #include <functional>
+/*
+ This function is NOT a spec conformant JSON parser.
+ Given an open file stream pointed to by file, it will look for occurences of the pattern
+ "propName" "val" and pass the value of val to func.
+ Returns the total number of occurences of "propName" on success. -1 on failure.
+ Completely ignores just about every piece of structure that JSON provides. This makes it extremely fast but prone to odd
+ output if used improperly.
+*/
 template<class OpenedFileStreamPtr>
 int getQuotedJSONProperty
 (
