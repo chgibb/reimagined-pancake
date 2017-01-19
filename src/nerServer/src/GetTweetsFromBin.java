@@ -3,8 +3,10 @@ import java.util.*;
 import java.io.*;
 public class GetTweetsFromBin
 {
-    public native void loadBin(String bin);
-    public native String getNextTweet();
+    public native bool loadBin(String bin);
+    public native void clearBin();
+    public native String getTweet();
+    public native void pop();
     public GetTweetsFromBin()
     {
         String cwd = "";
