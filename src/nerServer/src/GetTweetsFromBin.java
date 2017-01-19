@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 public class GetTweetsFromBin
 {
-    public native bool loadBin(String bin);
+    public native boolean loadBin(String bin);
     public native void clearBin();
     public native String getTweet();
     public native void pop();
