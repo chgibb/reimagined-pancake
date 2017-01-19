@@ -20,5 +20,6 @@ int main()
     assert(getTweets.tweets.size() == 0);
 
     assert(getTweets.loadBin("this/does/not/exist") == false);
+    assert(getTweets.tweets.size() == 0);
     return 0;
 }
