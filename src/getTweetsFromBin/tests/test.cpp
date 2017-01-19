@@ -8,7 +8,17 @@
 ::GetTweetsFromBin getTweets;
 int main()
 {
-    getTweets.loadBin("testData/tweets.json");
+    assert(getTweets.loadBin("testData/tweets.json") == true);
     assert(getTweets.tweets.size() == 452);
+    while(getTweets.tweets.size() != 0)
+    {
+        assert(getTweets.getTweet() != "");
+        getTweets.pop();
+    }
+    
+    getTweets.clearBin();
+    assert(getTweets.tweets.size() == 0);
+
+    assert(getTweets.loadBin("this/does/not/exist") == false);
     return 0;
 }

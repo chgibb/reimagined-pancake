@@ -8,10 +8,15 @@ class GetTweetsFromBin
     public:
         GetTweetsFromBin()=default;
 
-        void loadBin(const char*file)
+        bool loadBin(const char*file)
         {
             std::ifstream*bin = new std::ifstream(file,std::ios::in);
-            ::getQuotedJSONProperty<decltype(bin)>
+            if(bin->fail())
+            {
+                delete bin;
+                return false;
+            }
+            int res = ::getQuotedJSONProperty<decltype(bin)>
             (
                 bin,
                 "text",
@@ -21,6 +26,10 @@ class GetTweetsFromBin
                     return false;
                 }
             );
+            delete bin;
+            if(res == -1)
+                return false;
+            return true;
         }
         void clearBin()
         {
