@@ -9,10 +9,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.concurrent.*;
 import java.util.ArrayList;
 import java.lang.Thread;
+
 
 import src.*;
 
@@ -58,6 +61,18 @@ public class nerServer
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(binList)));
          
             String line = reader.readLine();
+            System.setErr
+            (
+                new PrintStream
+                (
+                    new OutputStream()
+                    {
+                        public void write(int b)
+                        {
+                        }
+                    }
+                )
+            );
             while(line != null)
             {
                 getTweets.loadBin(line);
