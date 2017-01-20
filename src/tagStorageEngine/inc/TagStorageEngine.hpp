@@ -70,8 +70,13 @@ class TagStorageEngine
             res = ::getQuotedJSONProperty<std::fstream*>
             (
                 bucket,"token",
-                [&reg,&found](std::string&prop) -> bool
+                [&reg,&token,&found](std::string&prop) -> bool
                 {
+                    if(prop == token)
+                    {
+                        found = true;
+                        return true;
+                    }
                     if(::regexec(&reg,prop.c_str(),0,NULL,0) == 0)
                     {
                         found = true;
