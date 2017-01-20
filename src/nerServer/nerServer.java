@@ -65,8 +65,10 @@ public class nerServer
                 tweet = getTweets.getTweet();
                 while(!(tweet.equals("")))
                 {
-                    System.out.println(tweet);
-                    String slashString = classifier.classifyToString(tweet.replaceAll("\\uFFFD",""),"slashTags",false);
+                    //System.out.println(tweet);
+                    //regex based on answer by Giuseppe Ricupero
+                    //http://stackoverflow.com/questions/33722024/how-to-remove-non-valid-unicode-characters-from-strings-in-java
+                    String slashString = classifier.classifyToString(tweet.replaceAll("[^\\p{L}\\p{N}\\p{Z}\\p{Sm}\\p{Sc}\\p{Sk}\\p{Pi}\\p{Pf}\\p{Pc}\\p{Mc}]",""),"slashTags",false);
                     ArrayList<String> tags = slashTagParser.parseSlashTags(slashString);
                     for(int i = 0; i != tags.size(); i += 2)
                     {
