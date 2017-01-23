@@ -1,25 +1,21 @@
 #include <iostream>
 #include <jni.h>
+#include "inc/TagStorageEngine.hpp"
+::TagStorageEngine tagStorageEngine;
 extern "C"
 {
-    JNIEXPORT void JNICALL Java_src_tagStorageEngine_SampleFunction1(JNIEnv* env,jobject obj)
+    JNIEXPORT void JNICALL Java_src_TagStorageEngine_storeTag(JNIEnv* env,jobject obj,jstring token,jstring entity)
     {
-        std::cout<<"Hello world\n";
+        env->PushLocalFrame(2);
+        std::string nToken(env->GetStringUTFChars(token,NULL));
+        std::string nEntity(env->GetStringUTFChars(entity,NULL));
+        bool res = tagStorageEngine.storeTag(nToken,nEntity);
+        env->PopLocalFrame(NULL);
     }
-    
-    // A function adding two integers and returning the result
-    int SampleAddInt(int i1, int i2)
+    JNIEXPORT void JNICALL Java_src_TagStorageEngine_setStorageDirectory(JNIEnv* env,jobject obj,jstring dir)
     {
-        return i1 + i2;
-    }
-
-
-
-    // A function always returning zero
-    int SampleFunction2()
-    {
-        // insert code here
-        
-        return 0;
+        env->PushLocalFrame(1);
+        ::tagStorageEngine.setStorageDirectory(env->GetStringUTFChars(dir,NULL));
+        env->PopLocalFrame(NULL);
     }
 }

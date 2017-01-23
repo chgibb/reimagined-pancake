@@ -7,7 +7,7 @@
 
 #include "../rapidjson/include/rapidjson/document.h"
 
-#include "Tag.hpp"
+#include "../../inc/Tag.hpp"
 template<class Alloc>
 void getTagsForTokens
 (

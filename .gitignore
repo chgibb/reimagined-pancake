@@ -1,5 +1,7 @@
 *~
 *.*~
+*.nldjson
+catch.hpp
 node_modules
 dist.js
 dist/*.so
@@ -10,8 +12,10 @@ dist/*.jar
 **/dist/*.so
 src/tagApplicator/dist/tagApplicator
 src/binDiscoverer/dist/binDiscoverer
+src/tagStorageEngine/test
 bin
 nerServer.jar
+nerLearner.jar
 keys.json
 dep
 rapidjson

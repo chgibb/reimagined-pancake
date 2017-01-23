@@ -1,5 +1,6 @@
 #pragma once
 #include <regex.h>
+#include <stdexcept>
 class Tag
 {
     public:
@@ -10,6 +11,6 @@ class Tag
         {
             int res = ::regcomp(&this->reg,std::string("\\b"+this->token+"\\b").c_str(),REG_ICASE);
             if(res)
-                std::cout<<"Regex compilation error: "<<res<<"\n";
+                throw new std::runtime_error("Regex compilation error "+res);
         }
 };

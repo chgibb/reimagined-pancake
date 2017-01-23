@@ -1,5 +1,6 @@
 bash clean.bash
 rm -rf node_modules
+rm src/inc/catch.hpp
 cd src
 for d in */ ; do
     cd $d

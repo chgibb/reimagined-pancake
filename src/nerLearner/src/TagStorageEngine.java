@@ -1,10 +1,11 @@
 package src;
 import java.util.*;
 import java.io.*;
-public class tagStorageEngine
+public class TagStorageEngine
 {
-    public native void SampleFunction1();
-    public tagStorageEngine()
+    public native void storeTag(String token,String entity);
+    public native void setStorageDirectory(String dir);
+    public TagStorageEngine()
     {
         String cwd = "";
         try

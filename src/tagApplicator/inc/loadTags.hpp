@@ -6,7 +6,7 @@
 #include "../rapidjson/include/rapidjson/document.h"
 #include "../rapidjson/include/rapidjson/istreamwrapper.h"
 
-#include "Tag.hpp"
+#include "../../inc/Tag.hpp"
 /*
     Assumes that the json file identified by tagsPath is output by binTagger.js
     i.e. of the form
