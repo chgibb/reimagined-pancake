@@ -15,6 +15,7 @@ src/binDiscoverer/dist/binDiscoverer
 src/tagStorageEngine/test
 bin
 nerServer.jar
+nerLearner.jar
 keys.json
 dep
 rapidjson
