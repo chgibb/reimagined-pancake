@@ -19,7 +19,7 @@ import java.lang.Thread;
 
 import src.*;
 
-public class nerServer
+public class nerLearner
 {
     public static TagStorageEngine tagEngine;
     public static SlashTagParser slashTagParser;
