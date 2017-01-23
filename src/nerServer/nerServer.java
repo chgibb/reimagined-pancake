@@ -83,7 +83,6 @@ public class nerServer
                 tweet = tweetBin.getTweet();
                 while(!(tweet.equals("")))
                 {
-                    //System.out.println(tweet);
                     //regex based on answer by Giuseppe Ricupero
                     //http://stackoverflow.com/questions/33722024/how-to-remove-non-valid-unicode-characters-from-strings-in-java
                     String slashString = classifier.classifyToString(tweet.replaceAll("[^\\p{L}\\p{N}\\p{Z}\\p{Sm}\\p{Sc}\\p{Sk}\\p{Pi}\\p{Pf}\\p{Pc}\\p{Mc}]",""),"slashTags",false);
