@@ -61,6 +61,9 @@ public class nerServer
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(binList)));
          
             String line = reader.readLine();
+
+            //Start piping stderr to null from this point on.
+            //This prevents Stanford-NER's unrecognized character warnings from being displayed.
             System.setErr
             (
                 new PrintStream
