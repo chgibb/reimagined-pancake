@@ -120,15 +120,6 @@ for(let j : number = 0; j != dirs.length; ++j)
                 fs.appendFileSync("log",new Date()+" "+"committing "+store.items.length+" tweets\n");
                 saveTweetsFromStore(tweetSaveMgr,store,dataDir);
                 fs.appendFileSync("log",new Date()+" "+"done\n");
-                JobMgr.addJob
-                (
-                    "./tagApplicator",
-                    ["classifiers/learnedTags.json",bins.sourceBins[i].replace(dirs[j],dataDir)],
-                    "",true,
-                    tagApplicatorCallBack,
-                    {}
-                );
-                assert.runningEvents += 1;
             }
             return true;
         },'',0

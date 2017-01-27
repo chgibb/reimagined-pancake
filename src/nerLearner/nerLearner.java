@@ -76,8 +76,10 @@ public class nerLearner
                     }
                 )
             );
+            int binNumber = 1;
             while(line != null)
             {
+                System.out.println("Learning about bin: "+binNumber);
                 tweetBin.loadBin(line);
                 String tweet = "";
                 tweet = tweetBin.getTweet();
@@ -96,6 +98,7 @@ public class nerLearner
                     tweet = tweetBin.getTweet();
                 }
                 line = reader.readLine();
+                binNumber++;
             }    
         }
         catch(FileNotFoundException e)
