@@ -31,7 +31,7 @@ bash build.bash
 ```
 # Usage
 
-## Acquiring tweets
+## Authorization
 The platform requires Twitter developer credentials in order to make requests
 to the Twitter API. It uses Twitter's application only authorization. See <https://dev.twitter.com/oauth/application-only>
 for more details.
