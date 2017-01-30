@@ -16,9 +16,6 @@ Command line interface (CLI) based platform for high volume Twitter analytics.
 - 2GB RAM
 - 500GB - 1TB disk space (depends on length of use and intentions)
 
-# Guides
-* [Getting Started]()
-
 # Building From Source
 From the directory where the source was cloned into:  
 
@@ -33,11 +30,5 @@ Build everything
 bash build.bash
 ```
 
-# Architectural Overview 
-#### Definitions
-- Executable
-    - Any file which may be executed. Defined here as any binary 
-WinPE/ELF binary executable or .so/.dll, any JRE .jar/.class, NodeJS .node/.js files.
-- Script
-    - Any bash/bat or awk script.
+
 
