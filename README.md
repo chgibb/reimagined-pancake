@@ -22,10 +22,11 @@ Command line interface (CLI) based platform for high volume Twitter analytics.
 # Building From Source
 From the directory where the source was cloned into:  
 
-Install dependencies
+Install (local) dependencies
 ```
 bash install.bash
 ```
+Assumes that javac, g++ and node are installed globally.
 
 Build everything
 ```
@@ -34,9 +35,9 @@ bash build.bash
 
 # Architectural Overview 
 #### Definitions
-- Binary
-    - Any file which may be executed.
-We attempt to follow (as much as possible, anyway) the Unix philosphy of micro services,
-that is, one binary to do one thing. Each binary (defined here as any binary 
-WinPE/ELF binary executable or .so/.dll, any JRE .jar/.class, NodeJS .node/.js files)
+- Executable
+    - Any file which may be executed. Defined here as any binary 
+WinPE/ELF binary executable or .so/.dll, any JRE .jar/.class, NodeJS .node/.js files.
+- Script
+    - Any bash/bat or awk script.
 
