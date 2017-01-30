@@ -7,8 +7,8 @@ Command line interface (CLI) based platform for high volume Twitter analytics.
 
 # Software Requirements:  
 - Linux based Operating System (OS)
-- NodeJS (https://nodejs.org/en/download/)
-- Java (http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) (Optional, only needed for built in text analytics)
+- [NodeJS](https://nodejs.org/en/download/)
+- [Java](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) (Optional, only needed for built in text analytics)
 - Familiarity with the CLI
 
 # Minimum Recommended Hardware Requirements
