@@ -36,7 +36,7 @@ The platform requires Twitter developer credentials in order to make requests
 to the Twitter API. It uses Twitter's application only authorization. See <https://dev.twitter.com/oauth/application-only>
 for more details.
 
-Once you have acquired credentials from Twitter, a file named key.json must be created in the dep directory 
+Once you have acquired credentials from Twitter, a file named keys.json must be created in the dep directory 
 (or wherever you have placed the built application). It should look like this:
 ```
 {
