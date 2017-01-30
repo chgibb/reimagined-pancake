@@ -1,6 +1,6 @@
 # scrapeScheduler.js
 Used to perform a batch of requests to Twitters GET/search API endpoint.
-Manages one or more instances of twitterScraper instances.  
+Manages one or more instances of twitterScraper.  
 [Also see twitterScraper documentation](https://github.com/chgibb/reimagined-pancake/blob/master/src/scrapeScheduler/readme.md)
 
 Parameters:
