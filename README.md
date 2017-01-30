@@ -48,5 +48,10 @@ Once you have acquired credentials from Twitter, a file named key.json must be c
     "accessTokenSecret" : ""
 }
 ```
+## Acquiring Tweets
+In order to run a round of mining:
+```
+node scrapeScheduler --dataDir=data --threads=1 --iterations=1
+```
 
 
