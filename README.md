@@ -32,3 +32,11 @@ Build everything
 bash build.bash
 ```
 
+# Architectural Overview 
+#### Definitions
+- Binary
+    - Any file which may be executed.
+We attempt to follow (as much as possible, anyway) the Unix philosphy of micro services,
+that is, one binary to do one thing. Each binary (defined here as any binary 
+WinPE/ELF binary executable or .so/.dll, any JRE .jar/.class, NodeJS .node/.js files)
+
