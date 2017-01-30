@@ -53,5 +53,6 @@ In order to run a round of mining:
 ```
 node scrapeScheduler --dataDir=data --threads=1 --iterations=1
 ```
-
+See [scrapeScheduler documentation](https://github.com/chgibb/reimagined-pancake/blob/master/src/scrapeScheduler/readme.md)
+for more information.
 
