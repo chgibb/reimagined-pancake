@@ -1,5 +1,8 @@
 # twitterScraper
-Used to perform requests to Twitters GET/search API endpoint.  
+Used to perform requests to Twitters GET/search API endpoint.   
+Note: twitterScraper should not be used directly unless
+you really know what you're doing. In most cases [scrapeScheduler](https://github.com/chgibb/reimagined-pancake/blob/master/src/scrapeScheduler/readme.md) 
+should be used.  
 Note: Always requests results from Twitter in mixed mode. See <https://dev.twitter.com/rest/reference/get/search/tweets>
 for more information. Also always makes request for English language(en) tweets. See the same link
 for more information.
