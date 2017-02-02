@@ -22,7 +22,7 @@ int main()
     assert(getTweets.loadBin("this/does/not/exist") == false);
     assert(getTweets.tweets.size() == 0);
 
-    assert(getTweets.loadBin("testData/tweets.json") == true);
+    assert(getTweets.loadBin("testData/tweets1.json") == true);
     assert(getTweets.tweets.size() == 452);
     getTweets.clearBin();
     assert(getTweets.tweets.size() == 0);
