@@ -9,8 +9,9 @@ printf "Running\n"
 rm -rf learned
 mkdir learned
 ./test
-rm test
 if [ $? != 0 ]; then
     exit 1
 fi
+rm test
+
 printf "Done\n"
