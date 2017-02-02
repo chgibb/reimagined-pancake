@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <regex>
+//Based on implementation by Sindre Sorhus 
+//https://github.com/sindresorhus/escape-string-regexp
 class EscapeRegex
 {
     public:
