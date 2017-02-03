@@ -6,8 +6,6 @@ if [ $? != 0 ]; then
 fi  
 rm *.o
 printf "Running\n"
-rm -rf learned
-mkdir learned
 ./test
 rm test
 if [ $? != 0 ]; then
