@@ -12,7 +12,6 @@ int main()
     while(getTweets.tweets.size() != 0)
     {
         assert(getTweets.getTweet() != "");
-        std::cout<<getTweets.getTweet()<<std::endl;
         getTweets.pop();
     }
     
