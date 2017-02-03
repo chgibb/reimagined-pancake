@@ -3,6 +3,7 @@
 #include <fstream>
 #include <functional>
 #include <regex.h>
+#include <cstring>
 #include "../../inc/getQuotedJSONProperty.hpp"
 #include "../../inc/escapeRegex.hpp"
 #include "../../inc/utf8To.hpp"
@@ -14,6 +15,28 @@
     inline static int makeDir(const char*path,::mode_t mode)
     {
         return ::mkdir(path,mode);
+    }
+#endif
+//Adapted from answer by Yaroslav Stavnichiy
+//http://stackoverflow.com/questions/2336242/recursive-mkdir-system-call-on-unix
+#ifdef __linux__
+    inline static int makePath(char*file_path,::mode_t mode)
+    {
+        char* p;
+        for(p = ::strchr(file_path + 1,'/'); p; p = ::strchr(p + 1,'/'))
+        {
+            *p='\0';
+            if(::makeDir(file_path, mode)==-1)
+            {
+                if(errno!=EEXIST)
+                {
+                    *p='/';
+                    return -1; 
+                }
+            }
+            *p='/';
+        }
+        return 0;
     }
 #endif
 class TagStorageEngine
