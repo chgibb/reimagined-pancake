@@ -6,6 +6,16 @@
 #include "../../inc/getQuotedJSONProperty.hpp"
 #include "../../inc/escapeRegex.hpp"
 #include "../../inc/utf8To.hpp"
+#ifdef _WIN32
+    #error "Implement this"
+#endif
+#ifdef __linux__
+    #include <sys/stat.h>
+    inline static int makeDir(const char*path,::mode_t mode)
+    {
+        return ::mkdir(path,mode);
+    }
+#endif
 class TagStorageEngine
 {
     public:
