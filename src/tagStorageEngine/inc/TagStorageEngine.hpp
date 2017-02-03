@@ -74,8 +74,8 @@ class TagStorageEngine
                     delete bucket;
                     return true;
                 }
-		delete bucket;
             }
+            delete bucket;
             return false;
         }
     private:
