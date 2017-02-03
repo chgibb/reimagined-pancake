@@ -54,6 +54,12 @@ class TagStorageEngine
             std::fstream* bucket = nullptr;
             std::string bucketHash = this->getBucketHash(token);
             bucket = this->getBucketByHash(bucketHash);
+            if(bucket == nullptr)
+            {
+                #ifdef __linux__
+                    ::makePath((char*)bucketHash.c_str(),777);
+                #endif
+            }
             if(bucket != nullptr)
             {
                 if(!this->tagExists(token,bucket))
