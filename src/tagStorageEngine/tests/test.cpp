@@ -10,7 +10,7 @@
 ::EscapeRegex escapeRegex;
 int main()
 {
-    tagStorageEngine.setStorageDirectory("learned");
+    tagStorageEngine.setStorageDirectory("learned/super/deep/directory");
     assert(tagStorageEngine.storeTag("foo","PERSON"));
     assert(tagStorageEngine.storeTag("foo1","PERSON"));
     assert(tagStorageEngine.storeTag("foo2","ORGANIZATION"));

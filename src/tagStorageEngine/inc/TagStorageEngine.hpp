@@ -4,6 +4,7 @@
 #include <functional>
 #include <regex.h>
 #include <cstring>
+#include <errno.h>
 #include "../../inc/getQuotedJSONProperty.hpp"
 #include "../../inc/escapeRegex.hpp"
 #include "../../inc/utf8To.hpp"
@@ -14,6 +15,7 @@
     #include <sys/stat.h>
     inline static int makeDir(const char*path,::mode_t mode)
     {
+        std::cout<<"Passed: "<<path<<"\n";
         return ::mkdir(path,mode);
     }
 #endif
@@ -26,13 +28,12 @@
         for(p = ::strchr(file_path + 1,'/'); p; p = ::strchr(p + 1,'/'))
         {
             *p='\0';
-            if(::makeDir(file_path, mode)==-1)
+            int res = ::makeDir(file_path,mode);
+            if(res != 0)
             {
-                if(errno!=EEXIST)
-                {
-                    *p='/';
-                    return -1; 
-                }
+                *p='/';
+                if(errno != 17)
+                    return errno; 
             }
             *p='/';
         }
@@ -57,8 +58,11 @@ class TagStorageEngine
             if(bucket == nullptr)
             {
                 #ifdef __linux__
-                    ::makePath((char*)bucketHash.c_str(),777);
+                    int res = ::makePath((char*)bucketHash.c_str(),S_IRWXU);
+                    if(res != 0)
+                        throw new std::runtime_error(strerror(res));
                 #endif
+                bucket = this->getBucketByHash(bucketHash);
             }
             if(bucket != nullptr)
             {
@@ -86,6 +90,8 @@ class TagStorageEngine
             token = this->utf8Conv.toLower(token);
             std::string res = this->storageDirectory;
             res += "/";
+            res += token[0];
+            res += "/";
             if(token.size() >= 3)
                 return res + token[0] + token[1] + token[2] + ".nldjson";
             if(token.size() >= 2)
@@ -97,6 +103,8 @@ class TagStorageEngine
         std::fstream* getBucketByHash(std::string&bucketHash)
         {
             std::fstream* bucket = new std::fstream(bucketHash.c_str(),std::ios::in|std::ios::out|std::ios::app);
+            if(bucket->bad() || bucket->fail())
+                return nullptr;
             return bucket;
         }
         EscapeRegex escapeRegex;
