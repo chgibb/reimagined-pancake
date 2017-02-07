@@ -60,7 +60,7 @@ class TagStorageEngine
                 #ifdef __linux__
                     int res = ::makePath((char*)bucketHash.c_str(),S_IRWXU);
                     if(res != 0)
-                        throw new std::runtime_error(strerror(res));
+                        throw new std::runtime_error(::strerror(res));
                 #endif
                 bucket = this->getBucketByHash(bucketHash);
             }
