@@ -15,7 +15,6 @@
     #include <sys/stat.h>
     inline static int makeDir(const char*path,::mode_t mode)
     {
-        std::cout<<"Passed: "<<path<<"\n";
         return ::mkdir(path,mode);
     }
 #endif
