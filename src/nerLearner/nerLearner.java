@@ -86,7 +86,6 @@ public class nerLearner
                 while(tweetBin.size() != 0)
                 {
                     String tweet = tweetBin.getTweet();
-                    System.out.println(tweet);
                     String[] words = tweet.split(" ");
                     tweet = "";
                     for(int i = 0; i != words.length; ++i)
