@@ -60,11 +60,11 @@ public class nerLearner
         {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(binList)));
          
-            String line = reader.readLine();
+            //String line = reader.readLine();
 
             //Start piping stderr to null from this point on.
             //This prevents Stanford-NER's unrecognized character warnings from being displayed.
-            System.setErr
+            /*System.setErr
             (
                 new PrintStream
                 (
@@ -75,29 +75,34 @@ public class nerLearner
                         }
                     }
                 )
-            );
+            );*/    
             int binNumber = 1;
-            while(line != null)
+            String line = "";
+            while((line = reader.readLine()) != null)
             {
-                System.out.println("Learning about bin: "+binNumber);
-                tweetBin.loadBin(line);
-                String tweet = "";
-                tweet = tweetBin.getTweet();
-                while(!(tweet.equals("")))
+                boolean res = tweetBin.loadBin(line);
+                if(!res)
+                    System.out.println("Error: Could not load "+line);
+                while(tweetBin.size() != 0)
                 {
+                    String tweet = tweetBin.getTweet();
+                    System.out.println(tweet);
                     String[] words = tweet.split(" ");
                     tweet = "";
                     for(int i = 0; i != words.length; ++i)
                     {
-                        if(words[i].charAt(0) == '#')
+                        if(words[i].length() >= 1)
                         {
-                            tagEngine.storeTag(words[i],"HASHTAG");
-                            words[i] = "";
-                        }
-                        else if(words[i].charAt(0) == '@')
-                        {
-                            tagEngine.storeTag(words[i],"MENTION");
-                            words[i] = "";
+                            if(words[i].charAt(0) == '#')
+                            {
+                                tagEngine.storeTag(words[i],"HASHTAG");
+                                words[i] = "";
+                            }
+                            else if(words[i].charAt(0) == '@')
+                            {
+                                tagEngine.storeTag(words[i],"MENTION");
+                                words[i] = "";
+                            }
                         }
                         if(words[i] != "")
                             tweet += words[i] + " ";
@@ -112,11 +117,8 @@ public class nerLearner
                             tagEngine.storeTag(tags.get(i),tags.get(i+1));
                     }
                     tweetBin.pop();
-                    tweet = tweetBin.getTweet();
                 }
-                line = reader.readLine();
-                binNumber++;
-            }    
+            }
         }
         catch(FileNotFoundException e)
         {

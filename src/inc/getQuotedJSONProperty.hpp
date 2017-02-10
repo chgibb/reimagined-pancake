@@ -24,57 +24,56 @@ int getQuotedJSONProperty
     std::string str;
     bool endOfProp = false;
     bool foundProp = false;
+    int quoteNum = 0;
     int res = 0;
     while(file->get(byte))
     {
+        
         switch(byte)
         {
             case '\"':
-                for(;;)
+                //escaped quote
+                if(str[str.length() - 1] == '\\')
                 {
-                    file->get(byte);
-                    if(byte == '\"')
-                    {
-                        //escaped quote
-                        if(str[str.length() - 1] == '\\')
-                        {
-                            str += byte;
-                            continue;
-                        }
-                        else
-                        {
-                            endOfProp = true;
-                            break;
-                        }
-                    }
                     str += byte;
-
+                    continue;
                 }
-                //end of property
-                if(endOfProp )
+                else
                 {
-                    //previous property found was the one that we're looking for
-                    if(foundProp)
+                    quoteNum++;
+                    if(quoteNum == 2)
                     {
-                        endOfProp = false;
-                        bool fRes = false;
-                        if(func)
-                            fRes = func(str);
-                        foundProp = false;
-                        res++;
-                        if(fRes)
-                            return res;
+                        endOfProp = true;
+                        quoteNum = 0;
                     }
-                    //found property we're looking for
-                    if(str == propName)
-                    {
-                        endOfProp = false;
-                        foundProp = true;
-                    }
-                    str = "";
                 }
-            break;
         }
+        //end of property
+        if(endOfProp )
+        {
+            //previous property found was the one that we're looking for
+            if(foundProp)
+            {
+                endOfProp = false;
+                bool fRes = false;
+                if(func)
+                    fRes = func(str);
+                foundProp = false;
+                res++;
+                if(fRes)
+                    return res;
+            }
+            //found property we're looking for
+            if(str == propName)
+            {
+                endOfProp = false;
+                foundProp = true;
+            }
+            str = "";
+            endOfProp = false;
+        }
+        if(quoteNum >= 1 && byte != '\"')
+            str += byte;
     }
     return res;
 }

@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iostream>
 #include "getQuotedJSONProperty.hpp"
 class GetTweetsFromBin
 {
@@ -40,6 +41,10 @@ class GetTweetsFromBin
             if(!this->tweets.empty())
                 return this->tweets.back();
             return "";
+        }
+        int size()
+        {
+            return this->tweets.size();
         }
         void pop()
         {

@@ -26,6 +26,10 @@ extern "C"
     {
         return env->NewStringUTF(getTweets.getTweet().c_str());
     }
+    JNIEXPORT jint JNICALL Java_src_GetTweetsFromBin_size(JNIEnv*env,jobject obj)
+    {
+        return getTweets.size();
+    }
     JNIEXPORT void JNICALL Java_src_GetTweetsFromBin_pop(JNIEnv*env,jobject obj)
     {
         getTweets.pop();

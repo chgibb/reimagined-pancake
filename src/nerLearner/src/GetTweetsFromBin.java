@@ -6,6 +6,7 @@ public class GetTweetsFromBin
     public native boolean loadBin(String bin);
     public native void clearBin();
     public native String getTweet();
+    public native int size();
     public native void pop();
     public GetTweetsFromBin()
     {
