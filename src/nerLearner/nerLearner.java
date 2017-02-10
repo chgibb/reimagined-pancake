@@ -89,7 +89,12 @@ public class nerLearner
                     tweet = "";
                     for(int i = 0; i != words.length; ++i)
                     {
-                        if(words[i].charAt(0) == '@')
+                        if(words[i].charAt(0) == '#')
+                        {
+                            tagEngine.storeTag(words[i],"HASHTAG");
+                            words[i] = "";
+                        }
+                        else if(words[i].charAt(0) == '@')
                         {
                             tagEngine.storeTag(words[i],"MENTION");
                             words[i] = "";
