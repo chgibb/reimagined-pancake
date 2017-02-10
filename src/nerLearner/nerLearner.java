@@ -85,6 +85,18 @@ public class nerLearner
                 tweet = tweetBin.getTweet();
                 while(!(tweet.equals("")))
                 {
+                    String[] words = tweet.split(" ");
+                    tweet = "";
+                    for(int i = 0; i != words.length; ++i)
+                    {
+                        if(words[i].charAt(0) == '@')
+                        {
+                            tagEngine.storeTag(words[i],"MENTION");
+                            words[i] = "";
+                        }
+                        if(words[i] != "")
+                            tweet += words[i] + " ";
+                    }
                     //regex based on answer by Giuseppe Ricupero
                     //http://stackoverflow.com/questions/33722024/how-to-remove-non-valid-unicode-characters-from-strings-in-java
                     String slashString = classifier.classifyToString(tweet.replaceAll("[^\\p{L}\\p{N}\\p{Z}\\p{Sm}\\p{Sc}\\p{Sk}\\p{Pi}\\p{Pf}\\p{Pc}\\p{Mc}]",""),"slashTags",false);
