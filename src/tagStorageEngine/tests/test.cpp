@@ -15,6 +15,17 @@ int main()
     assert(tagStorageEngine.storeTag("foo1","PERSON"));
     assert(tagStorageEngine.storeTag("foo2","ORGANIZATION"));
     assert(!tagStorageEngine.storeTag("foo","PERSON"));
+    assert(!tagStorageEngine.storeTag("foo1","PERSON"));
+    assert(!tagStorageEngine.storeTag("foo2","PERSON"));
+
+    assert(tagStorageEngine.storeTag("a","PERSON"));
+    assert(tagStorageEngine.storeTag("ab","PERSON"));
+    assert(tagStorageEngine.storeTag("abc","PERSON"));
+    assert(tagStorageEngine.storeTag("fao","PERSON"));
+    assert(!tagStorageEngine.storeTag("a","PERSON"));
+    assert(!tagStorageEngine.storeTag("ab","PERSON"));
+    assert(!tagStorageEngine.storeTag("abc","PERSON"));
+    assert(!tagStorageEngine.storeTag("fao","PERSON"));
     assert(::escapeRegex.escape("[|\\{}()[\\]^$+*?.]") == "\\[\\|\\\\{\\}\\(\\)\\[\\\\]\\^\\$\\+\\*\\?\\.\\]");
     return 0;
 }
