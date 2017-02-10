@@ -10,5 +10,5 @@ printf "Running\n"
 if [ $? != 0 ]; then
     exit 1
 fi
-rm test
+sh clean.sh
 printf "Done\n"
