@@ -1,11 +1,9 @@
-#include "../../inc/getQuotedJSONProperty.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <assert.h>
 #include "../inc/TagStorageEngine.hpp"
 #include "../../inc/escapeRegex.hpp"
-#include "../../inc/getTweetsFromBin.hpp"
 ::TagStorageEngine tagStorageEngine;
 ::EscapeRegex escapeRegex;
 int main()
