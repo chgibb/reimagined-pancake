@@ -6,6 +6,7 @@ node_modules
 dist.js
 dist/*.so
 dist/*.js
+**/dist/genListing
 dist/binDiscoverer
 dist/tagApplicator
 dist/*.jar
