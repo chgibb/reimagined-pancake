@@ -9,6 +9,18 @@
 #include "inc/Minute.hpp"
 #include "inc/ComposePathString.hpp"
 #include "inc/canRead.hpp"
+
+#define ARG_DATADIR 1
+#define ARG_YEAR 2
+#define ARG_MONTH 3
+#define ARG_DAY 4
+#define ARG_HOUR 5
+
+#define PATH_DATADIR 0
+#define PATH_YEAR 1
+#define PATH_MONTH 2
+#define PATH_DAY 3
+#define PATH_HOUR 4
 using namespace std;
 
 int main(int argc,char*argv[])
