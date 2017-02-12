@@ -78,24 +78,24 @@ int main(int argc,char*argv[])
         {
             path[PATH_YEAR]->increment();
         }
-        if(argv[3] && argc >= 3)
+        if(argv[ARG_MONTH] && argc >= ARG_MONTH)
         {
-            if(path[2]->get() != argv[3])
+            if(path[PATH_MONTH]->get() != argv[ARG_MONTH])
                 return 0;
         }
-        if(argv[4] && argc >= 4)
+        if(argv[ARG_DAY] && argc >= ARG_DAY)
         {
-            if(path[3]->get() != argv[4])
+            if(path[PATH_DAY]->get() != argv[ARG_DAY])
                 return 0;
         }
-        if(argv[5] && argc >= 5)
+        if(argv[ARG_HOUR] && argc >= ARG_HOUR)
         {
-            if(path[4]->get() != argv[5])
+            if(path[PATH_HOUR]->get() != argv[ARG_HOUR])
                 return 0;
         }
-        if(argv[6] && argc >= 6)
+        if(argv[ARG_MINUTE] && argc >= ARG_MINUTE)
         {
-            if(path[PATH_MINUTE]->get() != argv[6])
+            if(path[PATH_MINUTE]->get() != argv[ARG_MINUTE])
                 return 0;
         }
         if(canRead(composePathString(path)))
