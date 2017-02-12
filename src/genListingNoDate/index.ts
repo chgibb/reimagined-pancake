@@ -13,9 +13,9 @@ let walker = walk.walk(dataDir,{});
 
 walker.on
 (
-    "file",(root : string,fileStats : any, next : () => void) =>
+    "file",(root : string,fileStats : {name : string}, next : () => void) =>
     {
-        console.log(fileStats.name);
+        console.log(root+"/"+fileStats.name);
         next();
     }
 );
