@@ -54,25 +54,25 @@ int main(int argc,char*argv[])
     {
         if(path[PATH_YEAR]->hasOverFlowed())
             return 0;
-        if(path[6]->hasOverFlowed())
+        if(path[PATH_SECOND]->hasOverFlowed())
         {
-            path[5]->increment();
+            path[PATH_MINUTE]->increment();
         }
-        if(path[5]->hasOverFlowed())
+        if(path[PATH_MINUTE]->hasOverFlowed())
         {
-            path[4]->increment();
+            path[PATH_HOUR]->increment();
         }
-        if(path[4]->hasOverFlowed())
+        if(path[PATH_HOUR]->hasOverFlowed())
         {
-            path[3]->increment();
+            path[PATH_DAY]->increment();
         }
-        if(path[3]->hasOverFlowed())
+        if(path[PATH_DAY]->hasOverFlowed())
         {
-            path[2]->increment();
+            path[PATH_MONTH]->increment();
         }
-        if(path[2]->hasOverFlowed())
+        if(path[PATH_MONTH]->hasOverFlowed())
         {
-            path[1]->increment();
+            path[PATH_YEAR]->increment();
         }
         if(argv[3] && argc >= 3)
         {
