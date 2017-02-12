@@ -39,7 +39,7 @@ int main(int argc,char*argv[])
     if(argv[ARG_MONTH] && argc >= ARG_MONTH )
         path.push_back(new Month(argv[ARG_MONTH]));
     else
-        return 1;
+        path.push_back(new Month(1));
     if(argv[ARG_DAY] && argc >= ARG_DAY )
         path.push_back(new Day(std::stoi(argv[ARG_DAY])));
     else
