@@ -21,6 +21,8 @@
 #define PATH_MONTH 2
 #define PATH_DAY 3
 #define PATH_HOUR 4
+#define PATH_MINUTE 5
+#define PATH_SECOND 6
 using namespace std;
 
 int main(int argc,char*argv[])
@@ -50,7 +52,7 @@ int main(int argc,char*argv[])
     path.push_back(new Minute());
     for(;;)
     {
-        if(path[1]->hasOverFlowed())
+        if(path[PATH_YEAR]->hasOverFlowed())
             return 0;
         if(path[6]->hasOverFlowed())
         {
