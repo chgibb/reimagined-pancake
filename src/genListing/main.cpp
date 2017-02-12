@@ -15,6 +15,7 @@
 #define ARG_MONTH 3
 #define ARG_DAY 4
 #define ARG_HOUR 5
+#define ARG_MINUTE 6
 
 #define PATH_DATADIR 0
 #define PATH_YEAR 1
@@ -48,7 +49,10 @@ int main(int argc,char*argv[])
         path.push_back(new Hour(std::stoi(argv[ARG_HOUR])));
     else
         path.push_back(new Hour());
-    path.push_back(new Minute());
+    if(argv[ARG_MINUTE] && argc >= ARG_MINUTE)
+        path.push_back(new Minute(std::stoi(argv[ARG_MINUTE])));
+    else
+        path.push_back(new Minute());
     path.push_back(new Minute());
     for(;;)
     {
@@ -87,6 +91,11 @@ int main(int argc,char*argv[])
         if(argv[5] && argc >= 5)
         {
             if(path[4]->get() != argv[5])
+                return 0;
+        }
+        if(argv[6] && argc >= 6)
+        {
+            if(path[PATH_MINUTE]->get() != argv[6])
                 return 0;
         }
         if(canRead(composePathString(path)))

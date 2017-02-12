@@ -5,6 +5,7 @@ class Minute : public PathComponent
 {
  public:
         Minute() = default;
+        Minute(int newMinute) : numMinute(newMinute){}
         void increment() override
         {
             this->numMinute++;
