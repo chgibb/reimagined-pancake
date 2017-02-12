@@ -26,24 +26,24 @@ using namespace std;
 int main(int argc,char*argv[])
 {
     std::vector<PathComponent*> path;
-    if(argv[1] && argc >= 1 )
-        path.push_back(new DataDir(argv[1]));
+    if(argv[ARG_DATADIR] && argc >= ARG_DATADIR )
+        path.push_back(new DataDir(argv[ARG_DATADIR]));
     else
         path.push_back(new DataDir("data"));
-    if(argv[2] && argc >= 2 )
-        path.push_back(new Year(std::stoi(argv[2])));
+    if(argv[ARG_YEAR] && argc >= ARG_YEAR )
+        path.push_back(new Year(std::stoi(argv[ARG_YEAR])));
     else
         return 1;
-    if(argv[3] && argc >= 3 )
-        path.push_back(new Month(argv[3]));
+    if(argv[ARG_MONTH] && argc >= ARG_MONTH )
+        path.push_back(new Month(argv[ARG_MONTH]));
     else
         return 1;
-    if(argv[4] && argc >= 4 )
-        path.push_back(new Day(std::stoi(argv[4])));
+    if(argv[ARG_DAY] && argc >= ARG_DAY )
+        path.push_back(new Day(std::stoi(argv[ARG_DAY])));
     else
         path.push_back(new Day(1));
-    if(argv[5] && argc >= 5 )
-        path.push_back(new Hour(std::stoi(argv[5])));
+    if(argv[ARG_HOUR] && argc >= ARG_HOUR )
+        path.push_back(new Hour(std::stoi(argv[ARG_HOUR])));
     else
         path.push_back(new Hour());
     path.push_back(new Minute());
