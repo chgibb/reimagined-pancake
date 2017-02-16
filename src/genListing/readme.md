@@ -1,6 +1,6 @@
 # genListing
 
-Used to generate a bin listing within a given range. Is more performant than [genListingNoDate]() when a date range is desired
+Used to generate a bin listing within a given range. Is more performant than [genListingNoDate](https://github.com/chgibb/reimagined-pancake/tree/master/src/genListingNoDate) when a date range is desired
 and when data is very dense and large.
 
 Parameters:
