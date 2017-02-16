@@ -1,6 +1,6 @@
 # genListingNoDate.js
 
-Used to generate a bin listing for a specified folder. Is more performant than [genListing](https://github.com/chgibb/reimagined-pancake/blob/master/src/genListing/readme.md)
+Used to generate a bin listing for a specified folder. Is more performant than [genListing](https://github.com/chgibb/reimagined-pancake/tree/master/src/genListing)
 when a folder is small or has data with spread out dates or dates which may be unknown.
 
 Example:
