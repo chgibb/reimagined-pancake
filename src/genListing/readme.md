@@ -19,16 +19,18 @@ Second is the 2 digit Second.
 Range to list will be inferred based on the parameters passed.
 For example:
 ```
-./getListing DataDir 2017 Feb 01 01 01
+./getListing DataDir 2017 Feb 01 01 01 > 2017Feb010101Listing
 ```
-Will generate a listing between 2017 Feb 01 01:01:00 and 2017 Feb 01 01:01:59 (inclusive)
+Will generate a listing between 2017 Feb 01 01:01:00 and 2017 Feb 01 01:01:59 (inclusive) and save it
+to the file named 2017Feb010101Listing.
 
 ```
-./getListing DataDir 2017
+./getListing DataDir 2017 > 2017Listing
 ```
-Will generate a listing between 2017 Jan 01 01:01:00 to 2017 Dec 31 23:59:59 (inclusive)
+Will generate a listing between 2017 Jan 01 01:01:00 to 2017 Dec 31 23:59:59 (inclusive) and save it to the file
+named 2017Listing.
 
 ```
-./getListing DataDir 2017 Feb 01 01 01 01
+./getListing DataDir 2017 Feb 01 01 01 01 > 2017Feb01010101Listing
 ```
-Will generate a listing for 2017 Feb 01 01:01:01
+Will generate a listing for 2017 Feb 01 01:01:01 and save it to the file named 2017Feb01010101Listing
