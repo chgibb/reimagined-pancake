@@ -18,16 +18,17 @@
   },
   "homepage": "https://github.com/chgibb/reimagined-pancake#readme",
   "dependencies": {
-    "escape-string-regexp": "^1.0.5",
-    "minimist": "^1.2.0",
-    "twit": "^2.2.5",
-    "ndjson": "^1.4.3",
-    "sentiment": "^2.0.0",
-    "rimraf": "^2.5.4",
     "electron-ipc-stream": "^0.2.0",
     "electron-packager": "^8.0.0",
+    "escape-string-regexp": "^1.0.5",
     "jquery": "^3.1.1",
-    "plotly": "^1.0.6"
+    "minimist": "^1.2.0",
+    "ndjson": "^1.4.3",
+    "plotly": "^1.0.6",
+    "rimraf": "^2.5.4",
+    "sentiment": "^2.0.0",
+    "twit": "^2.2.5",
+    "walk": "^2.3.9"
   },
   "devDependencies": {
     "@types/es6-shim": "^0.31.32",
