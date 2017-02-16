@@ -1,21 +1,34 @@
-# binDiscoverer
+# genListing
 
-Engine for discovering bin files within a given date range. Unique from previous Typescript and bash implementations 
-in that it enumerates all possible bins within the given range and tests for the existence of each. That is, as opposed to enumerating
-the file system and discovering all bins within the directory through use of ls or similiar.
+Used to generate a bin listing within a given range. Is more performant than [genListingNoDate]() when a date range is desired
+and when data is very dense and large.
 
-Tends to be slower than the bash version (res/scripts/getBinNames.bash) when discovering a relatively small number of bins.
-Is not suitable when a date range is unknown. At the very least, a range in years must be specified. Most effective when range
-an be narrowed down to a day.
+Parameters:
 
-(Not benchmarked properly against other implementations yet)
+Where DataDir is the directory where the tweet bins have been saved to.  
+Year is the year (4 digits).  
+Month is the 3 letter month.  
+Day is the 2 digit day.  
+Hour is the 2 digit hour (24 hour format).  
+Minute is the 2 digit minute.  
+Second is the 2 digit Second.
+```
+./geListing DataDir Year Month Day Hour Minute Second
+```
 
-Usage:
+Range to list will be inferred based on the parameters passed.
+For example:
+```
+./getListing DataDir 2017 Feb 01 01 01
+```
+Will generate a listing between 2017 Feb 01 01:01:00 and 2017 Feb 01 01:01:59 (inclusive)
 
-./binDiscoverer dataDir year month day
+```
+./getListing DataDir 2017
+```
+Will generate a listing between 2017 Jan 01 01:01:00 to 2017 Dec 31 23:59:59 (inclusive)
 
-Will print to stdout bins which exist in dataDir and whose dates are within the range Year-Month-Day 00:00:00 to Year-Month-Day 23:59:59.
-
-month and day are optional. However, only specifiying a year will attempt to discover bins within the range Year-Jan-01 00:00:00 to Year-Dec-31 23:59:59.
-
-Note: assumes all months have 31 days.
+```
+./getListing DataDir 2017 Feb 01 01 01 01
+```
+Will generate a listing for 2017 Feb 01 01:01:01
