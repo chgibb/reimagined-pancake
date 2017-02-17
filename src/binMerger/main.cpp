@@ -5,10 +5,10 @@
 
 #include "../inc/getQuotedJSONProperty.hpp"
 
-#include "../rapidjson/include/rapidjson/document.h"
-#include "../rapidjson/include/rapidjson/istreamwrapper.h"
-#include "../rapidjson/include/rapidjson/ostreamwrapper.h"
-#include "../rapidjson/include/rapidjson/prettywriter.h"
+#include "rapidjson/include/rapidjson/document.h"
+#include "rapidjson/include/rapidjson/istreamwrapper.h"
+#include "rapidjson/include/rapidjson/ostreamwrapper.h"
+#include "rapidjson/include/rapidjson/prettywriter.h"
 using namespace std;
 int main(int argc,char*argv[])
 {
