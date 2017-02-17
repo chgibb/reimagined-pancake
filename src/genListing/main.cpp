@@ -28,6 +28,10 @@ using namespace std;
 
 int main(int argc,char*argv[])
 {
+    const char hexDigits[] = {
+        '0','1','2','3','4','5','6','7','8','9',
+        'a','b','c','d','e','f'
+        };
     std::vector<PathComponent*> path;
     if(argv[ARG_DATADIR] && argc >= ARG_DATADIR )
         path.push_back(new DataDir(argv[ARG_DATADIR]));
