@@ -64,7 +64,7 @@ public class nerLearner
 
             //Start piping stderr to null from this point on.
             //This prevents Stanford-NER's unrecognized character warnings from being displayed.
-            /*System.setErr
+            System.setErr
             (
                 new PrintStream
                 (
@@ -75,7 +75,7 @@ public class nerLearner
                         }
                     }
                 )
-            );*/    
+            );    
             int binNumber = 1;
             String line = "";
             while((line = reader.readLine()) != null)
@@ -86,7 +86,7 @@ public class nerLearner
                 while(tweetBin.size() != 0)
                 {
                     String tweet = tweetBin.getTweet();
-                    String[] words = tweet.split(" ");
+                    String[] words = tweet.split("( )|(.)|(,)|(\\()|(\\))|(\\n)");
                     tweet = "";
                     for(int i = 0; i != words.length; ++i)
                     {

@@ -17,7 +17,7 @@ export default function saveTweetsFromStore(mgr : tweetStoreMgr,store : dataStor
         verifyDir(rootDir+"/"+store.items[i].year+"/"+store.items[i].month+"/"+store.items[i].day+"/"+store.items[i].hour+"/"+store.items[i].minute);
         verifyDir(rootDir+"/"+store.items[i].year+"/"+store.items[i].month+"/"+store.items[i].day+"/"+store.items[i].hour+"/"+store.items[i].minute+"/"+store.items[i].second);
         
-        var fileName = rootDir+"/"+store.items[i].year+"/"+store.items[i].month+"/"+store.items[i].day+"/"+store.items[i].hour+"/"+store.items[i].minute+"/"+store.items[i].second+"/tweets.json";
+        var fileName = rootDir+"/"+store.items[i].year+"/"+store.items[i].month+"/"+store.items[i].day+"/"+store.items[i].hour+"/"+store.items[i].minute+"/"+store.items[i].second+"/"+store.items[i].textHash[0];
         verifyJSONFile(fileName);
         try
         {
