@@ -1,0 +1,2 @@
+rm binMerger
+rm *.o
