@@ -1,6 +1,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <regex>
 #include <iostream>
 
 #include "../inc/getQuotedJSONProperty.hpp"
@@ -21,11 +22,15 @@ int main(int argc,char*argv[])
     std::string destDirName = argv[2];
     std::string srcBinList = argv[3];
 
+    std::regex srcDirRegex("("+srcDirName+")");
+
     std::ifstream srcBinListing(srcBinList.c_str(),std::ios::in);
     std::string bin = "";
     while(std::getline(srcBinListing,bin))
     {
-        std::cout<<bin<<std::endl;
+        std::string srcBin = bin;
+        std::string destBin = std::regex_replace(bin,srcDirRegex,destDirName);
+        std::cout<<destBin<<std::endl;
     }
 
     return 0;
