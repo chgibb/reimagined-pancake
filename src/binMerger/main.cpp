@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 
+#include "../inc/getQuotedJSONProperty.hpp"
+
 #include "../rapidjson/include/rapidjson/document.h"
 #include "../rapidjson/include/rapidjson/istreamwrapper.h"
 #include "../rapidjson/include/rapidjson/ostreamwrapper.h"
