@@ -16,6 +16,7 @@
 #define ARG_DAY 4
 #define ARG_HOUR 5
 #define ARG_MINUTE 6
+#define ARG_SECOND 7
 
 #define PATH_DATADIR 0
 #define PATH_YEAR 1
@@ -57,7 +58,12 @@ int main(int argc,char*argv[])
         path.push_back(new Minute(std::stoi(argv[ARG_MINUTE])));
     else
         path.push_back(new Minute());
-    path.push_back(new Minute());
+    if(argv[ARG_SECOND] && argc >= ARG_SECOND)
+        path.push_back(new Minute(std::stoi(argv[ARG_SECOND])));
+    else
+        path.push_back(new Minute());
+
+    std::string composedPathString = "";
     for(;;)
     {
         if(path[PATH_YEAR]->hasOverFlowed())
@@ -102,11 +108,25 @@ int main(int argc,char*argv[])
             if(path[PATH_MINUTE]->get() != argv[ARG_MINUTE])
                 return 0;
         }
-        if(canRead(composePathString(path)))
+        if(argv[ARG_SECOND] && argc >= ARG_SECOND)
         {
-            std::cout<<composePathString(path)<<"\n";
-            std::cout.flush();
+            if(path[PATH_SECOND]->get() != argv[ARG_SECOND])
+                return 0;
         }
+        composedPathString = ::composePathString(path);
+        std::string modPathString = "";
+        for(int i = 0; i != 16; ++i)
+        {
+            modPathString = composedPathString;
+            modPathString += hexDigits[i];
+            if(canRead(modPathString))
+                std::cout<<modPathString<<std::endl;
+        }
+        //keep backwards compatibility with old binning method
+        modPathString = composedPathString;
+        modPathString += "tweets.json";
+        if(canRead(modPathString))
+            std::cout<<modPathString<<std::endl;
         path[6]->increment();
     }
     return 0;

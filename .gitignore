@@ -37,3 +37,5 @@ edu
 *.class
 **/tweets.json
 
+**/genListing/data/**
+
