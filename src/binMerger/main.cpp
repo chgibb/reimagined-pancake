@@ -37,7 +37,7 @@ bool copyFile(const std::string&src,const std::string&dest)
     if(destFile.bad())
         return false;
     std::string destPath = dest.substr(0,dest.find_last_of("\\/"));
-    ::makePath(destPath.c_str());
+    ::makePath((char*)destPath.c_str());
     char byte;
     while(srcFile.get(byte))
         destFile<<byte;
