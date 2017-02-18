@@ -4,7 +4,7 @@
 #endif
 #ifdef __linux__
     #include <sys/stat.h>
-    inline static int makeDir(const char*path,::mode_t mode)
+    inline static int makeDir(const char*path,::mode_t mode = S_IRWXU)
     {
         return ::mkdir(path,mode);
     }
