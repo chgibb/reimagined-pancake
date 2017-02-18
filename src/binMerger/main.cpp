@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "../inc/getQuotedJSONProperty.hpp"
+#include "../inc/makeDir.hpp"
 
 #include "rapidjson/include/rapidjson/document.h"
 #include "rapidjson/include/rapidjson/istreamwrapper.h"
@@ -27,7 +28,7 @@ int getHashes(const char*file,std::vector<std::string>&hashes)
     delete bin;
     return res;
 }
-bool copyFile(const char*src,const char*dest)
+bool copyFile(const std::string&src,const std::string&dest)
 {
     std::ifstream srcFile(src);
     if(srcFile.bad())
@@ -73,7 +74,7 @@ int main(int argc,char*argv[])
         }
         if(::getHashes(destBin.c_str(),destBinHashes) == -1)
         {
-            if(!::copyFile(srcBin.c_str(),destBin.c_str())
+            if(!::copyFile(srcBin,destBin)
                 std::cout<<"Could not copy "<<srcBin<<" to "<<destBin<<std::endl;
             continue;
         }
