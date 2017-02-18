@@ -37,6 +37,7 @@ bool copyFile(const std::string&src,const std::string&dest)
     if(destFile.bad())
         return false;
     std::string destPath = dest.substr(0,dest.find_last_of("\\/"));
+    ::makePath(destPath.c_str());
     char byte;
     while(srcFile.get(byte))
         destFile<<byte;
@@ -75,7 +76,7 @@ int main(int argc,char*argv[])
         }
         if(::getHashes(destBin.c_str(),destBinHashes) == -1)
         {
-            if(!::copyFile(srcBin,destBin)
+            if(!::copyFile(srcBin,destBin))
                 std::cout<<"Could not copy "<<srcBin<<" to "<<destBin<<std::endl;
             continue;
         }
