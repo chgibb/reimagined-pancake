@@ -27,6 +27,19 @@ int getHashes(const char*file,std::vector<std::string>&hashes)
     delete bin;
     return res;
 }
+bool copyFile(const char*src,const char*dest)
+{
+    std::ifstream srcFile(src);
+    if(srcFile.bad())
+        return false;
+    std::ofstream destFile(dest);
+    if(destFile.bad())
+        return false;
+    char byte;
+    while(srcFile.get(byte))
+        destFile<<byte;
+    return true;
+}
 
 using namespace std;
 int main(int argc,char*argv[])
@@ -53,8 +66,17 @@ int main(int argc,char*argv[])
         std::vector<std::string> destBinHashes;
         std::vector<std::string> dupHashes;
 
-        ::getHashes(srcBin.c_str(),srcBinHashes);
-        ::getHashes(destBin.c_str(),destBinHashes);
+        if(::getHashes(srcBin.c_str(),srcBinHashes) == -1)
+        {
+            std::cout<<"Could not open "+srcBin<<std::endl;
+            continue;
+        }
+        if(::getHashes(destBin.c_str(),destBinHashes) == -1)
+        {
+            if(!::copyFile(srcBin.c_str(),destBin.c_str())
+                std::cout<<"Could not copy "<<srcBin<<" to "<<destBin<<std::endl;
+            continue;
+        }
 
         auto srcEnd = srcBinHashes.end();
         auto destEnd = destBinHashes.end();
