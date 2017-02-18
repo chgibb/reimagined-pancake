@@ -36,6 +36,7 @@ bool copyFile(const std::string&src,const std::string&dest)
     std::ofstream destFile(dest);
     if(destFile.bad())
         return false;
+    std::string destPath = dest.substr(0,dest.find_last_of("\\/"));
     char byte;
     while(srcFile.get(byte))
         destFile<<byte;
