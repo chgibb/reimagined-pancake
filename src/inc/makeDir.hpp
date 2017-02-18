@@ -12,7 +12,7 @@
 //Adapted from answer by Yaroslav Stavnichiy
 //http://stackoverflow.com/questions/2336242/recursive-mkdir-system-call-on-unix
 #ifdef __linux__
-    inline static int makePath(char*file_path,::mode_t mode)
+    inline static int makePath(char*file_path,::mode_t mode = S_IRWXU)
     {
         char* p;
         for(p = ::strchr(file_path + 1,'/'); p; p = ::strchr(p + 1,'/'))
