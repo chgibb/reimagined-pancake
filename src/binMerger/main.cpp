@@ -11,10 +11,10 @@
 #include "rapidjson/include/rapidjson/ostreamwrapper.h"
 #include "rapidjson/include/rapidjson/prettywriter.h"
 
-void getHashes(const char*file,std::vector<std::string>&hashes)
+int getHashes(const char*file,std::vector<std::string>&hashes)
 {
     std::ifstream*bin = new std::ifstream(file,std::ios::in);
-    ::getQuotedJSONProperty<decltype(bin)>
+    int res = ::getQuotedJSONProperty<decltype(bin)>
     (
         bin,
         "textHash",
@@ -25,6 +25,7 @@ void getHashes(const char*file,std::vector<std::string>&hashes)
         }
     );
     delete bin;
+    return res;
 }
 
 using namespace std;
