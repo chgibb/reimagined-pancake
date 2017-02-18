@@ -40,6 +40,12 @@ bool copyFile(const std::string&src,const std::string&dest)
     int res = ::makePath((char*)dest.c_str());
     if(res != 0)
         std::cout<<::strerror(res)<<std::endl;
+
+    destFile.close();
+    destFile.clear();
+    destFile.open(dest);
+
+    
     char byte;
     while(srcFile.get(byte))
         destFile<<byte;
@@ -71,12 +77,15 @@ int main(int argc,char*argv[])
         std::vector<std::string> destBinHashes;
         std::vector<std::string> dupHashes;
 
-        if(::getHashes(srcBin.c_str(),srcBinHashes) == -1)
+
+        int res = ::getHashes(srcBin.c_str(),srcBinHashes);
+        if(res == -1 || res == 0)
         {
             std::cout<<"Could not open "+srcBin<<std::endl;
             continue;
         }
-        if(::getHashes(destBin.c_str(),destBinHashes) == 0)
+        res = ::getHashes(destBin.c_str(),destBinHashes);
+        if(res == -1 || res == 0)
         {
             if(!::copyFile(srcBin,destBin))
                 std::cout<<"Could not copy "<<srcBin<<" to "<<destBin<<std::endl;
