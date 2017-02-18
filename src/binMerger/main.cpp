@@ -37,9 +37,7 @@ bool copyFile(const std::string&src,const std::string&dest)
     if(destFile.bad())
         return false;
 
-    std::string destPath = dest.substr(0,dest.find_last_of("\\/"));
-
-    int res = ::makePath((char*)destPath.c_str());
+    int res = ::makePath((char*)dest.c_str());
     if(res != 0)
         std::cout<<::strerror(res)<<std::endl;
     char byte;
@@ -78,7 +76,7 @@ int main(int argc,char*argv[])
             std::cout<<"Could not open "+srcBin<<std::endl;
             continue;
         }
-        if(::getHashes(destBin.c_str(),destBinHashes) == -1)
+        if(::getHashes(destBin.c_str(),destBinHashes) == 0)
         {
             if(!::copyFile(srcBin,destBin))
                 std::cout<<"Could not copy "<<srcBin<<" to "<<destBin<<std::endl;
