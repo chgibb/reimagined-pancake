@@ -48,6 +48,15 @@ bool copyFile(const std::string&src,const std::string&dest)
         destFile<<byte;
     return true;
 }
+bool loadBinAsJSON(std::string&path,rapidjson::GenericDocument<rapidjson::UTF8<>>&json)
+{
+    std::ifstream stream(path);
+    rapidjson::IStreamWrapper jsonStream(stream);
+    json.ParseStream(jsonStream);
+    if(json.HasParseError())
+        return false;
+    return true;
+}
 
 using namespace std;
 int main(int argc,char*argv[])
@@ -101,6 +110,23 @@ int main(int argc,char*argv[])
         }
         srcBinHashes.clear();
         destBinHashes.clear();
+
+        rapidjson::GenericDocument<rapidjson::UTF8<>> srcJson;
+        rapidjson::GenericDocument<rapidjson::UTF8<>> destJson;
+
+        bool valid = loadBinAsJSON(srcBin,srcJson);
+        if(!valid)
+        {
+            std::cout<<srcBin<<" is not a valid JSON document\n";
+            continue;
+        }
+        valid = loadBinAsJSON(destBin,destJson);
+        if(!valid)
+        {
+            std::cout<<destBin<<" is not a valid JSON document\n";
+            continue;
+        }
+        
     }
     return 0;
 }
