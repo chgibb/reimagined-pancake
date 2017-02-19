@@ -57,6 +57,15 @@ bool loadBinAsJSON(std::string&path,rapidjson::GenericDocument<rapidjson::UTF8<>
         return false;
     return true;
 }
+bool saveBin(std::string&path,rapidjson::GenericDocument<rapidjson::UTF8<>>&json)
+{
+    json["file"].SetString(rapidjson::StringRef(path.c_str()));
+    std::ofstream stream(path);
+    rapidjson::OStreamWrapper osw(stream);
+    //Pretty print by default
+    rapidjson::PrettyWriter<rapidjson::OStreamWrapper> writer(osw);
+    return json.Accept(writer);
+}
 
 using namespace std;
 int main(int argc,char*argv[])
@@ -108,6 +117,8 @@ int main(int argc,char*argv[])
                     dupHashes.push_back(*srcIt);
             }
         }
+        auto dupEnd = dupHashes.end();
+
         srcBinHashes.clear();
         destBinHashes.clear();
 
@@ -125,6 +136,30 @@ int main(int argc,char*argv[])
         {
             std::cout<<destBin<<" is not a valid JSON document\n";
             continue;
+        }
+
+        {
+            rapidjson::Document::AllocatorType&allocator = destJson.GetAllocator();
+            bool isDup = false;
+            for(auto srcIt = srcJson["items"].Begin(); srcIt != srcJson["items"].End(); ++srcIt)
+            {
+                isDup = false;
+                for(auto dupIt = dupHashes.begin(); dupIt != dupEnd; ++dupIt)
+                {
+                    if((*srcIt)["textHash"].GetString() == *dupIt)
+                    {
+                        isDup = true;
+                        break;
+                    }
+                }
+                if(isDup)
+                    continue;
+                else
+                {
+                    destJson["items"].PushBack((*srcIt),allocator);
+                }
+            }
+            saveBin(destBin,destJson);
         }
         
     }
