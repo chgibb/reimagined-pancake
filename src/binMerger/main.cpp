@@ -99,6 +99,8 @@ int main(int argc,char*argv[])
                     dupHashes.push_back(*srcIt);
             }
         }
+        srcBinHashes.clear();
+        destBinHashes.clear();
     }
     return 0;
 }
