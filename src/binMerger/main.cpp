@@ -33,18 +33,15 @@ bool copyFile(const std::string&src,const std::string&dest)
     std::ifstream srcFile(src);
     if(srcFile.bad())
         return false;
-    std::ofstream destFile(dest);
-    if(destFile.bad())
-        return false;
+
 
     int res = ::makePath((char*)dest.c_str());
     if(res != 0)
         std::cout<<::strerror(res)<<std::endl;
 
-    destFile.close();
-    destFile.clear();
-    destFile.open(dest);
-
+    std::ofstream destFile(dest);
+    if(destFile.bad())
+        return false;
     
     char byte;
     while(srcFile.get(byte))
