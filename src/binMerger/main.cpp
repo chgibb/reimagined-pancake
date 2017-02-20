@@ -46,6 +46,8 @@ bool copyFile(const std::string&src,const std::string&dest)
     char byte;
     while(srcFile.get(byte))
         destFile<<byte;
+
+    std::cout<<dest<<std::endl;
     return true;
 }
 bool loadBinAsJSON(std::string&path,rapidjson::GenericDocument<rapidjson::UTF8<>>&json)
