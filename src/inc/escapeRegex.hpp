@@ -12,7 +12,11 @@ class EscapeRegex
         }
         std::string escape(const char*str)
         {
-            return std::regex_replace(str,this->operatorsToEscape,"\\$&");
+            return std::regex_replace(str,this->operatorsToEscape,"\\$0");
+        }
+        std::string remove(const char*str)
+        {
+            return std::regex_replace(str,this->operatorsToEscape,"");
         }
     private:
         std::regex operatorsToEscape;

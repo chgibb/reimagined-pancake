@@ -36,4 +36,9 @@ src/tagApplicator/tagApplicator.cbp
 edu
 *.class
 **/tweets.json
+**/dist/**
+**/genListing/data/**
 
+**/binMerger/data/**
+**/binMerger/oldData/**
+**/binMerger/listing

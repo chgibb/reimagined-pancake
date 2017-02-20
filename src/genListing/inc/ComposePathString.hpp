@@ -11,6 +11,5 @@ std::string composePathString(std::vector<PathComponent*>&pathComponent)
         res += (*iter)->get();
         res += "/";
     }
-    res += "tweets.json";
     return res;
 }

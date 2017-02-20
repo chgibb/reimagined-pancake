@@ -8,37 +8,7 @@
 #include "../../inc/getQuotedJSONProperty.hpp"
 #include "../../inc/escapeRegex.hpp"
 #include "../../inc/utf8To.hpp"
-#ifdef _WIN32
-    #error "Implement this"
-#endif
-#ifdef __linux__
-    #include <sys/stat.h>
-    inline static int makeDir(const char*path,::mode_t mode)
-    {
-        return ::mkdir(path,mode);
-    }
-#endif
-//Adapted from answer by Yaroslav Stavnichiy
-//http://stackoverflow.com/questions/2336242/recursive-mkdir-system-call-on-unix
-#ifdef __linux__
-    inline static int makePath(char*file_path,::mode_t mode)
-    {
-        char* p;
-        for(p = ::strchr(file_path + 1,'/'); p; p = ::strchr(p + 1,'/'))
-        {
-            *p='\0';
-            int res = ::makeDir(file_path,mode);
-            if(res != 0)
-            {
-                *p='/';
-                if(errno != 17)
-                    return errno; 
-            }
-            *p='/';
-        }
-        return 0;
-    }
-#endif
+#include "../../inc/makeDir.hpp"
 class TagStorageEngine
 {
     public:
@@ -110,9 +80,14 @@ class TagStorageEngine
         bool tagExists(std::string&token,std::fstream*bucket)
         {
             ::regex_t reg;
-            int res = ::regcomp(&reg,std::string("\\b"+this->escapeRegex.escape(token.c_str())+"\\b").c_str(),REG_ICASE);
+            int res = ::regcomp(&reg,std::string("\\b"+this->escapeRegex.remove(token.c_str())+"\\b").c_str(),REG_ICASE);
             if(res)
-                throw new std::runtime_error("Regex compilation error "+res);
+            {
+                char buff[256];
+                ::regerror(res,&reg,buff,256);
+                ::regfree(&reg);
+                throw new std::runtime_error("Regex compilation error trying to compile token "+token+buff);
+            }
             bool found = false;
             res = ::getQuotedJSONProperty<std::fstream*>
             (
