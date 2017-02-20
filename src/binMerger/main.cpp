@@ -74,7 +74,7 @@ int main(int argc,char*argv[])
 {
     if(argc < 4)
     {
-        std::cout<<"Invalid number of arguments!\n";
+        std::cerr<<"Invalid number of arguments!\n";
         return 1;
     }
     std::string srcDirName = argv[1];
@@ -98,14 +98,14 @@ int main(int argc,char*argv[])
         int res = ::getHashes(srcBin.c_str(),srcBinHashes);
         if(res == -1 || res == 0)
         {
-            std::cout<<"Could not open "+srcBin<<std::endl;
+            std::cerr<<"Could not open "+srcBin<<std::endl;
             continue;
         }
         res = ::getHashes(destBin.c_str(),destBinHashes);
         if(res == -1 || res == 0)
         {
             if(!::copyFile(srcBin,destBin))
-                std::cout<<"Could not copy "<<srcBin<<" to "<<destBin<<std::endl;
+                std::cerr<<"Could not copy "<<srcBin<<" to "<<destBin<<std::endl;
             continue;
         }
 
@@ -130,13 +130,13 @@ int main(int argc,char*argv[])
         bool valid = loadBinAsJSON(srcBin,srcJson);
         if(!valid)
         {
-            std::cout<<srcBin<<" is not a valid JSON document\n";
+            std::cerr<<srcBin<<" is not a valid JSON document\n";
             continue;
         }
         valid = loadBinAsJSON(destBin,destJson);
         if(!valid)
         {
-            std::cout<<destBin<<" is not a valid JSON document\n";
+            std::cerr<<destBin<<" is not a valid JSON document\n";
             continue;
         }
 
@@ -165,7 +165,7 @@ int main(int argc,char*argv[])
             if(res)
                 std::cout<<destBin<<std::endl;
             else
-                std::cout<<"Error: could not write "<<destBin<<std::endl;
+                std::cerr<<"Error: could not write "<<destBin<<std::endl;
         }
         
     }
