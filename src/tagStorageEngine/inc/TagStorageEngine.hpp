@@ -80,7 +80,7 @@ class TagStorageEngine
         bool tagExists(std::string&token,std::fstream*bucket)
         {
             ::regex_t reg;
-            int res = ::regcomp(&reg,std::string("\\b"+this->escapeRegex.escape(token.c_str())+"\\b").c_str(),REG_ICASE);
+            int res = ::regcomp(&reg,std::string("\\b"+this->escapeRegex.remove(token.c_str())+"\\b").c_str(),REG_ICASE);
             if(res)
             {
                 char buff[256];
