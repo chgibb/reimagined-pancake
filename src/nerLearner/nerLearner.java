@@ -15,7 +15,7 @@ import java.util.Scanner;
 import java.util.concurrent.*;
 import java.util.ArrayList;
 import java.lang.Thread;
-
+import java.util.Arrays;
 
 import src.*;
 
@@ -86,7 +86,8 @@ public class nerLearner
                 while(tweetBin.size() != 0)
                 {
                     String tweet = tweetBin.getTweet();
-                    String[] words = tweet.split("( )|(.)|(,)|(\\()|(\\))|(\\n)");
+                    
+                    String[] words = tweet.split("( )");
                     tweet = "";
                     for(int i = 0; i != words.length; ++i)
                     {
