@@ -161,7 +161,11 @@ int main(int argc,char*argv[])
                     destJson["items"].PushBack((*srcIt),allocator);
                 }
             }
-            saveBin(destBin,destJson);
+            bool res = saveBin(destBin,destJson);
+            if(res)
+                std::cout<<destBin<<std::endl;
+            else
+                std::cout<<"Error: could not write "<<destBin<<std::endl;
         }
         
     }
