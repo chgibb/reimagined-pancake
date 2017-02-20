@@ -10,5 +10,6 @@ Note: Even if you want to merge the entirety of src into dest, a listing file fo
 ```
 ./binMerger src dest srcListing
 ``` 
+Will output to stdout a listing of each bin in dest that was modified by the merging operation.
 
 Note: that as tweet databases are just folders, src and dest can be given in terms of local or absolute paths.
