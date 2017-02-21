@@ -37,7 +37,7 @@ bool copyFile(const std::string&src,const std::string&dest)
 
     int res = ::makePath((char*)dest.c_str());
     if(res != 0)
-        std::cout<<::strerror(res)<<std::endl;
+        std::cerr<<::strerror(res)<<std::endl;
 
     std::ofstream destFile(dest);
     if(destFile.bad())
