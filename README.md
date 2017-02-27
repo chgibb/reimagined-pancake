@@ -51,9 +51,9 @@ Once you have acquired credentials from Twitter, a file named keys.json must be 
 ## Acquiring Tweets
 In order to run a round of mining:
 ```
-node scrapeScheduler --dataDir=data --threads=1 --iterations=1
+node tweetScheduler --dataDir=data --threads=1 --iterations=1
 ```
-See [scrapeScheduler documentation](https://github.com/chgibb/reimagined-pancake/blob/master/src/scrapeScheduler/readme.md)
+See [tweetScheduler documentation](https://github.com/chgibb/reimagined-pancake/blob/master/src/tweetScheduler/readme.md)
 for more information.
 
 ## Learning About Tweets

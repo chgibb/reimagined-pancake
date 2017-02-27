@@ -1,7 +1,7 @@
 rm -rf dist
 mkdir dist
 
-printf "Bundling twitter scraper\n"
+printf "Bundling twitter miner\n"
 ./../../node_modules/.bin/browserify index.js --node -o dist/dist.js
 if [ $? != 0 ]; then
     exit 1

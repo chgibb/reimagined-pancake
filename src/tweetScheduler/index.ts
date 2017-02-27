@@ -86,7 +86,7 @@ for(let i : number = 0; i != iterations; ++i)
             JobMgr.addJob
             (
                 "node",
-                ["--max_old_space_size=11000","twitterScraper","--dataDir="+dirs[k]],
+                ["--max_old_space_size=11000","twitterMiner","--dataDir="+dirs[k]],
                 "",true,
                 callBack,
                 {}
