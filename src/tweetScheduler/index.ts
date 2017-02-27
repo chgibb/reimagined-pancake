@@ -10,7 +10,7 @@ import decomposedTweetDate from './../req/decomposedTweetDate';
 import verifyDir from './../req/verifyDir';
 import verifyJSONFile from './../req/verifyJSONFile';
 import saveTweetsFromStore from './../req/saveTweetsFromStore';
-import tweetAnalyzer from './req/tweetAnalyzer';
+import tweetAnalyzer from './../req/tweetAnalyzer';
 import * as bins from './../req/getBins';
 
 var JobMgr = require('./../jsreq/JobMgr');
