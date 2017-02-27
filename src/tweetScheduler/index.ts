@@ -47,7 +47,10 @@ var callBack : any =
     {
         if(args.retCode !== undefined)
         {
-            fs.appendFileSync("log",new Date()+" 1 scrapper done\n");
+            if(args.retCode != 0)
+            {
+                console.log("Miner exited with "+JSON.stringify(args,undefined,4));
+            }
             assert.runningEvents -= 1;
         }
         if(args.unBufferedData)
