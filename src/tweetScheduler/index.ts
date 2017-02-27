@@ -55,7 +55,7 @@ var callBack : any =
             fs.appendFileSync("log",new Date()+" "+args.unBufferedData);
         }
     }
-}
+};
 var tagApplicatorCallBack : any = 
 {
     send : function(channel : string, args : any)
@@ -69,7 +69,7 @@ var tagApplicatorCallBack : any =
             fs.appendFileSync("log",new Date()+" "+args.unBufferedData);
         }
     }
-}
+};
 
 //max concurrent threads to run
 JobMgr.maxJobs = threads + 1;
