@@ -68,7 +68,7 @@ between January 1 2017 12:00am and January 1 2017 11:59pm, first generate a bin 
 a directory named data:
 
 ```
-./binDiscoverer data 2017 Jan 01 > Jan012017Listing
+./genListing data 2017 Jan 01 > Jan012017Listing
 sh runNerLearner.sh Jan012017Listing
 rm Jan012017Listing
 ```
