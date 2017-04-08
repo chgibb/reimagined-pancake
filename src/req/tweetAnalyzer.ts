@@ -1,8 +1,8 @@
-import dataStore from './../../req/dataStore';
-import dataStoreMgr from './../../req/dataStoreMgr';
-import tweetStoreMgr from './../../req/tweetStoreMgr';
-import tweet from './../../req/tweet';
-import decomposedTweetDate from './../../req/decomposedTweetDate';
+import dataStore from './dataStore';
+import dataStoreMgr from './dataStoreMgr';
+import tweetStoreMgr from './tweetStoreMgr';
+import tweet from './tweet';
+import decomposedTweetDate from './decomposedTweetDate';
 var sentiment = require('sentiment');
 class tweetAnalyzer extends tweetStoreMgr
 {
