@@ -1,7 +1,7 @@
-# twitterScraper
+# twitterMiner
 Used to perform requests to Twitters GET/search API endpoint.   
-Note: twitterScraper should not be used directly unless
-you really know what you're doing. In most cases [scrapeScheduler](https://github.com/chgibb/reimagined-pancake/blob/master/src/scrapeScheduler/readme.md) 
+Note: twitterMiner should not be used directly unless
+you really know what you're doing. In most cases [tweetScheduler](https://github.com/chgibb/reimagined-pancake/blob/master/src/tweetScheduler/readme.md) 
 should be used.  
 Note: Always requests results from Twitter in mixed mode. See <https://dev.twitter.com/rest/reference/get/search/tweets>
 for more information. Also always makes request for English language(en) tweets. See the same link
@@ -27,7 +27,7 @@ Where someDir is the directory to save results to.
 
 Also supports variadic arguments off the command line. i.e.:
 ```
-node twitterScraper --dataDir=data cat dog house
+node twitterMiner --dataDir=data cat dog house
 ```
 Will submit the querys cat, dog and house to Twitter as well as the array contents of defaultQueries.json, saving the results
 to the directory data.

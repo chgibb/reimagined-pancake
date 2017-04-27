@@ -10,7 +10,7 @@ import decomposedTweetDate from './../req/decomposedTweetDate';
 import verifyDir from './../req/verifyDir';
 import verifyJSONFile from './../req/verifyJSONFile';
 import saveTweetsFromStore from './../req/saveTweetsFromStore';
-import tweetAnalyzer from './req/tweetAnalyzer';
+import tweetAnalyzer from './../req/tweetAnalyzer';
 import * as bins from './../req/getBins';
 
 var JobMgr = require('./../jsreq/JobMgr');
@@ -47,7 +47,10 @@ var callBack : any =
     {
         if(args.retCode !== undefined)
         {
-            fs.appendFileSync("log",new Date()+" 1 scrapper done\n");
+            if(args.retCode != 0)
+            {
+                console.log("Miner exited with "+JSON.stringify(args,undefined,4));
+            }
             assert.runningEvents -= 1;
         }
         if(args.unBufferedData)
@@ -55,7 +58,7 @@ var callBack : any =
             fs.appendFileSync("log",new Date()+" "+args.unBufferedData);
         }
     }
-}
+};
 var tagApplicatorCallBack : any = 
 {
     send : function(channel : string, args : any)
@@ -69,7 +72,7 @@ var tagApplicatorCallBack : any =
             fs.appendFileSync("log",new Date()+" "+args.unBufferedData);
         }
     }
-}
+};
 
 //max concurrent threads to run
 JobMgr.maxJobs = threads + 1;
@@ -86,7 +89,7 @@ for(let i : number = 0; i != iterations; ++i)
             JobMgr.addJob
             (
                 "node",
-                ["--max_old_space_size=11000","twitterScraper","--dataDir="+dirs[k]],
+                ["--max_old_space_size=11000","twitterMiner","--dataDir="+dirs[k]],
                 "",true,
                 callBack,
                 {}

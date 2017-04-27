@@ -40,6 +40,7 @@ import * as retrieve from './req/retrieveTweets';
 import tweet from './../req/tweet';
 import dataStore from './../req/dataStore';
 import tweetStoreMgr from './../req/tweetStoreMgr';
+import tweetAnalyzer from './../req/tweetAnalyzer';
 //parsed tweet date
 import decomposedTweetDate from './../req/decomposedTweetDate';
 
@@ -70,7 +71,7 @@ var T = new Twit
     }
 );
 
-var tweetSaveMgr : tweetStoreMgr = new tweetStoreMgr();
+var tweetSaveMgr : tweetAnalyzer = new tweetAnalyzer();
 
 //all queries to execute
 var queries : Array<string>;
