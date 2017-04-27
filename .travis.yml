@@ -3,6 +3,12 @@ dist: trusty
 sudo: false
 node_js:
     - "6"
+addons:
+    apt:
+        sources:
+        - ubuntu toolchain-r-test
+        packages:
+        - g++-5
 install:
     - bash install.bash
 script:
