@@ -12,5 +12,6 @@ install:
     - bash install.bash
 script:
     - npm run build
+    - npm test
 notifications:
     email: never
