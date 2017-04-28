@@ -1,13 +1,13 @@
 language: node_js
 sudo: required
 node_js:
-    - "6"
+- '6'
 addons:
-    apt:
-        sources:
-        - ubuntu toolchain-r-test
-        packages:
-        - g++-5
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-5
 install:
     - bash install.bash
 script:
