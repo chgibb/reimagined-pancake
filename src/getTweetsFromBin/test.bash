@@ -1,6 +1,11 @@
 printf "Building test\n"
-g++ -Wall -fexceptions -fexpensive-optimizations -O3 -std=c++11  -c tests/test.cpp -o test.o
-g++  -o test test.o  -s
+
+CXX="g++"
+if [ "$TRAVIS" = true ]; then 
+    CXX="/usr/bin/g++-5"
+fi
+$CXX -Wall -fexceptions -fexpensive-optimizations -O3 -std=c++11  -c tests/test.cpp -o test.o
+$CXX  -o test test.o  -s
 if [ $? != 0 ]; then
     exit 1
 fi  
