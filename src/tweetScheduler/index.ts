@@ -59,20 +59,6 @@ var callBack : any =
         }
     }
 };
-var tagApplicatorCallBack : any = 
-{
-    send : function(channel : string, args : any)
-    {
-        if(args.retCode !== undefined)
-        {
-            assert.runningEvents -= 1;
-        }
-        if(args.unBufferedData)
-        {
-            fs.appendFileSync("log",new Date()+" "+args.unBufferedData);
-        }
-    }
-};
 
 //max concurrent threads to run
 JobMgr.maxJobs = threads + 1;
