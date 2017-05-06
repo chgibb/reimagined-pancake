@@ -54,6 +54,7 @@ class TagStorageEngine
     private:
         std::string storageDirectory;
         UTF8To utf8Conv;
+    public:
         std::string getBucketHash(std::string&token)
         {
             token = this->utf8Conv.toLower(token);
@@ -76,6 +77,7 @@ class TagStorageEngine
                 return nullptr;
             return bucket;
         }
+    public:
         EscapeRegex escapeRegex;
         bool tagExists(std::string&token,std::fstream*bucket)
         {
@@ -112,6 +114,7 @@ class TagStorageEngine
                 throw new std::runtime_error("Failed to get JSON property from file");
             return found;
         }
+    private:
         bool writeTag(std::string&token,std::string&entity,std::fstream*bucket)
         {
             if(!bucket->bad())
