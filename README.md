@@ -76,5 +76,11 @@ rm Jan012017Listing
 runNerLearner.sh by default will output the results to classifiers/learned. If its output directory does
 not exist, it will produce no output.
 
-
+## All Together Now
+```
+node tweetScheduler --dataDir=data --threads=1 --iterations=1
+sh runNerLearner.sh modBinsdata
+rm modBinsData
+```
+Will run a round of mining and learn about only new tweets that have been acquired by that round of mining.
 
