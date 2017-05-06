@@ -28,5 +28,5 @@ node tweetScheduler --dataDir=data --threads=2 --iterations=3
 ```
 Will run 2 twitterMiner instances at once, restarting each, each time each has exited for a total of 2x3=6 twitterMiners.
 With a maximum of 2 running at any given time. Will save the results to the directory named data once complete, and delete temporary storage generated.
-Will create data if it does not exist, if data is already a tweet database, then results will be merged in.
+Will create data if it does not exist, if data is already a tweet database, then results will be merged in. Outputs a listing of each bin that was modified in dataDir to modBinsdataDir where dataDir is the name of the tweet database that was modified.
 
