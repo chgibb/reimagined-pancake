@@ -53,6 +53,7 @@ class TagStorageEngine
         }
     private:
         std::string storageDirectory;
+    public:
         UTF8To utf8Conv;
     public:
         std::string getBucketHash(std::string&token)
@@ -98,13 +99,13 @@ class TagStorageEngine
                 {
                     if(prop == token)
                     {
-                        std::cout<<"MATCHED: "<<prop<<" "<<token<<"\n";
+                        //std::cout<<"MATCHED: "<<prop<<" "<<token<<"\n";
                         found = true;
                         return true;
                     }
                     if(::regexec(&reg,prop.c_str(),0,NULL,0) == 0)
                     {
-                        std::cout<<"REGEX: "<<std::string("\\b"+this->escapeRegex.remove(token.c_str())+"\\b").c_str()<<" found "<<prop<<"\n";
+                        //std::cout<<"REGEX: "<<std::string("\\b"+this->escapeRegex.remove(token.c_str())+"\\b").c_str()<<" found "<<prop<<"\n";
                         found = true;
                         return true;
                     }
@@ -114,7 +115,6 @@ class TagStorageEngine
             ::regfree(&reg);
             if(res == -1)
                 throw new std::runtime_error("Failed to get JSON property from file");
-            std::cout<<"returned: "<<found<<"\n";
             return found;
         }
     private:

@@ -45,6 +45,7 @@ class Bin
         }
         void tokenizeText(std::string in,std::vector<std::string>&tokens)
         {
+            std::regex charsToRemove("(\\n)|(\\.)|(,)|(\\t)");
             bool add = true;
             std::string str;
             size_t end = in.length();
@@ -53,10 +54,11 @@ class Bin
                 add = true;
                 if(in[it] == ' ')
                 {
-                    str.erase(std::remove(str.begin(),str.end(),'\n'),str.end());
+                    /*str.erase(std::remove(str.begin(),str.end(),'\n'),str.end());
                     str.erase(std::remove(str.begin(),str.end(),'.'),str.end());
                     str.erase(std::remove(str.begin(),str.end(),','),str.end());
-                    str.erase(std::remove(str.begin(),str.end(),'\t'),str.end());
+                    str.erase(std::remove(str.begin(),str.end(),'\t'),str.end());*/
+                    str = std::regex_replace(str.c_str(),charsToRemove,"");
                     if(str != "")
                         tokens.push_back(str);
                     str = "";
@@ -64,10 +66,11 @@ class Bin
                 }
                 if(in[it] == '\n')
                 {
-                    str.erase(std::remove(str.begin(),str.end(),'\n'),str.end());
+                    /*str.erase(std::remove(str.begin(),str.end(),'\n'),str.end());
                     str.erase(std::remove(str.begin(),str.end(),'.'),str.end());
                     str.erase(std::remove(str.begin(),str.end(),','),str.end());
-                    str.erase(std::remove(str.begin(),str.end(),'\t'),str.end());
+                    str.erase(std::remove(str.begin(),str.end(),'\t'),str.end());*/
+                    str = std::regex_replace(str.c_str(),charsToRemove,"");
                     if(str != "")
                         tokens.push_back(str);
                     str = "";
@@ -92,9 +95,7 @@ class Bin
                 auto tokensEnd = tokens.end();
                 for(auto tokensIt = tokens.begin(); tokensIt != tokensEnd; ++tokensIt)
                 {
-                    //*tokensIt = std::regex_replace(tokensIt->c_str(),charsToRemove,"");
-                    std::string tmpToken = *tokensIt;
-                    std::string bucketHash = this->tagEngine.getBucketHash(tmpToken);
+                    std::string bucketHash = this->tagEngine.getBucketHash(*tokensIt);
                     if(bucketHash != "")
                     {
                         std::fstream*bucket = nullptr;
@@ -104,15 +105,14 @@ class Bin
                             bool res = this->tagEngine.tagExists(*tokensIt,bucket);
                             if(res == 1)
                             {
-                                std::cout<<res<<"\n";
-                                //std::cout<<"Found "+bucketHash<<"\n";
-                                //std::cout<<*tokensIt<<"\n";
-                                //std::cout<<tokensIt->c_str()<<"\n";
                                 rapidjson::Value obj;
                                 obj.SetObject();
                                 rapidjson::Value str;
-                                std::cout<<rapidjson::StringRef(tokensIt->c_str())<<"\n";
-                                str.SetString(rapidjson::StringRef(tokensIt->c_str()));
+
+                                char buff[tokensIt->size()-1];
+                                ::strcpy(buff,tokensIt->c_str());
+
+                                str.SetString(buff,strlen(buff),allocator);
                                 obj.AddMember("token",str,allocator);
                                 str.SetString(rapidjson::StringRef(""));
                                 obj.AddMember("entity",str,allocator);
@@ -124,48 +124,11 @@ class Bin
                     }
                 }
             }
-            /*
-            rapidjson::Document::AllocatorType& allocator = this->json.GetAllocator();
-            std::regex charsToRemove("\\uFFFD");
-            for(auto it = this->json["items"].Begin(); it != this->json["items"].End(); ++it)
-            {
-                std::vector<std::string> tokens;
-                (*it)["nerTags"].Clear();
-
-                auto tagsEnd = tags.end();
-                auto tokensEnd = tokens.end();
-                for(auto tagsIt = tags.begin(); tagsIt != tagsEnd; ++tagsIt)
-                {
-                    for(auto tokensIt = tokens.begin(); tokensIt != tokensEnd; ++tokensIt)
-                    {
-
-                        if(::regexec(&tagsIt->reg,tokensIt->c_str(),0,NULL,0) == 0)
-                        {
-                            *tokensIt = std::regex_replace(tokensIt->c_str(),charsToRemove,"");
-                            rapidjson::Value obj;
-                            obj.SetObject();
-                            rapidjson::Value str;
-                            str.SetString(rapidjson::StringRef(tagsIt->token.c_str()));
-                            obj.AddMember("token",str,allocator);
-                            str.SetString(rapidjson::StringRef(tagsIt->entity.c_str()));
-                            obj.AddMember("entity",str,allocator);
-                            (*it)["nerTags"].PushBack(obj,allocator);
-                        }
-                    }
-                }
-            }*/
             return true;
         }
         bool saveBin()
         {
-            /*std::ofstream ofs(this->binPath);
-            rapidjson::OStreamWrapper osw(ofs);
-            rapidjson::PrettyWriter<rapidjson::OStreamWrapper> writer(osw);
-            this->json.Accept(writer);*/
             std::ofstream wofs(this->binPath);
-            //wofs.open(this->binPath,std::ios::out);
-//            std::locale utf8_locale(std::locale(),new utf8cvt<false>);
-//            wofs.imbue(utf8_locale);
             rapidjson::OStreamWrapper wosw(wofs);
             rapidjson::PrettyWriter<rapidjson::OStreamWrapper> writer(wosw);
             this->json.Accept(writer);
