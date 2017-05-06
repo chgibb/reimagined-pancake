@@ -1,28 +1,33 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <string>
 
-#include "inc/loadTags.hpp"
 #include "inc/Bin.hpp"
-#include "../inc/Tag.hpp"
-/*
-    CLI arguments should be of the form:
-    tagApplicator logFile learnedTags.json pathToBinToApplyTo1.json pathToBinToApplyTo2.json etc
 
-    Using NER tags identified in argv[1], will update the NERTags array of each Object in the
-    items array for every bin given.
-*/
+
+
 int main(int argc,char*argv[])
 {
-
-    std::vector<Tag> tags;
-    bool res = loadTags(argv[1],tags);
-    if(!res)
+    if(argc < 2)
     {
-        std::cout<<"Could not load tags\n";
+        std::cerr<<"Invalid number of arguments!\n";
         return 1;
     }
-    for(int i = 2; i != argc; ++i)
+    std::string listingPath = argv[1];
+    std::ifstream listing(listingPath.c_str(),std::ios::in);
+    std::string binPath = "";
+    while(std::getline(listing,binPath))
+    {
+        Bin bin;
+        bin.tagEngine.setStorageDirectory(argv[2]);
+        bool res = bin.load(binPath);
+        if(res)
+        {
+            bin.tagBin();
+            bin.saveBin();
+        }
+    }
+    /*for(int i = 2; i != argc; ++i)
     {
         std::cout<<"Loading "<<argv[i]<<"\n";
         std::cout.flush();
@@ -37,5 +42,5 @@ int main(int argc,char*argv[])
             std::cout.flush();
             bin.saveBin();
         }
-    }
+    }*/
 }
