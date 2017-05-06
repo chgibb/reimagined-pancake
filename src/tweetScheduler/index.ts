@@ -2,6 +2,7 @@ var argv : any = require('minimist')(process.argv.slice(2));
 var rimraf : any = require('rimraf');
 
 import * as fs from "fs";
+import * as cp from "child_process";
 
 import tweet from './../req/tweet';
 import dataStore from './../req/dataStore';
@@ -40,8 +41,8 @@ for(let i : number = 0; i != threads; ++i)
     dirs.push(dataDir+i.toString());
 }
 
-//on call back from a spawned scrapper
-var callBack : any = 
+//on call back from a spawned miner
+let minerCallBack : any = 
 {
     send : function(channel : string, args : any)
     {
@@ -56,6 +57,40 @@ var callBack : any =
         if(args.unBufferedData)
         {
             fs.appendFileSync("log",new Date()+" "+args.unBufferedData);
+        }
+    }
+};
+let listingCallBack : any = {
+    send : function(channel : string,args : any)
+    {
+        if(args.retCode !== undefined)
+        {
+            if(args.retCode != 0)
+            {
+                console.log("Listing fialed "+JSON.stringify(args,undefined,4));
+            }
+            assert.runningEvents -= 1;
+        }
+        if(args.unBufferedData)
+        {
+            fs.appendFileSync(dataDir+"listing"+args.args[2],args.unBufferedData);
+        }
+    }
+};
+let mergingCallBack : any = {
+    send : function(channel : string,args : any)
+    {
+        if(args.retCode !== undefined)
+        {
+            if(args.retCode != 0)
+            {
+                console.log("Merging failed "+JSON.stringify(args,undefined,4));
+            }
+            assert.runningEvents -= 1;
+        }
+        if(args.unBufferedData)
+        {
+            fs.appendFileSync(`modBins${dataDir}`,args.unBufferedData);
         }
     }
 };
@@ -77,7 +112,7 @@ for(let i : number = 0; i != iterations; ++i)
                 "node",
                 ["--max_old_space_size=11000","twitterMiner","--dataDir="+dirs[k]],
                 "",true,
-                callBack,
+                minerCallBack,
                 {}
             );
             assert.runningEvents += 1;
@@ -85,44 +120,43 @@ for(let i : number = 0; i != iterations; ++i)
         },'');
     }
 }
-for(let j : number = 0; j != dirs.length; ++j)
+for(let i : number = 0; i != dirs.length; ++i)
 {
-    //for every thread's directory
-    assert.assert
-    (
-        ()=>
-        {
-            //find all the bins generated
-            bins.populateSourceBins(false,dirs[j]);
-            return true;
-        },'',0
-    );
-    assert.assert
-    (
-        ()=>
-        {
-            JobMgr.maxJobs = 1;
-            //commit each bin into the corresponding bin in the data directory
-            for(let i : number = 0; i != bins.sourceBins.length; ++i)
-            {
-                var store : dataStore<tweet,decomposedTweetDate> = new dataStore<tweet,decomposedTweetDate>(bins.sourceBins[i]);
-                fs.appendFileSync("log",new Date()+" "+"committing "+store.items.length+" tweets\n");
-                saveTweetsFromStore(tweetSaveMgr,store,dataDir);
-                fs.appendFileSync("log",new Date()+" "+"done\n");
-            }
-            return true;
-        },'',0
-    );
-    assert.assert
-    (
-        ()=>
-        {
-            //remove the directory
-            rimraf.sync(dirs[j]);
-            return true;
-        },'',0
-    );
+    //generate listings for all temp dbs
+    assert.assert(()=>{
+        JobMgr.addJob(
+            "node",
+            ["--max_old_space_size=11000","genListingNoDate",dirs[i]],
+            "",true,
+            listingCallBack,
+            {}
+        );
+        assert.runningEvents += 1;
+        return true;
+    },'',0);
+
+    //merge temp dbs using generated listings
+    assert.assert(()=>{
+        JobMgr.addJob(
+            "./binMerger",
+            [dirs[i],dataDir,`${dataDir}listing${dirs[i]}`],
+            "",true,
+            mergingCallBack,
+            {}
+        );
+        assert.runningEvents += 1;
+        return true;
+    },'',0);
+    
+    assert.assert(()=>{
+        //remove temp tweet dbs
+        rimraf.sync(dirs[i]);
+        //remove db listings
+        fs.unlinkSync(`${dataDir}listing${dirs[i]}`);
+        return true;
+    },'',0);
 }
+
 var jobRunner : NodeJS.Timer = setInterval
 (
     ()=>
