@@ -4,7 +4,6 @@
     --listing=<string>
 
 */
-
 var argv : any = require('minimist')(process.argv.slice(2));
 var escapeStringRegexp : (input : string) => string =  require("escape-string-regexp");
 
@@ -50,9 +49,6 @@ let res : outFile = new outFile
 res.writeHeader();
 assert.assert(()=>{return true;},'',0);
 let rl : readline.ReadLine;
-
-
-
 
 assert.assert
 (
