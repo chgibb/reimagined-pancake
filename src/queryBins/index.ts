@@ -4,8 +4,8 @@
     --listing=<string>
 
 */
-var argv : any = require('minimist')(process.argv.slice(2));
-var escapeStringRegexp : (input : string) => string =  require("escape-string-regexp");
+let argv : any = require('minimist')(process.argv.slice(2));
+let escapeStringRegexp : (input : string) => string =  require("escape-string-regexp");
 
 import * as fs from "fs";
 import * as readline from "readline";
@@ -17,10 +17,10 @@ import decomposedTweetDate from './../req/decomposedTweetDate';
 import outFile from "./req/outFile";
 import {formattedStreamPipe} from "./req/formattedStream";
 
-var assert = require('./../jsreq/assert');
-var sleep = require('./../jsreq/sleep');
+let assert = require('./../jsreq/assert');
+let sleep = require('./../jsreq/sleep');
 
-var dataDir : string = argv.dataDir;
+let dataDir : string = argv.dataDir;
 if(!dataDir)
 {
     console.log("must specify data directory");
