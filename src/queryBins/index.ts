@@ -28,11 +28,6 @@ if(!dataDir)
     process.exit(1);
 }
 
-var dateFormat : string = argv.dateFormat;
-if(!dateFormat)
-{
-    dateFormat = "twitter";
-}
 let listing : string = argv.listing;
 
 let res : outFile = new outFile
