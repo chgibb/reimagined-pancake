@@ -9,9 +9,18 @@ addons:
     packages:
     - g++-5
 install:
-    - bash install.bash
+- bash install.bash
 script:
-    - npm run build
-    - npm test
+- npm run build
+- npm test
+- bash publish.bash
 notifications:
-    email: never
+  email: never
+deploy:
+  provider: releases
+  api_key:
+    secure: JTKg4EekqwejbK6LDmTRvPoCq3T6AFglcxtlr4KUK8EiY6wyfapIwoYjS7XiVaCSeWhoyGRvlOZ0x5lc7Ca/dhNJktceggtErhMG3v5ZpxkgXO/k6hZwcPpwEYzQ+nwlaChwLpqJrlIajqSxJTr8TNiF1wy1qnKivDlYSuG3ffintZ+IUel0B+tSAcQqTDRI9mKAKmXQRqQ9WvwwuaYqR2Pc03+23Trhq2SEOjA7B4WysWQmdlAmhUl19HAvj9Ox2ONHg7cJGWiD4o57CZllekeEDnqWUpHDcrAVbJq4MZ56mEb7my3LSPwqE8hgP7Za54Z5Sh5xy2NiLc1BDQDipU5Hk8Le7mqsg39ykEpb9O6rS9ftGAzbhNg4/EeY2jyia3UKo+0onrGxrwjmg9UuWAZJfZpFfy/JNHUQW0Mq8KTI3UVzLU957YNUIvBS//3CWDW9FL4C8gRQKVBczIMgplT5aoHHZmVJkTWN6JvQUYgl7vSlkXK/sj7MruUUEY7vPyNPV3yXK3qOZK4cVOt0uQVv9TqFYsmF6nRw4OI26+fBljgVSUVzOwWgi98Ea+CT0nGGz5kKTH4rUjUFYgyZWGO1gEmd95MXZInOkAdA1tc+h1kAz0JENc4woBAJQrf+uB47A+2zp3cY2kg5JxQm+LMFChXUf81qKcDJcl3FqCg=
+  file: pancake-linux-x64.tar.gz
+  skip_cleanup : true
+  on:
+    tags: true
