@@ -1,4 +1,5 @@
-(set -o igncr) 2>/dev/null && set -o igncr;
+(set -o igncr) 2>/dev/null && set -o igncr; # For Cygwin on Windows compaibility
+
 #TODO: THIS PATH SHOULD NOT BE HARDCODED
 rm -rf dist
 mkdir dist

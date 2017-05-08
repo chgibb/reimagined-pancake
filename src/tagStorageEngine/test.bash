@@ -1,4 +1,5 @@
-(set -o igncr) 2>/dev/null && set -o igncr;
+(set -o igncr) 2>/dev/null && set -o igncr; # For Cygwin on Windows compaibility
+
 printf "Building test\n"
 
 CXX="g++"
