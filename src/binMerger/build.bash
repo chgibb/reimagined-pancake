@@ -13,7 +13,7 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
-$CXX  -o dist/binMerger main.o  -s
+$CXX -static -static-libgcc -static-libstdc++ -o dist/binMerger main.o  -s
 if [ $? != 0 ]; then
     exit 1
 fi
