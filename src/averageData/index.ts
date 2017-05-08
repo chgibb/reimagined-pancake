@@ -1,3 +1,9 @@
+/*
+    --file=<string>
+        dump file frm extrac.js
+    --date=<string>
+        string to show as label on x axis
+*/
 var argv : any = require('minimist')(process.argv.slice(2));
 
 let ndJson : any = require("ndjson");
