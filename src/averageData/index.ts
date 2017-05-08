@@ -77,7 +77,7 @@ assert.assert
             date : date,
             totalTweets : totalTweets
         }
-        console.log(JSON.stringify(res,undefined,4));
+        console.log(JSON.stringify(res,undefined,0));
         return true;
     },'',0
 );
