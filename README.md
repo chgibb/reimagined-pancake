@@ -84,3 +84,24 @@ rm modBinsData
 ```
 Will run a round of mining and learn about only new tweets that have been acquired by that round of mining.
 
+## Tagging Tweets
+In order to visualize and analyze tweets, they need to be tagged with the words of interest generated from nerLearner.  
+You should always generate a fresh listing and run tagging before you generate visualization files in order to ensure that the freshest data is available (assuming you are acquiring tweets continuously).
+
+```
+./tagApplicator Jan2017Listing classifiers/learned
+```
+Assuming that words of interest are being written to classifiers/learned (the default).
+
+## Generating Files for Visualization
+Extract words of interest and sentiment information
+```
+node extract --listing=Jan2017Listing > Jan2017Dump
+```
+
+Average out word occurences and average sentiment
+```
+node average --file=Jan2017Dump --date=Jan2017 > Jan2017.json
+```
+
+```Jan2017.json``` can now be visualized and queried.
