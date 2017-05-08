@@ -5,6 +5,7 @@ if [ $? != 0 ]; then
     bash clean.bash
     exit 1
 fi
+mkdir dist
 cd src
 for d in */ ; do
     cd $d
@@ -36,7 +37,6 @@ for d in */ ; do
     cd ../
 done
 cd ../
-mkdir dist
 rsync -vr --exclude '*.md' dist/* dep/
 rsync -vr res/* dep/
 
