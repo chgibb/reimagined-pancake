@@ -10,11 +10,11 @@ if [ "$TRAVIS" = true ]; then
     CXX="/usr/bin/g++-5"
 fi
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    $CXX -shared -fPIC -std=c++11 -I /usr/lib/jvm/java-9-openjdk-amd64/include main.cpp -o libgetTweetsFromBin.so
+    $CXX -shared -fPIC -std=c++11 -O3 -I /usr/lib/jvm/java-9-openjdk-amd64/include main.cpp -o libgetTweetsFromBin.so
     if [ $? != 0 ]; then
-        $CXX -shared -fPIC -std=c++11 -I /usr/lib/jvm/java-8-openjdk-amd64/include main.cpp -o libgetTweetsFromBin.so
+        $CXX -shared -fPIC -std=c++11 -O3 -I /usr/lib/jvm/java-8-openjdk-amd64/include main.cpp -o libgetTweetsFromBin.so
         if [ $? != 0 ]; then
-            $CXX -shared -fPIC -std=c++11 -I /usr/lib/jvm/java-7-openjdk-amd64/include main.cpp -o libgetTweetsFromBin.so
+            $CXX -shared -fPIC -std=c++11 -O3 -I /usr/lib/jvm/java-7-openjdk-amd64/include main.cpp -o libgetTweetsFromBin.so
             if [ $? != 0 ]; then
                 exit 1
             fi
