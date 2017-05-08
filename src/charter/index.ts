@@ -1,4 +1,4 @@
-declare var Plotly : any;
+//declare var Plotly : any;
 
 import inputFile from "./req/inputFile";
 import refreshChart from "./req/refreshChart";

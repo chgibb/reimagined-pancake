@@ -1,6 +1,8 @@
+let Plotly = require("plotly.js/dist/plotly.min.js");
+
 import inputFile from "./inputFile";
 
-declare var Plotly : any;
+//declare var Plotly : any;
 
 interface plotlyDataSet
 {
