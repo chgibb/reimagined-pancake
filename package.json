@@ -26,17 +26,17 @@
     "ndjson": "^1.4.3",
     "plotly": "^1.0.6",
     "rimraf": "^2.5.4",
-    "sentiment": "^2.0.0",
+    "sentiment": "^4.0.0",
     "twit": "^2.2.5",
     "walk": "^2.3.9"
   },
   "devDependencies": {
     "@types/es6-shim": "^0.31.32",
-    "@types/node": "^6.0.55",
-    "browserify": "^13.1.0",
+    "@types/node": "^7.0.18",
+    "browserify": "^14.3.0",
     "electron-prebuilt": "^1.1.2",
     "plotly.js": "^1.26.1",
-    "typedoc": "^0.5.3",
+    "typedoc": "^0.6.0",
     "typescript": "^2.1.4"
   }
 }
