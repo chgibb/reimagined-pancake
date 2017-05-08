@@ -1,3 +1,4 @@
+(set -o igncr) 2>/dev/null && set -o igncr;
 printf "Building test\n"
 
 CXX="g++"

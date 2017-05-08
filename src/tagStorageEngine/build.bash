@@ -1,3 +1,4 @@
+(set -o igncr) 2>/dev/null && set -o igncr;
 #TODO: THIS PATH SHOULD NOT BE HARDCODED
 rm -rf dist
 mkdir dist

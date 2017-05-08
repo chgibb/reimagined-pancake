@@ -1,3 +1,4 @@
+(set -o igncr) 2>/dev/null && set -o igncr;
 rm -r dep/*.js
 rm -r dep/*.jar
 rm -r dep/*.json

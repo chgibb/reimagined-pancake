@@ -1,4 +1,5 @@
 #!/bin/bash
+(set -o igncr) 2>/dev/null && set -o igncr;
 bash clean.bash
 ./node_modules/.bin/tsc
 if [ $? != 0 ]; then

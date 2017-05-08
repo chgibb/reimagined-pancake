@@ -1,3 +1,4 @@
+(set -o igncr) 2>/dev/null && set -o igncr;
 rm *.js
 rm req/*.js
 
