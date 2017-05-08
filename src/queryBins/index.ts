@@ -1,8 +1,5 @@
 /*
-    --dataDir=<string>
-        directory to use as tweet database.
     --listing=<string>
-
 */
 let argv : any = require('minimist')(process.argv.slice(2));
 let escapeStringRegexp : (input : string) => string =  require("escape-string-regexp");
@@ -19,13 +16,6 @@ import {formattedStreamPipe} from "./req/formattedStream";
 
 let assert = require('./../jsreq/assert');
 let sleep = require('./../jsreq/sleep');
-
-let dataDir : string = argv.dataDir;
-if(!dataDir)
-{
-    console.log("must specify data directory");
-    process.exit(1);
-}
 
 let listing : string = argv.listing;
 
