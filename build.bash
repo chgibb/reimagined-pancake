@@ -38,6 +38,9 @@ done
 cd ../
 rsync -vr --exclude '*.md' dist/* dep/
 rsync -vr res/* dep/
-#cp -R dist/* dep
-#cp -R res/* dep
-rm src/req/*.js
+
+for f in $(find src -name '*.ts'); 
+do
+    artifact=$(echo $f | awk '{gsub("\\.ts",".js");print}')
+	rm $artifact
+done
