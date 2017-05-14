@@ -3,7 +3,10 @@
 rm -rf dist
 mkdir dist
 printf "Building binMerger\n"
-
+if [[ "$OSTYPE" == "cygwin" ]]; then
+    ./build.bat
+    exit "$?"
+fi
 CXX="g++"
 if [ "$TRAVIS" = true ]; then 
     CXX="/usr/bin/g++-5"
