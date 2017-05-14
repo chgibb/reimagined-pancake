@@ -1,6 +1,27 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#ifdef __WIN32
+//Adapted from answer by cMinor
+//http://stackoverflow.com/questions/12975341/to-string-is-not-a-member-of-std-says-g-mingw
+    #include <cstdlib>
+    #include <string>
+    #include <sstream>
+    namespace std
+    {
+        template<class T>
+        std::string to_string(const T&n)
+        {
+            std::ostringstream ostrstrm;
+            ostrstrm<<n;
+            return ostrstrm.str();
+        }
+        int stoi(std::string str)
+        {
+            return std::atoi(str.c_str());
+        }
+    }
+#endif
 #include "inc/DataDir.hpp"
 #include "inc/Year.hpp"
 #include "inc/Month.hpp"
