@@ -1,5 +1,5 @@
 #!/bin/bash
-(set -o igncr) 2>/dev/null && set -o igncr;
+(set -o igncr) 2>/dev/null && set -o igncr; # For Cygwin on Windows compaibility
 bash clean.bash
 ./node_modules/.bin/tsc
 if [ $? != 0 ]; then
