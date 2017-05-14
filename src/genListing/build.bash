@@ -3,6 +3,10 @@
 rm -rf dist
 mkdir dist
 printf "Building genListing\n"
+if [[ "$OSTYPE" == "cygwin" ]]; then
+    ./build.bat
+    exit "$?"
+fi
 
 CXX="g++"
 if [ "$TRAVIS" = true ]; then 
