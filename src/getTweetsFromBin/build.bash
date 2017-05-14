@@ -25,7 +25,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 fi
 
 if [[ "$OSTYPE" == "cygwin" ]]; then
-    $CXX -shared -std=c++11 -O3 -D__int64=int64_t -I "$JAVA_HOME"\\include -I "$JAVA_HOME"\\include\\win32 main.cpp -o libgetTweetsFromBin.dll
+    $CXX -shared -std=c++11 -O3 -D__int64=int64_t -I "$JAVA_HOME"\\include -I "$JAVA_HOME"\\include\\win32 main.cpp  -static -static-libgcc -static-libstdc++ -o libgetTweetsFromBin.dll
     if [ $? != 0 ]; then
         exit 1
     fi
