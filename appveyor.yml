@@ -6,4 +6,4 @@ test_script:
   - npm test
 
   environment:
-    OSTYPE: cygwin
+    - OSTYPE: cygwin
