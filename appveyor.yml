@@ -4,3 +4,6 @@ build_script:
   - npm run build
 test_script:
   - npm test
+
+  environment:
+    OSTYPE: cygwin
