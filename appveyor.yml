@@ -5,5 +5,5 @@ build_script:
 test_script:
   - npm test
 
-  environment:
+environment:
     - OSTYPE: cygwin
