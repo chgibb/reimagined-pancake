@@ -1,3 +1,4 @@
+(set -o igncr) 2>/dev/null && set -o igncr;
 cd src
 for d in */ ; do
     cd $d

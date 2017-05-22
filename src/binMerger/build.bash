@@ -1,7 +1,12 @@
+(set -o igncr) 2>/dev/null && set -o igncr; # For Cygwin on Windows compaibility
+
 rm -rf dist
 mkdir dist
 printf "Building binMerger\n"
-
+if [[ "$OSTYPE" == "cygwin" ]]; then
+    ./build.bat
+    exit "$?"
+fi
 CXX="g++"
 if [ "$TRAVIS" = true ]; then 
     CXX="/usr/bin/g++-5"
@@ -11,7 +16,7 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
-$CXX  -o dist/binMerger main.o  -s
+$CXX -static -static-libgcc -static-libstdc++ -o dist/binMerger main.o  -s
 if [ $? != 0 ]; then
     exit 1
 fi

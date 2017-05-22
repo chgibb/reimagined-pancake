@@ -1,6 +1,12 @@
+(set -o igncr) 2>/dev/null && set -o igncr; # For Cygwin on Windows compaibility
+
 rm -rf dist
 mkdir dist
 printf "Building genListing\n"
+if [[ "$OSTYPE" == "cygwin" ]]; then
+    ./build.bat
+    exit "$?"
+fi
 
 CXX="g++"
 if [ "$TRAVIS" = true ]; then 

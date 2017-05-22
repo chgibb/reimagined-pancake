@@ -1,12 +1,42 @@
 #pragma once
-#ifdef _WIN32
-    #error "Implement this"
+#if defined(_WIN32) || defined(__CYGWIN__)
+    //#error "Implement this"
+    #include <windows.h>
+    inline static int makeDir(const char*path,int mode = 0)
+    {
+        return ::CreateDirectory(path,NULL);
+    }
 #endif
 #ifdef __linux__
     #include <sys/stat.h>
     inline static int makeDir(const char*path,::mode_t mode = S_IRWXU)
     {
         return ::mkdir(path,mode);
+    }
+#endif
+#if defined(_WIN32) || defined(__CYGWIN__)
+    #include <cstdio>
+    inline static int makePath(char*file_path,int mode = 0)
+    {
+        char*split = ::strtok(file_path,"/");
+        while(split != NULL)
+        {
+            ::makeDir(split);
+        }
+        /*// only create directories that don't exist
+        if (::GetFileAttributes(p) == INVALID_FILE_ATTRIBUTES)
+        {
+            // check if our parent needs to be created, too...
+            int i = p.ReverseFind('\\');
+            if (i > 0)
+            {
+                // ...yes, create the parent (recursively)
+                ::createPath(p.Left(i));
+            }
+
+            // finally, actually create the directory in p
+            ::makeDir(p);
+        }*/
     }
 #endif
 //Adapted from answer by Yaroslav Stavnichiy
