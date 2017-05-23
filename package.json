@@ -36,6 +36,7 @@
     "browserify": "^13.1.0",
     "electron-prebuilt": "^1.1.2",
     "plotly.js": "^1.26.1",
+    "twitter-screen-scrape": "^1.0.2",
     "typedoc": "^0.5.3",
     "typescript": "^2.1.4"
   }
