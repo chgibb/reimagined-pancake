@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/chgibb/reimagined-pancake#readme",
   "dependencies": {
+    
+  },
+  "devDependencies": {
     "electron-ipc-stream": "^0.2.0",
     "electron-packager": "^8.0.0",
     "escape-string-regexp": "^1.0.5",
@@ -28,9 +31,7 @@
     "rimraf": "^2.5.4",
     "sentiment": "^2.0.0",
     "twit": "^2.2.5",
-    "walk": "^2.3.9"
-  },
-  "devDependencies": {
+    "walk": "^2.3.9",
     "@types/es6-shim": "^0.31.32",
     "@types/node": "^6.0.55",
     "browserify": "^13.1.0",
