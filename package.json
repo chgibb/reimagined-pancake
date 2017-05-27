@@ -17,28 +17,27 @@
     "url": "https://github.com/chgibb/reimagined-pancake/issues"
   },
   "homepage": "https://github.com/chgibb/reimagined-pancake#readme",
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
-    "electron-ipc-stream": "^0.2.0",
-    "electron-packager": "^8.0.0",
-    "escape-string-regexp": "^1.0.5",
-    "jquery": "^3.1.1",
-    "minimist": "^1.2.0",
-    "ndjson": "^1.4.3",
-    "plotly": "^1.0.6",
-    "rimraf": "^2.5.4",
-    "sentiment": "^2.0.0",
-    "twit": "^2.2.5",
-    "walk": "^2.3.9",
     "@types/es6-shim": "^0.31.32",
     "@types/node": "^6.0.55",
     "browserify": "^13.1.0",
+    "electron-ipc-stream": "^0.2.0",
+    "electron-packager": "^8.0.0",
     "electron-prebuilt": "^1.1.2",
+    "escape-string-regexp": "^1.0.5",
+    "jquery": "^3.1.1",
+    "minimist": "^1.2.0",
+    "n-readlines": "^0.2.7",
+    "ndjson": "^1.4.3",
+    "plotly": "^1.0.6",
     "plotly.js": "^1.26.1",
+    "rimraf": "^2.5.4",
+    "sentiment": "^2.0.0",
+    "twit": "^2.2.5",
     "twitter-screen-scrape": "^1.0.2",
     "typedoc": "^0.5.3",
-    "typescript": "^2.1.4"
+    "typescript": "^2.1.4",
+    "walk": "^2.3.9"
   }
 }
