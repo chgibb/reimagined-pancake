@@ -27,6 +27,7 @@
     "electron-prebuilt": "^1.1.2",
     "escape-string-regexp": "^1.0.5",
     "jquery": "^3.1.1",
+    "js-sha256": "^0.5.0",
     "minimist": "^1.2.0",
     "n-readlines": "^0.2.7",
     "ndjson": "^1.4.3",
