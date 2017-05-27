@@ -81,7 +81,7 @@ function processTweet(tweet : {time : number,text : string}) : void
 }
 
 
-let tweetStream : any;
+let tweetStream : Array<any> = new Array<any>();
 
 let nerBucketReadStream = new readLines(nerBucket);
 
@@ -107,23 +107,24 @@ function scrapeNextUser() : void
     
         console.log(user);
 
-    tweetStream = new twitterScreenScrape({
+    tweetStream.push(new twitterScreenScrape({
         username : user,
         retweets : true
-    });
-    tweetStream.on("readable",function(){
-        let tweet = tweetStream.read();
+    }));
+    let streamer = tweetStream[tweetStream.length - 1];
+    streamer.on("readable",function(){
+        let tweet = this.read();
         processTweet(tweet);
     });
-    tweetStream.on("error",function(){
+    streamer.on("error",function(){
         console.log("stream error");
         scrapeNextUser();
     });
-    tweetStream.on("close",function(){
+    streamer.on("close",function(){
         console.log("stream closed");
         scrapeNextUser();
     });
-    tweetStream.on("end",function(){
+    streamer.on("end",function(){
         console.log("stream ended");
         scrapeNextUser();
     });
