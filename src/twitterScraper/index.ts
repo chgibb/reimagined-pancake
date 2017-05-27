@@ -11,6 +11,7 @@ import {default as Tweet} from "./../req/tweet";
 import decomposedTweetDate from "./../req/decomposedTweetDate";
 import dataStore from "./../req/dataStore";
 import {ScrapedTweetAnalyzer} from "./req/scrapedTweetAnalyzer";
+import tweetAnalyzer from './../req/tweetAnalyzer';
 import saveTweetsFromStore from "./../req//saveTweetsFromStore";
 
 const dataDir : string = argv.dataDir;
