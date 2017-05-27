@@ -2,7 +2,7 @@ import dataStore from './../../req/dataStore';
 import tweet from './../../req/tweet';
 import decomposedTweetDate from './../../req/decomposedTweetDate';
 var jsonFile = require('./../../jsreq/jsonfile.js');
-var sha256 = require('./../../jsreq/sha256.min.js');
+var sha256 = require('js-sha256');
 var sleep = require('./../../jsreq/sleep.js');
 interface queryParams
 {
