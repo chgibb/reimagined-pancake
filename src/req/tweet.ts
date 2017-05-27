@@ -11,12 +11,13 @@ class tweet
     second : string;
     nerTags : Array<any>;
     sentiment : any;
-    constructor(text : string,createdAt : string)
+    constructor(text : string,createdAt? : string)
     {
         this.text = text;
         this.createdAt = createdAt;
         this.textHash = "";
-        this.decomposeDate();
+        if(createdAt)
+            this.decomposeDate();
         this.nerTags = new Array<any>();
     }
     decomposeDate() : void
