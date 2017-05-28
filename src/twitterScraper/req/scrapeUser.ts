@@ -4,6 +4,23 @@ import dataStore from "./../../req/dataStore";
 
 const twitterScreenScrape = require("twitter-screen-scrape");
 const sha256 = require('js-sha256');
+
+let months : Array<string> = <string[]>[
+    "dummy",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+]
+
 function processTweet(store : dataStore<Tweet,decomposedTweetDate>,tweet : {time : number,text : string}) : void
 {
     let year : string;
@@ -52,7 +69,7 @@ function processTweet(store : dataStore<Tweet,decomposedTweetDate>,tweet : {time
     newTweet.textHash = sha256(newTweet.text);
 
     newTweet.year = year;
-    newTweet.month = month;
+    newTweet.month = months[parseInt(month)];
     newTweet.day = day;
     newTweet.hour = hour;
     newTweet.minute = minute;
