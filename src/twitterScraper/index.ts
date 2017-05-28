@@ -36,8 +36,7 @@ function scrapeNextUser() : void
         user = user.substring(0,user.length - 1);
     
     console.log(user);
-    let scrapePromise = scrapeUser(user);
-    scrapePromise.then((arg : any) => {
+    scrapeUser(user).then((arg : any) => {
         console.log(arg.items.length);
 
         let range = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
