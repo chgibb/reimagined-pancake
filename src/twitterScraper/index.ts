@@ -12,15 +12,15 @@ import decomposedTweetDate from "./../req/decomposedTweetDate";
 import dataStore from "./../req/dataStore";
 import {ScrapedTweetAnalyzer} from "./req/scrapedTweetAnalyzer";
 import tweetAnalyzer from './../req/tweetAnalyzer';
-import saveTweetsFromStore from "./../req//saveTweetsFromStore";
 
+import {mergeScrapedTweets} from "./req/mergeScrapedTweets";
 import {scrapeUser} from "./req/scrapeUser";
 
 const dataDir : string = argv.dataDir;
 
 const nerBucket : string = argv.nerBucket;
 
-let tweetSaveMgr : ScrapedTweetAnalyzer = new ScrapedTweetAnalyzer();
+
 
 let store : dataStore<Tweet,decomposedTweetDate> = new dataStore<Tweet,decomposedTweetDate>();
 
@@ -79,7 +79,15 @@ function scrapeNextUser() : void
     let scrapePromise = scrapeUser(user);
     scrapePromise.then((arg : any) => {
         console.log(arg.items.length);
-        scrapeNextUser();
+
+        let range = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
+
+        let saveDir = dataDir+range.toString();
+        
+        mergeScrapedTweets(arg,saveDir,dataDir).then(() =>{
+            scrapeNextUser();
+        });
+        
     });
 
     

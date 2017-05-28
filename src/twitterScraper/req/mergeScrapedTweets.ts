@@ -5,7 +5,9 @@ import {default as Tweet} from "./../../req/tweet";
 import decomposedTweetDate from "./../../req/decomposedTweetDate";
 import dataStore from "./../../req/dataStore";
 import tweetAnalyzer from './../../req/tweetAnalyzer';
+import saveTweetsFromStore from "./../../req//saveTweetsFromStore";
 
+let tweetSaveMgr : tweetAnalyzer = new tweetAnalyzer();
 function createListing(dataDir : string) : Promise<{}>
 {
     return new Promise((resolve,reject) => {
@@ -42,6 +44,7 @@ function merge(src : string,dest : string,listing : string) : Promise<{}>
 export function mergeScrapedTweets(store : dataStore<Tweet,decomposedTweetDate>,src : string,dest : string) : Promise<{}>
 {
     return new Promise((resolve,reject) => {
+        saveTweetsFromStore(tweetSaveMgr,store,src);
         createListing(src).then((listing : string) => {
             merge(src,dest,listing).then(() => {
                 resolve();
