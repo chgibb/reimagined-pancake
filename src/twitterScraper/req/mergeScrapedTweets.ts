@@ -1,6 +1,8 @@
 import * as cp from "child_process";
 import * as fs from "fs";
 
+const rimraf : any = require('rimraf');
+
 import {default as Tweet} from "./../../req/tweet";
 import decomposedTweetDate from "./../../req/decomposedTweetDate";
 import dataStore from "./../../req/dataStore";
@@ -47,6 +49,8 @@ export function mergeScrapedTweets(store : dataStore<Tweet,decomposedTweetDate>,
         saveTweetsFromStore(tweetSaveMgr,store,src);
         createListing(src).then((listing : string) => {
             merge(src,dest,listing).then(() => {
+                fs.unlinkSync(listing);
+                rimraf.sync(src);
                 resolve();
             });
         });
