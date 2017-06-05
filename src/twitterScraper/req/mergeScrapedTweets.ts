@@ -10,7 +10,7 @@ import tweetAnalyzer from './../../req/tweetAnalyzer';
 import saveTweetsFromStore from "./../../req//saveTweetsFromStore";
 
 let tweetSaveMgr : tweetAnalyzer = new tweetAnalyzer();
-function createListing(dataDir : string) : Promise<{}>
+function createListing(dataDir : string) : Promise<string>
 {
     return new Promise((resolve,reject) => {
         let listing = dataDir+"listing";
