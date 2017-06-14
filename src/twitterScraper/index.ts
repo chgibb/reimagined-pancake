@@ -11,8 +11,18 @@ import {mergeScrapedTweets} from "./req/mergeScrapedTweets";
 import {scrapeUser} from "./req/scrapeUser";
 
 const dataDir : string = argv.dataDir;
+if(!dataDir)
+{
+    console.log("Must specify directory to save results to");
+    process.exit(1);
+}
 
 const nerBucket : string = argv.nerBucket;
+if(!nerBucket)
+{
+    console.log("Must specify NER bucket of users to scrape");
+    process.exit(1);
+}
 
 let nerBucketReadStream = new readLines(nerBucket);
 
