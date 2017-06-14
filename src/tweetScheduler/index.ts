@@ -1,5 +1,6 @@
 var argv : any = require('minimist')(process.argv.slice(2));
 var rimraf : any = require('rimraf');
+const walk = require('walk');
 
 import * as fs from "fs";
 import * as cp from "child_process";
@@ -17,6 +18,8 @@ import * as bins from './../req/getBins';
 var JobMgr = require('./../jsreq/JobMgr');
 var assert = require('./../jsreq/assert');
 
+let scrape : boolean = argv.scrape;
+let learnedClassifierDirectory : string = argv.learnedClassifierDirectory;
 var dataDir : string = argv.dataDir;
 if(!dataDir)
 {
@@ -39,6 +42,16 @@ var dirs : Array<string> = new Array<string>();
 for(let i : number = 0; i != threads; ++i)
 {
     dirs.push(dataDir+i.toString());
+}
+if(scrape)
+{
+    dirs.push(dataDir+(threads+1).toString());
+    if(!learnedClassifierDirectory)
+    {
+        console.log("must specify learnedClassifierDirectory to seed scrapers");
+        process.exit(1);
+    }
+
 }
 
 //on call back from a spawned miner
@@ -119,6 +132,60 @@ for(let i : number = 0; i != iterations; ++i)
             return true;
         },'');
     }
+}
+let nerBucket = "";
+if(scrape)
+{
+    assert.assert(()=>{
+        assert.runningEvents += 1;
+
+        let lastScrapedBucket = 0;
+        let currentBucket = 0;
+        try
+        {
+            lastScrapedBucket = parseInt(fs.readFileSync("lastScrapedBucket").toString());
+        }
+        catch(err)
+        {
+
+        }
+
+        let walker = walk.walk(learnedClassifierDirectory+"/@");
+        walker.on("file",function(root : string,fileStats : any,next : () => void){
+            currentBucket++;
+            if(currentBucket >= lastScrapedBucket)
+            {
+                nerBucket = learnedClassifierDirectory+"/@/"+fileStats.name;
+                fs.writeFileSync("lastScrapedBucket",currentBucket);
+                walker.emit("end");
+            }
+            else
+                next();
+
+        });
+
+        walker.on("errors",function(root : string,nodeStatsArray : Array<any>,next : () => void){
+            next();
+        });
+ 
+        walker.on("end",function(){
+            assert.runningEvents -= 1;
+        });
+        return true;
+
+    },'');
+    assert.assert(()=>{
+        JobMgr.addJob
+        (
+            "node",
+            ["--max_old_space_size=11000","twitterScraper","--dataDir="+dirs[dirs.length-1],"--nerBucket="+nerBucket],
+            "",true,
+            minerCallBack,
+            {}
+        );
+        assert.runningEvents += 1;
+        return true;
+    },'');
 }
 for(let i : number = 0; i != dirs.length; ++i)
 {
