@@ -153,7 +153,7 @@ if(scrape)
         let walker = walk.walk(learnedClassifierDirectory+"/@");
         walker.on("file",function(root : string,fileStats : any,next : () => void){
             currentBucket++;
-            if(currentBucket >= lastScrapedBucket)
+            if(currentBucket > lastScrapedBucket)
             {
                 nerBucket = learnedClassifierDirectory+"/@/"+fileStats.name;
                 fs.writeFileSync("lastScrapedBucket",currentBucket);
@@ -219,7 +219,11 @@ for(let i : number = 0; i != dirs.length; ++i)
         //remove temp tweet dbs
         rimraf.sync(dirs[i]);
         //remove db listings
-        fs.unlinkSync(`${dataDir}listing${dirs[i]}`);
+        try
+        {
+            fs.unlinkSync(`${dataDir}listing${dirs[i]}`);
+        }
+        catch(err){}
         return true;
     },'',0);
 }
