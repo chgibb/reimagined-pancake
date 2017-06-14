@@ -45,9 +45,8 @@ function scrapeNextUser() : void
     if(user[user.length - 1] == ":")
         user = user.substring(0,user.length - 1);
     
-    console.log(user);
     scrapeUser(user).then((arg : any) => {
-        console.log(arg.items.length);
+        console.log(`Scraped ${arg.items.length} tweets from ${user}`);
 
         let range = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
 

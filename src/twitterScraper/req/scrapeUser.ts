@@ -90,17 +90,14 @@ export function scrapeUser(user : string) : Promise<{}>
             
         });
         tweetStream.on("error",function(){
-            console.log("stream error");
             resolve(store);
             
         });
         tweetStream.on("close",function(){
-            console.log("stream closed");
             resolve(store);
             
         });
         tweetStream.on("end",function(){
-            console.log("stream ended");
             resolve(store);
         });
     });
