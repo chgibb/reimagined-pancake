@@ -66,3 +66,12 @@ scrapeNextUser();
 let keepAlive = setInterval(function(){},1000);
 
 
+process.on("uncaughtException",function(err : string){
+    console.log(err);
+    process.exit(1);
+});
+process.on("unhandledRejection",function(err : string){
+    console.log(err);
+    process.exit(1);
+});
+
